@@ -1,0 +1,17 @@
+<launch>
+
+  <node name="ball_tracker" pkg="ball_tracking" type="ball_tracking_simple.py" output="screen">
+    <rosparam>
+       rate: 15
+       pan_threshold: 0.05
+       tilt_threshold: 0.05
+       gain_pan: 0.04
+       gain_tilt: 0.04
+       max_joint_speed: 0.08
+       max_pan_angle_radian: 1.0
+       max_tilt_angle_radian: 1.0
+    </rosparam>
+  </node>
+
+
+</launch>
