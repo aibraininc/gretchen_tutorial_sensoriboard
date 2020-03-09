@@ -1,3 +1,6 @@
 [submodule "sensoriboard_ros"]
 	path = sensoriboard_ros
 	url = https://github.com/aibraininc/sensoriboard_ros.git
+[submodule "gretchen-head-controller"]
+	path = gretchen-head-controller
+	url = https://github.com/aibraininc/gretchen-head-controller.git
