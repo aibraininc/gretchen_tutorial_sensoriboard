@@ -4,3 +4,6 @@
 [submodule "gretchen-head-controller"]
 	path = gretchen-head-controller
 	url = https://github.com/aibraininc/gretchen-head-controller.git
+[submodule "realsense-ros"]
+	path = realsense-ros
+	url = https://github.com/IntelRealSense/realsense-ros.git
