@@ -4,6 +4,8 @@
 import rospy
 import roslib
 from std_msgs.msg import Float32MultiArray, String, MultiArrayLayout, MultiArrayDimension
+from control_msgs.msg import PointHeadAction, PointHeadGoal
+import actionlib
 
 deg2rad = 0.0174533
 
@@ -29,17 +31,33 @@ class Robot:
         rospy.init_node('start', anonymous=True)
 
         self.initParam()
-    def lookatpoint(self, pan, tilt, speed):
-        cmd = Float32MultiArray()
-        cmd.layout = MultiArrayLayout()
-        cmd.layout.dim = []
-        obj = MultiArrayDimension()
-        obj.label = ""
-        obj.size = 0
-        obj.stride = 0
-        cmd.layout.dim.append(obj)
-        cmd.data = [pan, tilt, speed]
+    def lookatpoint(self, x, y, z, speed=0.3):
+        #cmd = Float32MultiArray()
+        #cmd.layout = MultiArrayLayout()
+        #cmd.layout.dim = []
+        #obj = MultiArrayDimension()
+        #obj.label = ""
+        #obj.size = 0
+        #obj.stride = 0
+        #cmd.layout.dim.append(obj)
+        #cmd.data = [pan, tilt, speed]
         #self.lookatpointPub.publish(cmd)
+        head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
+        head_client.wait_for_server()
+        goal = PointHeadGoal()
+        goal.target.header.stamp = rospy.Time.now()
+        goal.target.header.frame_id = "/camera_color_optical_frame"
+        goal.pointing_axis.x = 0
+        goal.pointing_axis.y = 0
+        goal.pointing_axis.z = 1
+
+        goal.target.point.x = x
+        goal.target.point.y = y
+        goal.target.point.z = z
+        goal.max_velocity = speed
+        goal.min_duration = rospy.Duration(2.0)
+        head_client.send_goal(goal)
+        head_client.wait_for_result()
 
         #client = actionlib.SimpleActionClient('fibonacci', control_msgs.PointHeadAction)
         #client.wait_for_server()
