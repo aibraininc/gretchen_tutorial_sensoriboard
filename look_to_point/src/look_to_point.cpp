@@ -68,7 +68,7 @@ void looktopoint(float x, float y, float z, float velocity, bool wait)
 }
 
 void testCallback2(const std_msgs::Float32MultiArray& test) {
-  
+
   ROS_INFO_STREAM(test.data[0]);
   ROS_INFO_STREAM(test.data[1]);
   ROS_INFO_STREAM(test.data[2]);
@@ -191,8 +191,8 @@ void onMouse( int event, int u, int v, int, void* )
   double Z = 1.0; //define an arbitrary distance
   pointStamped.point.x = x * Z;
   pointStamped.point.y = y * Z;
-  pointStamped.point.z = Z;   
- 
+  pointStamped.point.z = Z;
+
   ROS_INFO_STREAM("Target point in camera frame: (" << x * Z << ", " << y * Z << ", " << Z << ")");
 
   //build the action goal
@@ -238,7 +238,7 @@ int main(int argc, char** argv)
   tfl_ = new tf::TransformListener();
 
   ROS_INFO("Starting look_to_point application ...");
- 
+
   // Precondition: Valid clock
   ros::NodeHandle nh;
   if (!ros::Time::waitForValid(ros::WallDuration(10.0))) // NOTE: Important when using simulated clock
@@ -282,7 +282,7 @@ int main(int argc, char** argv)
                                                  imageCallback, transportHint);
 
 	ros::Subscriber testSub = nh.subscribe("/look_point", 1, testCallback);
-	ros::Subscriber testSub2 = nh.subscribe("/look_at_point", 1, testCallback2);
+	ros::Subscriber testSub2 = nh.subscribe("/look_at_point", 10, testCallback2);
 
 
   //enter a loop that processes ROS callbacks. Press CTRL+C to exit the loop
