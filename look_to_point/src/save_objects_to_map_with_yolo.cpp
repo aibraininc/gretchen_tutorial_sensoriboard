@@ -129,6 +129,7 @@ void boundingBoxCallback(const darknet_ros_msgs::BoundingBoxes msg) {
     int cnt = msg.bounding_boxes.size();
     int cntObjectWithDepth = 0;
     objects_msg::Objects new_obj_list;
+    new_obj_list.image_header = msg.image_header;
 
     for(size_t i = 0; i < cnt; i++)
     {
