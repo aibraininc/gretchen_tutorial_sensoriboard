@@ -1,23 +1,27 @@
 <launch>
-<!-- <include file="$(find look_to_point)/launch/detect_object_and_save.launch" >
+<include file="$(find look_to_point)/launch/detect_object_and_save.launch" >
 </include>
+
 <include file="$(find look_to_point)/launch/start_look_to_point.1.launch" >
-</include> -->
+</include>
 
 <node name="save_objects" pkg="look_to_point" type="save_objects_to_map_with_yolo" output="screen">
 </node>
 
-<!-- <node name="map_manager" pkg="map_manager" type="map_manager_without_db.py" output="screen">
-</node> -->
-
-<node name="face_analysis" pkg="face_analysis" type="estimate_focus.py" output="screen">
+<node name="map_manager" pkg="map_manager" type="map_manager_without_db.py" output="screen">
 </node>
 
-<include file="$(find openface2_ros)/launch/openface2_ros.launch" >
-</include>
 
-<include file="$(find darknet_ros)/launch/yolo_v3.launch" >
-</include>
+<!-- <include file="$(find darknet_ros)/launch/yolo_v3.launch" >
+</include> -->
+
+
+<!-- <node name="face_analysis" pkg="face_analysis" type="estimate_focus.py" output="screen">
+</node> -->
+
+<!-- <include file="$(find openface2_ros)/launch/openface2_ros.launch" >
+</include> -->
+
 
 
 </launch>

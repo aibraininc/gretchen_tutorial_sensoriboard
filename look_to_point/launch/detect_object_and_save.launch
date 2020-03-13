@@ -12,13 +12,4 @@
 <include file="$(find head_action)/launch/head_action.launch" >
 </include>
 
-<!-- <node name="look_to_point" pkg="look_to_point" type="look_to_point2" output="screen">
-</node> -->
-
-<!-- <include file="$(find object_detection)/launch/object_detection.launch" >
-</include> -->
-
-<!-- <node name="map_manager" pkg="map_manager" type="map_manager_new.py" output="screen">
-</node> -->
-
 </launch>

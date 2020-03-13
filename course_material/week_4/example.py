@@ -3,13 +3,28 @@ import rospy
 import sys
 sys.path.append('..')
 from lib.robot import Robot
+import time
+
+
+def moveRight(myRobot):
+    for i in range(5):
+        myRobot.right()
+        time.sleep(0.2)
+
+def moveLeft(myRobot):
+    for i in range(5):
+        myRobot.left()
+        time.sleep(0.2)
 
 def main():
 
     robot1 = Robot()
     robot1.start()
-    #robot1.move(-0.5, 0.1)
+
     robot1.lookatpoint(0.678253, 0.754351, 0.298137)
+    robot1.lookatpoint(0.905326, -0.458279, 0.341772)
+
+    #robot1.move(-0.5, 0.1)
     #robot1.move(1.5, 0.1)
     #while not rospy.is_shutdown():
     #    continue
