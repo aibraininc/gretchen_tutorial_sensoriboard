@@ -19,7 +19,7 @@ def main():
     ball_detector = BallDetector()
 
     cnt = 0
-    while not rospy.is_shutdown():
+    while True:
         img = camera1.getImage()
         (img, centor) = ball_detector.detect(img, 640)
         cv2.imshow("Frame", img[...,::-1])
