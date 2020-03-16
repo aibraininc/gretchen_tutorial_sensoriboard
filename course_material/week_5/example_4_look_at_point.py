@@ -8,11 +8,11 @@ from lib.camera_v2 import Camera
 from lib.robot import Robot
 robot = None
 
-def onMouse(camera, u, v):
+def onMouse(camera1, u, v):
     print(u, v)
-    (x,y,z) = camera.convert2d_3d(u,v)
+    (x,y,z) = camera1.convert2d_3d(u,v)
     print (x,y,z,'on camera axis')
-    (x,y,z) = camera.convert3d_3d(x,y,z)
+    (x,y,z) = camera1.convert3d_3d(x,y,z)
     print (x,y,z,'on robot axis')
 
     global robot
@@ -28,8 +28,8 @@ def main():
     camera1.start()
     
     while True:
-        frame = camera1.image
-        camera1.showImage(frame)
+        img = camera1.getImage()
+        camera1.showImage(img)
 
 if __name__ == '__main__':
     main()
