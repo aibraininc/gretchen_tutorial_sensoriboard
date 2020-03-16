@@ -43,10 +43,13 @@ class Camera:
         z = 1.0
         return (x,y,z)
 
-    def transformPoint(self,x,y,z):
-        # wait for camera_info
-        ## point from base --> point from cam
-        # print('I am waiting transformPoint')
+    def convert_3d_2d(self,x,y,z):
+        # 3d point on camera -> 2d point on camera
+        u = self.fx * x + self.cx
+        v = self.fy * y + self.cy
+
+    def convert3d_3d(self,x,y,z):
+        # point from camera -> point from base
         cam_point = PointStamped()
         cam_point.header.frame_id = "/camera_color_optical_frame"
         cam_point.header.stamp = rospy.Time(0)
@@ -56,11 +59,6 @@ class Camera:
         self.listener.waitForTransform("/base_link", "/camera_color_optical_frame", rospy.Time(0),rospy.Duration(4.0))
         p = self.listener.transformPoint("/base_link", cam_point)
         return (p.point.x,p.point.y,p.point.z)
-
-
-    def convert3d_3d(self,x,y,z):
-        return self.transformPoint(x,y,z)
-        # point from camera -> point from base
 
     def showImage(self, frame, frame_name = 'Frame'):
         cv2.imshow(frame_name, frame[...,::-1])
