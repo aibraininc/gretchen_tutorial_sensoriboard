@@ -8,10 +8,10 @@ from lib.camera_v2 import Camera
 
 def main():
     rospy.init_node('camera_show', anonymous=True)
-    camera1 = Camera()
-    camera1.start()
-    while(True):
-        img = camera1.getImage()
+    camera = Camera()
+    camera.start()
+    while True:
+        img = camera.getImage()
         cv2.imshow("Frame", img[...,::-1])
         cv2.waitKey(1)
 

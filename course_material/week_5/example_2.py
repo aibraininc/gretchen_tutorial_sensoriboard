@@ -10,9 +10,6 @@ import actionlib
 sys.path.append('..')
 
 from lib.robot import Robot
-#include <geometry_msgs/PointStamped.h>
-#include <control_msgs/PointHeadAction.h>
-
 class client:
 
     def __init__(self):
@@ -42,7 +39,5 @@ def main():
     goal.min_duration = rospy.Duration(2.0)
     head_client.send_goal(goal)
     head_client.wait_for_result()
-    #while not rospy.is_shutdown():
-    #    rospy.spin()
 if __name__ == '__main__':
     main()

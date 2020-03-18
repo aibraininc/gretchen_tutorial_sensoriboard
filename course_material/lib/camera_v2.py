@@ -21,6 +21,8 @@ class Camera:
         self.click = click
         self.image = None
         self.listener = None
+        self.click_x = 0
+        self.click_y = 0
 
 
 
@@ -66,10 +68,11 @@ class Camera:
         cv2.waitKey(1)
 
     def onMouse(self, event, x, y, flags, param):
-        if self.click == None:
-            return
         if event == cv2.EVENT_LBUTTONDOWN:
-            self.click(self,x,y)
+            if self.click is not None:
+                self.click(self,x,y)
+            self.click_x = x
+            self.click_y = y
 
     def imageCallback(self, image_msg):
         frame = self.bridge_ros2cv.imgmsg_to_cv2(image_msg, desired_encoding="passthrough")
@@ -79,10 +82,9 @@ class Camera:
         else:
             _frame = self.callback(frame)
             frame = _frame
-        # cv2.imshow("Frame", frame[...,::-1])
-        # cv2.setMouseCallback("Frame", self.onMouse)
-        # cv2.waitKey(1)
 
+    def getClickPoint(self):
+        return(self.click_x,self.click_y)
     def getImage(self):
         return self.image
         

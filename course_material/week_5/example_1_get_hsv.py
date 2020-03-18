@@ -5,28 +5,29 @@ import cv2
 import sys
 sys.path.append('..')
 from lib.camera_v2 import Camera
-from lib.robot import Robot
 camera = Camera()
-robot = Robot()
 
+point = (0,0)
 
 def onMouse(event, u, v, flags, param):
+    global point
     if event == cv2.EVENT_LBUTTONDOWN:
-        print(u,v)
-        (x,y,z) = camera.convert2d_3d(u,v)
-        print (x,y,z,'on camera axis')
-        (x,y,z) = camera.convert3d_3d(x,y,z)
-        print (x,y,z,'on robot axis')
-        robot.lookatpoint(x,y,z, waitResult = False)
-        print('look at point end')
+        img = camera.getImage()
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        point = (u,v)
+
+        print('Point', u,v)
+        print('BGR', img[v,u])
+        print('HSV', hsv[v,u])
 
 def main():
+    global point
     rospy.init_node('camera_show', anonymous=True)
     camera.start()
-    robot.start()
     
     while True:
         img = camera.getImage()
+        cv2.circle(img, (point[0], point[1]), 10, (0, 0, 255), -1)
         cv2.imshow("Frame", img[...,::-1])
         # when you click pixel on image, onMouse is called.
         cv2.setMouseCallback("Frame", onMouse)
@@ -34,3 +35,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

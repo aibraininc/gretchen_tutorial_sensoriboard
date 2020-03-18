@@ -20,14 +20,13 @@ class Robot:
         self.cur_pan_angle = 0
         self.cur_tilt_angle = 0
 
-
+    def start(self):
+        print "starting robot"
         self.cmd_pan = self.getPanAngle()
         self.cmd_tilt = self.getTiltAngle()
         self.max_joint_speed = rospy.get_param('~max_joint_speed', 0.1)
         self.max_pan_angle_radian = rospy.get_param("~max_pan_angle_radian", 1.0)
         self.max_tilt_angle_radian = rospy.get_param("~max_tilt_angle_radian", 1.0)
-    def start(self):
-        print "starting robot"
 
         self.initParam()
     def lookatpoint(self, x, y, z, speed=0.3, waitResult = True):
@@ -55,7 +54,7 @@ class Robot:
         goal.target.point.y = y
         goal.target.point.z = z
         goal.max_velocity = speed
-        goal.min_duration = rospy.Duration(2.0)
+        goal.min_duration = rospy.Duration(1.0)
         head_client.send_goal(goal)
         if waitResult == True:
             head_client.wait_for_result()

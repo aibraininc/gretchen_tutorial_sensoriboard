@@ -12,9 +12,6 @@ def main():
     robot1.lookatpoint(0.678253, 0.754351, 0.298137)
     robot1.lookatpoint(0, 0, 0.298137)
 
-    #robot1.move(1.5, 0.1)
-    #while not rospy.is_shutdown():
-    #    continue
 if __name__ == '__main__':
     print "starting"
     main()
