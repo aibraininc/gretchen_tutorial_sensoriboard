@@ -27,11 +27,10 @@ class Robot:
         self.max_pan_angle_radian = rospy.get_param("~max_pan_angle_radian", 1.0)
         self.max_tilt_angle_radian = rospy.get_param("~max_tilt_angle_radian", 1.0)
     def start(self):
-        print "starting node"
-        rospy.init_node('start', anonymous=True)
+        print "starting robot"
 
         self.initParam()
-    def lookatpoint(self, x, y, z, speed=0.3):
+    def lookatpoint(self, x, y, z, speed=0.3, waitResult = True):
         #cmd = Float32MultiArray()
         #cmd.layout = MultiArrayLayout()
         #cmd.layout.dim = []
@@ -42,6 +41,7 @@ class Robot:
         #cmd.layout.dim.append(obj)
         #cmd.data = [pan, tilt, speed]
         #self.lookatpointPub.publish(cmd)
+        print('lookatpoint')
         head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
         head_client.wait_for_server()
         goal = PointHeadGoal()
@@ -57,8 +57,8 @@ class Robot:
         goal.max_velocity = speed
         goal.min_duration = rospy.Duration(2.0)
         head_client.send_goal(goal)
-        head_client.wait_for_result()
-
+        if waitResult == True:
+            head_client.wait_for_result()
         #client = actionlib.SimpleActionClient('fibonacci', control_msgs.PointHeadAction)
         #client.wait_for_server()
         #goal = control_msgs.PointHeadGoal()
