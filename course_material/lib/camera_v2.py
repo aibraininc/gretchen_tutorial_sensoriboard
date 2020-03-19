@@ -27,7 +27,7 @@ class Camera:
 
 
     def start(self):
-        print "starting camera"
+        print("starting camera")
         #rospy.init_node('camera_show', anonymous=True)
         msg=rospy.wait_for_message('/camera/color/camera_info', CameraInfo)        
         # print(msg)

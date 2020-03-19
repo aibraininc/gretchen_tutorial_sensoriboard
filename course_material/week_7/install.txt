@@ -1,4 +1,16 @@
 sudo apt-get install python3-pip
 sudo pip3 install virtualenv 
 virtualenv -p python3 myenv
+
+virtualenv -p python3 myenv
 source myenv/bin/activate
+
+wget https://pjreddie.com/media/files/yolov3.weights
+
+
+virtualenv python myenv 
+source myenv/bin/activate
+pip install opencv-python
+pip install opencv-contrib-python
+pip install netifaces
+
