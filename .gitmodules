@@ -9,4 +9,4 @@
 	url = https://github.com/IntelRealSense/realsense-ros.git
 [submodule "gazr"]
 	path = gazr
-	url = https://github.com/aibraininc/gazr.git
+	url = https://github.com/aibraininc/gazr
