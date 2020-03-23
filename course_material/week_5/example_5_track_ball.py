@@ -22,7 +22,9 @@ def main():
         img = camera.getImage()
         (img, centor) = ball_detector.detect(img, 640)
         cv2.imshow("Frame", img[...,::-1])
-        cv2.waitKey(1)
+        key = cv2.waitKey(1)
+        if key >0:
+            break
         # track ball
         cnt = cnt + 1
         if cnt % 50 == 0:
