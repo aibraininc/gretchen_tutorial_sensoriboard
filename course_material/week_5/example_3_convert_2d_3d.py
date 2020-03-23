@@ -6,6 +6,7 @@ import sys
 sys.path.append('..')
 from lib.camera_v2 import Camera
 camera = Camera()
+from lib.ros_environment import ROSEnvironment
 
 def onMouse(event, u, v, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
@@ -16,7 +17,7 @@ def onMouse(event, u, v, flags, param):
         print (x,y,z,'on robot axis')
 
 def main():
-    rospy.init_node('camera_show', anonymous=True)
+    ROSEnvironment()
     camera.start()
     
     while True:
@@ -25,7 +26,7 @@ def main():
         # when you click pixel on image, onMouse is called.
         cv2.setMouseCallback("Frame", onMouse)
         key = cv2.waitKey(1)
-        if key >0:
+        if key > 0:
             break
 
 if __name__ == '__main__':

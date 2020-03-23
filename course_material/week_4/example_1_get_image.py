@@ -14,8 +14,9 @@ def main():
         img = camera.getImage()
         cv2.imshow("Frame", img[...,::-1])
         key = cv2.waitKey(1)
-        if key >0:
+        if key > 0:
             break
+
 
 if __name__ == '__main__':
     main()

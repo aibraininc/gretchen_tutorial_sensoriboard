@@ -28,7 +28,7 @@ def main():
         # when you click pixel on image, onMouse is called.
         cv2.setMouseCallback("Frame", onMouse)
         key = cv2.waitKey(1)
-        if key >0:
+        if key > 0:
             break
 
 if __name__ == '__main__':

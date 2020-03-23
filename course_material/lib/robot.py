@@ -22,6 +22,7 @@ class Robot:
 
     def start(self):
         print "starting robot"
+
         self.cmd_pan = self.getPanAngle()
         self.cmd_tilt = self.getTiltAngle()
         self.max_joint_speed = rospy.get_param('~max_joint_speed', 0.1)

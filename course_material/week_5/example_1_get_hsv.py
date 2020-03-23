@@ -5,6 +5,7 @@ import cv2
 import sys
 sys.path.append('..')
 from lib.camera_v2 import Camera
+from lib.ros_environment import ROSEnvironment
 camera = Camera()
 
 point = (0,0)
@@ -22,7 +23,7 @@ def onMouse(event, u, v, flags, param):
 
 def main():
     global point
-    rospy.init_node('camera_show', anonymous=True)
+    ROSEnvironment()
     camera.start()
     
     while True:
@@ -32,8 +33,10 @@ def main():
         # when you click pixel on image, onMouse is called.
         cv2.setMouseCallback("Frame", onMouse)
         key = cv2.waitKey(1)
-        if key >0:
+        if key > 0:
             break
+
+
 
 if __name__ == '__main__':
     main()

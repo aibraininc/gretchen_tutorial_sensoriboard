@@ -6,6 +6,8 @@ import sys
 sys.path.append('..')
 from lib.camera_v2 import Camera
 from lib.robot import Robot
+from lib.ros_environment import ROSEnvironment
+
 camera = Camera()
 robot = Robot()
 
@@ -21,7 +23,7 @@ def onMouse(event, u, v, flags, param):
         print('look at point end')
 
 def main():
-    rospy.init_node('camera_show', anonymous=True)
+    ROSEnvironment()
     camera.start()
     robot.start()
     

@@ -3,7 +3,7 @@ sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
 import cv2
 import argparse
 import numpy as np
-
+print(cv2.__version__)
 #Path to files needed
 cfg_path = "./yolov3.cfg"
 weight_path= "./yolov3.weights"
@@ -21,8 +21,8 @@ COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
 def draw_boundingbox(img, class_id, confidence, x, y, x_end, y_end):
     class_name = str(classes[class_id])
     color = COLORS[class_id]
-    cv2.rectangle(img, (x,y), (x_end ,y_end), color, 2)
-    cv2.putText(img, class_name, (x-10,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+    cv2.rectangle(img, (int(x), int(y)), (int(x_end) ,int(y_end)), color, 2)
+    cv2.putText(img, class_name, (int(x-10),int(y-10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
 
 def main():
@@ -104,7 +104,9 @@ def main():
         y = box[1]
         w = box[2]
         h = box[3]
-        draw_boundingbox(input_image, class_ids[i], confidence_values[i], round(x), round(y), round(x+w), round(y+h))
+        classid = class_ids[i]
+        conf_value = confidence_values[i]
+        draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))
 
     cv2.imshow("Object Detection Window", input_image)
     cv2.waitKey()
