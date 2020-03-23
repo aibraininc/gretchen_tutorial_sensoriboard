@@ -21,8 +21,8 @@ COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
 def draw_boundingbox(img, class_id, confidence, x, y, x_end, y_end):
     class_name = str(classes[class_id])
     color = COLORS[class_id]
-    cv2.rectangle(img, (x,y), (x_end ,y_end), color, 2)
-    cv2.putText(img, class_name, (x-10,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+    cv2.rectangle(img, (int(x), int(y)), (int(x_end) ,int(y_end)), color, 2)
+    cv2.putText(img, class_name, (int(x-10),int(y-10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
 
 def main():

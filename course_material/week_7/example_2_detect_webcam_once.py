@@ -38,10 +38,6 @@ def main():
     ROSEnvironment()
     #To accept input values from commandline
     #Accepts path of the image to do object detection
-    ap = argparse.ArgumentParser()
-    ap.add_argument('-i', '--image', required=True,
-                    help = 'path to input image')
-    args = ap.parse_args()
     camera = Camera()
     camera.start()
     cam_image = camera.getImage()
@@ -52,7 +48,6 @@ def main():
     #cv2.waitKey(0)
     #Reads image with image path from command line
     #Gets width and height of image
-    input_image = cv2.imread(args.image)
     input_image = cam_image
     width = input_image.shape[1]
     height = input_image.shape[0]

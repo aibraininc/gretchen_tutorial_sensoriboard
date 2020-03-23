@@ -14,9 +14,12 @@ from lib.ros_environment import ROSEnvironment
 from lib.robot import Robot
 
 #Path to files needed
-cfg_path = "./yolov3.cfg"
-weight_path= "./yolov3.weights"
+cfg_path = "./yolov3-tiny.cfg"
+weight_path= "./yolov3-tiny.weights"
 class_name_path = "./yolov3.txt"
+
+#object to track
+object_to_track = "bottle"
 
 #Loads class names into an array
 classes = None
@@ -27,6 +30,7 @@ with open(class_name_path, 'r') as file:
 COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
 
 
+#draws bounding box on the image
 def draw_boundingbox(img, class_id, confidence, x, y, x_end, y_end):
     class_name = str(classes[class_id])
     color = COLORS[class_id]
@@ -40,14 +44,12 @@ def main():
     camera.start()
     robot = Robot()
     robot.start()
-    while(True):
-        cam_image = camera.getImage()
-        #while(cam_image==None.all):
-        #    cam_image = camera.getImage()
 
-        #cv2.imshow("Frame", cam_image[...,::-1])
-        #cv2.waitKey(0)
-        #Reads image with image path from command line
+    #loops
+    while(True):
+        #gets image from camera
+        cam_image = camera.getImage()
+
         #Gets width and height of image
         input_image = cam_image
         width = input_image.shape[1]
@@ -111,6 +113,8 @@ def main():
         indices = cv2.dnn.NMSBoxes(bounding_boxes, confidence_values, conf_threshold, nms_threshold)
 
         #draw results
+        #tracked_object flag for if object is already tracked
+        tracked_object = 0
         for i in indices:
             i = i[0]
             box = bounding_boxes[i]
@@ -122,18 +126,21 @@ def main():
             center_y = y+h/2.0
             classid = class_ids[i]
             class_name = str(classes[classid])
-            if(class_name == "bottle"):
-                (x,y,z) = camera.convert2d_3d(center_x, center_y)
-                (x,y,z) = camera.convert3d_3d(x,y,z)
-                robot.lookatpoint(x,y,z, 4, waitResult = False)
+            #If detected object equals to the object tracked
+            if(class_name ==  object_to_track && tracked_object == 0):
+                #Converts the 3d camera coordinates into 3d world coordinates
+                (x_3d,y_3d,z_3d) = camera.convert2d_3d(center_x, center_y)
+                (x_3d,y_3d,z_3d) = camera.convert3d_3d(x_3d,y_3d,z_3d)
+                #commands the robot to look
+                robot.lookatpoint(x_3d,y_3d,z_3d, 4, waitResult = False)
+                tracked_object = 1
+                print("Traking"+class_name)
             print(class_name)
             conf_value = confidence_values[i]
             draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))
 
         cv2.imshow("Object Detection Window", input_image)
         key = cv2.waitKey(1)
-        #if key > 0:
-        #    break
         cv2.imwrite("detected_object.jpg", input_image)
     cv2.destroyAllWindows()
 
