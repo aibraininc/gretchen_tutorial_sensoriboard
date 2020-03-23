@@ -10,3 +10,6 @@
 [submodule "gazr"]
 	path = gazr
 	url = https://github.com/aibraininc/gazr
+[submodule "objects_msg"]
+	path = objects_msg
+	url = https://github.com/aibraininc/objects_msg.git
