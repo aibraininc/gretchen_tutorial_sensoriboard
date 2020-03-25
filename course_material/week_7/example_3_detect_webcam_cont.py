@@ -26,7 +26,7 @@ with open(class_name_path, 'r') as file:
 #Creates different color for different colors
 COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
 
-
+#draws bounding box 
 def draw_boundingbox(img, class_id, confidence, x, y, x_end, y_end):
     class_name = str(classes[class_id])
     color = COLORS[class_id]
@@ -38,13 +38,9 @@ def main():
     ROSEnvironment()
     camera = Camera()
     camera.start()
+    #loops
     while(True):
         cam_image = camera.getImage()
-        #while(cam_image==None.all):
-        #    cam_image = camera.getImage()
-
-        #cv2.imshow("Frame", cam_image[...,::-1])
-        #cv2.waitKey(0)
         #Reads image with image path from command line
         #Gets width and height of image
         input_image = cam_image
