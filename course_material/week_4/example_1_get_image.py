@@ -1,13 +1,12 @@
 #!/usr/bin/env python
-import rospy
-import roslib
 import cv2
 import sys
 sys.path.append('..')
+from lib.ros_environment import ROSEnvironment
 from lib.camera_v2 import Camera
 
 def main():
-    rospy.init_node('camera_show', anonymous=True)
+    ROSEnvironment()
     camera = Camera()
     camera.start()
     while True:

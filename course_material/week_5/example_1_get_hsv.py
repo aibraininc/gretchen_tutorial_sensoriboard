@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-import rospy
-import roslib
 import cv2
 import sys
 sys.path.append('..')

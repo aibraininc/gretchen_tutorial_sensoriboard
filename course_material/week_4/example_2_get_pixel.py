@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-import rospy
-import roslib
 import cv2
 import sys
 sys.path.append('..')
+from lib.ros_environment import ROSEnvironment
 from lib.camera_v2 import Camera
 camera = Camera()
 point = (0,0)
@@ -18,7 +17,7 @@ def onMouse(event, u, v, flags, param):
 
 def main():
     global point
-    rospy.init_node('camera_show', anonymous=True)
+    ROSEnvironment()
     camera.start()
     
     while True:
