@@ -7,15 +7,22 @@ from lib.ros_environment import ROSEnvironment
 from lib.camera_v2 import Camera
 
 def main():
+    #We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
+    #Initalize camera
     camera = Camera()
+    #start camera
     camera.start()
+    #initalize face detector
     face_detector = FaceDetector()
-
+    #loop
     while True:
+        #get image
         img = camera.getImage()
-        [img,centors] = face_detector.detect(img, 640)
+        #gets image with face detection, center value
+        [img,center] = face_detector.detect(img, 640)
         cv2.imshow("Frame", img[...,::-1])
+        
         key = cv2.waitKey(1)
         if key > 0:
             break

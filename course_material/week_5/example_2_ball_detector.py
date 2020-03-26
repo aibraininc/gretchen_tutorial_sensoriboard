@@ -4,19 +4,25 @@ import numpy as np
 import cv2
 import imutils
 
+#class for detecting ball
 class BallDetector:
     def __init__(self):
+        #lower limit for color green
         self.greenLower = (20, 50, 50)
-        self.greenUpper = (40, 255, 255)        
+        #upper limit for color green
+        self.greenUpper = (40, 255, 255)
 
 
     def optimized(self,ball,frame):
+        #get image height and width
         (image_height, image_width) = frame.shape[:2]
 
+        #How far the ball is from the center
         target_offset_x = ball[0] - image_width / 2
         target_offset_y = ball[1] - image_height / 2
-    
+
         try:
+            #Percentage of how far it is apart from the center
             percent_offset_x = float(target_offset_x) / (float(image_width) / 2.0)
             percent_offset_y = float(target_offset_y) / (float(image_height) / 2.0)
         except:
@@ -26,7 +32,6 @@ class BallDetector:
 
 
     def detect(self, frame, _width):
-
         # 1. resize the frame, and convert it to the HSV
         frame = imutils.resize(frame, width= _width)
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
