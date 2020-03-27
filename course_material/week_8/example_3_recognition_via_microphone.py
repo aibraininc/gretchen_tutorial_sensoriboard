@@ -6,4 +6,5 @@ with mic as source:
     r.adjust_for_ambient_noise(source) # adjust noise
     audio = r.listen(source)
 print('Hello')
-r.recognize_google(audio)
+text = r.recognize_google(audio)
+print('result', text)
