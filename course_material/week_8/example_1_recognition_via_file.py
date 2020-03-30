@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
 import speech_recognition as sr
-r = sr.Recognizer() # init recognizer
+#initalize speech recognition
+r = sr.Recognizer()
+#initialize and
+harvard_audio = sr.AudioFile('harvard.wav') # init audio file
 
-harvard = sr.AudioFile('harvard.wav') # init audio file
-with harvard as source:
+#read audio file
+with harvard_audio as source:
     audio = r.record(source)
 text = r.recognize_google(audio)
 print('result', text)
