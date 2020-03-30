@@ -1,5 +1,11 @@
+#!/usr/bin/env python
+
+# whenever you say a object, robot looks at the object.
+
+import threading
 import sys
 sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+import speech_recognition as sr
 import cv2
 import argparse
 import numpy as np
@@ -8,23 +14,22 @@ sys.path.append('..')
 
 sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
 import rospy
-from lib.camera_v2 import Camera
-
 from lib.ros_environment import ROSEnvironment
+from lib.camera_v2 import Camera
 from lib.robot import Robot
+
 
 #Path to files needed
 cfg_path = "./yolov3-tiny.cfg"
 weight_path= "./yolov3-tiny.weights"
 class_name_path = "./yolov3.txt"
-
-#object to track
 object_to_track = "bottle"
 
 #Loads class names into an array
 classes = None
 with open(class_name_path, 'r') as file:
     classes = [line.strip() for line in file.readlines()]
+print classes
 
 #Creates different color for different colors
 COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
@@ -38,6 +43,31 @@ def draw_boundingbox(img, class_id, confidence, x, y, x_end, y_end):
     cv2.putText(img, class_name, (int(x-10),int(y-10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
 
+def senetenceParsing(sentence = "look at a bottle"):
+    sentence = sentence.lower()
+    for word in classes:
+        if word in sentence:
+            return word
+
+def listen():
+    global object_to_track
+    while True:
+        r = sr.Recognizer()
+        mic = sr.Microphone()
+        print("I am ready to listen.")
+        with mic as source:
+            r.adjust_for_ambient_noise(source)
+            audio = r.listen(source)
+        try:
+            text = r.recognize_google(audio)
+            print(text)
+            object_to_track = senetenceParsing(text)
+            print(object_to_track)
+        except:
+            pass
+        if object_to_track == None:
+            object_to_track = "bottle"
+
 def main():
     ROSEnvironment()
     camera = Camera()
@@ -45,6 +75,12 @@ def main():
     robot = Robot()
     robot.start()
 
+    # start threading for speech recognition
+    t1 = threading.Thread(target=listen)
+    t1.daemon = True 
+    t1.start()
+
+    cnt = 0
     #loops
     while(True):
         #gets image from camera
@@ -86,7 +122,7 @@ def main():
         bounding_boxes = []
 
         #Initialize confidence threshold and threshold for non maximal suppresion
-        conf_threshold = 0.5
+        conf_threshold = 0.3
         nms_threshold = 0.4
 
         #for each scale, we go through the detections
@@ -132,10 +168,13 @@ def main():
                 (x_3d,y_3d,z_3d) = camera.convert2d_3d(center_x, center_y)
                 (x_3d,y_3d,z_3d) = camera.convert3d_3d(x_3d,y_3d,z_3d)
                 #commands the robot to look
-                robot.lookatpoint(x_3d,y_3d,z_3d, 4, waitResult = False)
-                tracked_object = 1
-                print("Traking"+class_name)
-            print(class_name)
+                cnt = cnt +1 
+                if cnt % 10 == 0:
+                    robot.lookatpoint(x_3d,y_3d,z_3d, 4, waitResult = False)
+                    tracked_object = 1
+                    break
+            #     print("Traking"+class_name)
+            # print(class_name)
             conf_value = confidence_values[i]
             draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))
 
@@ -144,5 +183,10 @@ def main():
         cv2.imwrite("detected_object.jpg", input_image)
     cv2.destroyAllWindows()
 
+
+    
+
 if __name__ == '__main__':
     main()
+
+

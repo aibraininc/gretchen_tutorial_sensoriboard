@@ -31,17 +31,6 @@ class Robot:
 
         self.initParam()
     def lookatpoint(self, x, y, z, speed=0.3, waitResult = True):
-        #cmd = Float32MultiArray()
-        #cmd.layout = MultiArrayLayout()
-        #cmd.layout.dim = []
-        #obj = MultiArrayDimension()
-        #obj.label = ""
-        #obj.size = 0
-        #obj.stride = 0
-        #cmd.layout.dim.append(obj)
-        #cmd.data = [pan, tilt, speed]
-        #self.lookatpointPub.publish(cmd)
-        print('lookatpoint')
         head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
         head_client.wait_for_server()
         goal = PointHeadGoal()
@@ -59,10 +48,6 @@ class Robot:
         head_client.send_goal(goal)
         if waitResult == True:
             head_client.wait_for_result()
-        #client = actionlib.SimpleActionClient('fibonacci', control_msgs.PointHeadAction)
-        #client.wait_for_server()
-        #goal = control_msgs.PointHeadGoal()
-        #goal.
     def initParam(self):
         self.rate = rospy.get_param("~rate", 20)
 

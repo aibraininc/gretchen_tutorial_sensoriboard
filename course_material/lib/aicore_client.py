@@ -17,7 +17,7 @@ class AICoRE:
         d.data = name
         self.namePub.publish(d)
         print('You set the username as '+name)
-        rospy.sleep(3)
+        rospy.sleep(1)
 
     def send(self, text):
         d = String()
@@ -29,6 +29,7 @@ class AICoRE:
         msg=rospy.wait_for_message('/aicore/output', String)
         self.result = str(msg.data)
         print(self.result)
+        return self.result
 
     def outputCallback(self, msg):
         pass

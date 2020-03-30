@@ -1,5 +1,10 @@
+#!/usr/bin/env python
+
+# once you say a object, robot looks at the object.
+
 import sys
 sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+import speech_recognition as sr
 import cv2
 import argparse
 import numpy as np
@@ -8,23 +13,22 @@ sys.path.append('..')
 
 sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
 import rospy
-from lib.camera_v2 import Camera
-
 from lib.ros_environment import ROSEnvironment
+from lib.camera_v2 import Camera
 from lib.robot import Robot
+
 
 #Path to files needed
 cfg_path = "./yolov3-tiny.cfg"
 weight_path= "./yolov3-tiny.weights"
 class_name_path = "./yolov3.txt"
 
-#object to track
-object_to_track = "bottle"
 
 #Loads class names into an array
 classes = None
 with open(class_name_path, 'r') as file:
     classes = [line.strip() for line in file.readlines()]
+print classes
 
 #Creates different color for different colors
 COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
@@ -37,6 +41,13 @@ def draw_boundingbox(img, class_id, confidence, x, y, x_end, y_end):
     cv2.rectangle(img, (int(x), int(y)), (int(x_end) ,int(y_end)), color, 2)
     cv2.putText(img, class_name, (int(x-10),int(y-10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
+# find a class in sentence
+# classes is yolo-classes
+def senetenceParsing(sentence = 'look at a bottle'):
+    sentence = sentence.lower()
+    for word in classes:
+        if word in sentence:
+            return word
 
 def main():
     ROSEnvironment()
@@ -44,6 +55,19 @@ def main():
     camera.start()
     robot = Robot()
     robot.start()
+
+    r = sr.Recognizer()
+    mic = sr.Microphone()
+    with mic as source:
+        r.adjust_for_ambient_noise(source)
+        audio = r.listen(source)
+
+    text = r.recognize_google(audio)
+    print(text)
+    object_to_track = senetenceParsing(text)
+    print(object_to_track)
+    if object_to_track == None:
+        object_to_track = 'bottle'
 
     #loops
     while(True):
@@ -144,5 +168,10 @@ def main():
         cv2.imwrite("detected_object.jpg", input_image)
     cv2.destroyAllWindows()
 
+
+    
+
 if __name__ == '__main__':
     main()
+
+
