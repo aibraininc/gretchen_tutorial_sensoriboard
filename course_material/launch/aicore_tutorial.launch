@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="aibrain_ros_java" type="aicore_client" name="aicore_client" args="com.github.rosjava.aibrain_ros_java.aicore_client.AICoreClient"/>
+</launch>

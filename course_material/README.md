@@ -9,3 +9,7 @@
 - roslaunch course_material gazr_tutorial.launch
 - roscd course_material/week)6
 - python example_1_detect_face.py
+
+## how to run week_8
+
+- roslaunch course_material aicore_tutorial.launch
