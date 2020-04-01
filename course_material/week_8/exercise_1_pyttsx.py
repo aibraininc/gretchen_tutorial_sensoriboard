@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+
 import pyttsx
-text = "How are you?"
-engine = pyttsx.init() 
-engine.say(text)
-engine.runAndWait() # run tts
-print('end')
+voiceEngine = pyttsx.init()
+ 
+newVoiceRate = 120 # the rate of voice
+voiceEngine.setProperty('rate', newVoiceRate)
+voiceEngine.say('I am jacob.')
+voiceEngine.runAndWait()
