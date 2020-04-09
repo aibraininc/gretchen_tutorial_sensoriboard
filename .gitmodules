@@ -13,3 +13,6 @@
 [submodule "objects_msg"]
 	path = objects_msg
 	url = https://github.com/aibraininc/objects_msg.git
+[submodule "rosjava_build_tools"]
+	path = rosjava_build_tools
+	url = https://github.com/rosjava/rosjava_build_tools.git
