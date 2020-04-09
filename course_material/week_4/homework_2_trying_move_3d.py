@@ -10,12 +10,13 @@ def main():
     robot = Robot()
     #Start robot
     robot.start()
-    #move takes in pan and tilt value of the motor
-    #can be from 0.0 to 1.0
-    #TODO change the values in move
-    while(True):
-        robot.move(0, 0)
 
+    #The parameters are 3d coordinates in the real world
+
+    #TODO Change the values in loopatpoint
+    robot.lookatpoint(1,1,1)
+
+    # robot.lookatpoint(0, 0, 0.298137)
 
 if __name__ == '__main__':
     print "starting"

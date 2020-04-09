@@ -8,31 +8,11 @@ import imutils
 class BallDetector:
     def __init__(self):
 
-        #lower limit for red color
-        self.colorLower = (110, 180, 20)
-        #upper limit for red color
-        self.colorUpper = (120, 255, 150)
+        #TODO: set lower limit and upper limit for hsv color that you want to detect
+        self.colorLower = (20, 50, 50)
+        self.colorUpper = (40, 255, 255)
 
-
-    def optimized(self,ball,frame):
-        #get image height and width
-        (image_height, image_width) = frame.shape[:2]
-
-        #How far the ball is from the center
-        target_offset_x = ball[0] - image_width / 2
-        target_offset_y = ball[1] - image_height / 2
-
-        try:
-            #Percentage of how far it is apart from the center
-            percent_offset_x = float(target_offset_x) / (float(image_width) / 2.0)
-            percent_offset_y = float(target_offset_y) / (float(image_height) / 2.0)
-        except:
-            percent_offset_x = 0
-            percent_offset_y = 0
-        return [percent_offset_x, percent_offset_y]
-
-
-    def detect(self, frame, _width):
+    def detect(self, frame, _width = 640):
         # 1. resize the frame, and convert it to the HSV
         frame = imutils.resize(frame, width= _width)
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -42,7 +22,7 @@ class BallDetector:
         mask = cv2.inRange(hsv, self.colorLower, self.colorUpper)
         mask = cv2.erode(mask, None, iterations=2)
         mask = cv2.dilate(mask, None, iterations=2)
-        cv2.imshow("Filter", mask)
+        cv2.imshow("Filter", mask[...,::-1])
 
         # 3. find contours in the mask
         cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,

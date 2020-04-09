@@ -3,6 +3,7 @@ import sys
 sys.path.append('..')
 from lib.robot import Robot
 from lib.ros_environment import ROSEnvironment
+import time
 def main():
     #We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
@@ -10,10 +11,17 @@ def main():
     robot = Robot()
     #Start robot
     robot.start()
-    #TODO Change the values in loopatpoint
-    #The parameters are 3d coordinates in the real world
-    robot.lookatpoint(0.678253, 0.754351, 0.298137)
-    robot.lookatpoint(0, 0, 0.298137)
+
+    for i in range(10):
+        #TODO: change the values in left
+        robot.left(0.2)
+        time.sleep(0.1)
+    time.sleep(1) # wait a second
+    for i in range(10):
+        #TODO: change the values in move
+        robot.right(0.2)
+        time.sleep(0.1)
+    robot.center()
 
 if __name__ == '__main__':
     print "starting"
