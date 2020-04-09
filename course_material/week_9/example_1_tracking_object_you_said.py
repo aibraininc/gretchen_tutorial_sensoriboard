@@ -57,7 +57,7 @@ def main():
     robot.start()
 
     r = sr.Recognizer()
-    mic = sr.Microphone()
+    mic = sr.Microphone(device_index=11)
     with mic as source:
         r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
@@ -169,9 +169,7 @@ def main():
     cv2.destroyAllWindows()
 
 
-    
+
 
 if __name__ == '__main__':
     main()
-
-

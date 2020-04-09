@@ -53,7 +53,7 @@ def listen():
     global object_to_track
     while True:
         r = sr.Recognizer()
-        mic = sr.Microphone()
+        mic = sr.Microphone(device_index=11)
         print("I am ready to listen.")
         with mic as source:
             r.adjust_for_ambient_noise(source)
@@ -77,7 +77,7 @@ def main():
 
     # start threading for speech recognition
     t1 = threading.Thread(target=listen)
-    t1.daemon = True 
+    t1.daemon = True
     t1.start()
 
     cnt = 0
@@ -163,13 +163,13 @@ def main():
             classid = class_ids[i]
             class_name = str(classes[classid])
             #If detected object equals to the object tracked
-            if(class_name ==  object_to_track and tracked_object == 0):
+            if(class_name ==  object_to_track):
                 #Converts the 3d camera coordinates into 3d world coordinates
                 (x_3d,y_3d,z_3d) = camera.convert2d_3d(center_x, center_y)
                 (x_3d,y_3d,z_3d) = camera.convert3d_3d(x_3d,y_3d,z_3d)
                 #commands the robot to look
-                cnt = cnt +1 
-                if cnt % 10 == 0:
+                cnt = cnt +1
+                if cnt % 5 == 0:
                     robot.lookatpoint(x_3d,y_3d,z_3d, 4, waitResult = False)
                     tracked_object = 1
                     break
@@ -184,9 +184,7 @@ def main():
     cv2.destroyAllWindows()
 
 
-    
+
 
 if __name__ == '__main__':
     main()
-
-
