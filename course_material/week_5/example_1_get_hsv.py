@@ -15,6 +15,7 @@ def onMouse(event, u, v, flags, param):
     global point
     if event == cv2.EVENT_LBUTTONDOWN:
         img = camera.getImage()
+        img = img[...,::-1]
         #changes image to hsv color space
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         point = (u,v)
@@ -35,7 +36,6 @@ def main():
         #Gets image from camera
         img = camera.getImage()
         #Draws circle on point
-        cv2.circle(img, (point[0], point[1]), 10, (0, 0, 255), -1)
         #Shows image
         cv2.imshow("Frame", img[...,::-1])
         # when you click pixel on image, onMouse is called.
