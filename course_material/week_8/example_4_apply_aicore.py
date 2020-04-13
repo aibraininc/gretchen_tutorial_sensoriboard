@@ -10,13 +10,13 @@ def main():
     client = AICoRE()
 
     # set username
-    client.setUserName('Wally')
+    client.setUserName('Jacob')
 
     # send text to AICORE
-    client.send('What is my name?')
+    client.send('What is my favorite food?')
 
     # get answer from AICORE
-    client.answer()
+    text = client.answer()
 
 if __name__ == '__main__':
     main()
