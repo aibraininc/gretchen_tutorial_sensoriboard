@@ -19,7 +19,7 @@ def onMouse(event, u, v, flags, param):
 	# it is pixel you clicked
         pixel = (u,v)
         print('Pixel', pixel)
-        print('BGR', img[v,u])
+        print('RGB', img[v,u])
 
 
 def main():
@@ -33,7 +33,7 @@ def main():
         #gets image from camera
         img = camera.getImage()
         #draw circle on the point coordinate
-        cv2.circle(img, point, 10, (0, 0, 255), -1)
+        cv2.circle(img, point, 10, (0, 0, 255), 3)
         #show image
         cv2.imshow("Frame", img[...,::-1])
         # when you click pixel on image, onMouse is called.

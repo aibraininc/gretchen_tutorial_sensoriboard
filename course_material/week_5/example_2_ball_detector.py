@@ -8,10 +8,10 @@ import imutils
 class BallDetector:
     def __init__(self):
 
-        #lower limit for red color
-        self.colorLower = (110, 180, 20)
-        #upper limit for red color
-        self.colorUpper = (120, 255, 150)
+        #lower limit for blue color
+        self.colorLower = (20, 100, 100)
+        #upper limit for blue color
+        self.colorUpper = (40, 255, 255)
 
 
     def optimized(self,ball,frame):
