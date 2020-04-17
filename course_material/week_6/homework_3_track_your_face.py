@@ -45,17 +45,17 @@ def main():
         if(len(dets)>0):
 
             face_tracking = None
-            distanceFromCentor_min = 1000
-            # find a face near image centor
+            distanceFromCenter_min = 1000
+            # find a face near image center
             for face in dets:
                 face_x = (face.left()+face.right())/2
 
-                #TODO: write a distance between face and centor, centor of width is 320.
-                distanceFromCentor = 
-                if distanceFromCentor <distanceFromCentor_min:
+                #TODO: write a distance between face and center, center of width is 320.
+                distanceFromCenter = 
 
-                    #TODO: update distanceFromCentor_min for finding a face that has the smallest distance from the centor.
-                    distanceFromCentor_min = 
+
+                if distanceFromCenter <distanceFromCenter_min:
+                    distanceFromCenter_min = distanceFromCenter
                     face_tracking = face
 
             #estimate pose
