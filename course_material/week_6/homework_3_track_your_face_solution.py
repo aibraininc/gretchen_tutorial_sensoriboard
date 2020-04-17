@@ -69,7 +69,8 @@ def main():
             #TODO: converts 3d coordinates on camera axis to 3d coordinates on robot axis
             (x,y,z) = camera.convert3d_3d(x,y,z)
             print (x,y,z,'on robot axis')
-            #move robot
+            
+            #TODO: move robot for watching a face
             robot.lookatpoint(x,y,z, 4, waitResult = False)
 
         cv2.imshow("Frame", img)
