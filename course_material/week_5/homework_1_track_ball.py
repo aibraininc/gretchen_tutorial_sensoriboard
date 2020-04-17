@@ -21,8 +21,6 @@ def main():
     #start robot
     robot.start()
     #initalize ball detector
-
-    #TODO: cutomize your ball detector
     ball_detector = BallDetector()
 
     #count
@@ -30,17 +28,19 @@ def main():
 
     #loop
     while True:
-        #get image from camera
-        img = camera.getImage()
-        (img, center) = ball_detector.detect(img)
+        #TODO: get image from camera
+        img = 
+        #TODO: use ball_detector to detect ball
+        (img, center) = 
+        #display
         cv2.imshow("Frame", img[...,::-1])
 
         key = cv2.waitKey(1)
         if key > 0:
             break
 
-        #TODO: track ball with camera and robot lib
-        
+
+
 
 if __name__ == '__main__':
     main()

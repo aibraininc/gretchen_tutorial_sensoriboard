@@ -24,25 +24,31 @@ def main():
     mic = sr.Microphone(device_index=11)
     with mic as source:
         #TODO: adjust for noise
-        
+        r.adjust_for_ambient_noise(source)
         #TODO: listen to source
-        audio = 
+        audio = r.listen(source)
     #TODO: convert audio to text
-    text =
+    text = r.recognize_google(audio)
 
     #TODO: send text to client
-    
+    client.send(text)
     #TODO: get answer from AICoRe
-    answer = 
+    answer = client.answer()
+
+    #TODO:set the keyword to respond to
+    keyword = 
+    #check if keyword in input
+    if keyword in text:
+        #TODO: set a response
+        answer = 
 
     #TODO: Convert text to speech
-    tts = 
+    tts = gTTS(answer)
     #TODO: Save TTS result
-    
+    tts.save('hello.mp3')
     #TODO: Play TTS
-    
+    playsound.playsound('hello.mp3')
 
-        
-    
+
 if __name__ == '__main__':
     main()
