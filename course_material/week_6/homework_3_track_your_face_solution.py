@@ -73,7 +73,7 @@ def main():
             #TODO: move robot for watching a face
             robot.lookatpoint(x,y,z, 4, waitResult = False)
 
-        cv2.imshow("Frame", img)
+        cv2.imshow("Frame", img[...,::-1])
 
         key = cv2.waitKey(1)
         if key > 0:

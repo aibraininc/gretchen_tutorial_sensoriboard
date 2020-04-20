@@ -8,7 +8,7 @@ import imutils
 class BallDetector:
     def __init__(self):
 
-        #TODO: set lower limit and upper limit for hsv color that you want to detect
+        #TODO: change lower limit and upper limit for hsv color that you want to detect
         self.colorLower = (90, 200, 80)
         self.colorUpper = (100, 255, 180)
 

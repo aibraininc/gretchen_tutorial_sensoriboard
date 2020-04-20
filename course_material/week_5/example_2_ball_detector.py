@@ -9,9 +9,9 @@ class BallDetector:
     def __init__(self):
 
         #lower limit for blue color
-        self.colorLower = (20, 100, 100)
+        self.colorLower = (90, 200, 80)
         #upper limit for blue color
-        self.colorUpper = (40, 255, 255)
+        self.colorUpper = (110, 255, 255)
 
 
     def optimized(self,ball,frame):
@@ -35,7 +35,7 @@ class BallDetector:
     def detect(self, frame, _width):
         # 1. resize the frame, and convert it to the HSV
         frame = imutils.resize(frame, width= _width)
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(frame[...,::-1], cv2.COLOR_BGR2HSV)
 
         # 2. construct a mask for the color "green", then perform
         # a series of dilations and erosions to remove any small
