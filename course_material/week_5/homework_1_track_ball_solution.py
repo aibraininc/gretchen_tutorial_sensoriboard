@@ -35,7 +35,8 @@ def main():
         key = cv2.waitKey(1)
         if key > 0:
             break
-        # track ball
+
+        #TODO: track ball with camera and robot lib
         cnt = cnt + 1
         if cnt % 50 == 0:
             print(center)
