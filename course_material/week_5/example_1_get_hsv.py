@@ -16,7 +16,7 @@ def onMouse(event, u, v, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         img = camera.getImage()
         #changes image to hsv color space
-        hsv = cv2.cvtColor(img[...,::-1], cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
         point = (u,v)
         print('Point', u,v)
         #prints color RGB
