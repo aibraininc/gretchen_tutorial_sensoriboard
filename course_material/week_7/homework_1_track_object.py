@@ -85,7 +85,8 @@ def main():
         confidence_values = []
         bounding_boxes = []
 
-        #Initialize confidence threshold and threshold for non maximal suppresion
+        #TODO: Change the values for conf_threshold and nms_threshold
+				#Initialize confidence threshold and threshold for non maximal suppresion
         conf_threshold = 0.5
         nms_threshold = 0.4
 
@@ -129,7 +130,7 @@ def main():
 
             #If detected object equals to the object tracked
             #TODO: make if statement  for selecting the object you want to track
-            if class_name ==  :
+            if 
                 #Converts the 3d camera coordinates into 3d world coordinates
                 (x_3d,y_3d,z_3d) = camera.convert2d_3d(center_x, center_y)
                 (x_3d,y_3d,z_3d) = camera.convert3d_3d(x_3d,y_3d,z_3d)

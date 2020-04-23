@@ -39,8 +39,24 @@ def main():
         if key > 0:
             break
 
+<<<<<<< HEAD:course_material/week_5/homework_1_track_ball_answer.py
 
 
+=======
+        #TODO: track ball with camera and robot lib
+        cnt = cnt + 1
+        if cnt % 50 == 0:
+            print(center)
+            if(center!= None):
+                #converts 2d coordinates to 3d coordinates on camera axis
+                (x,y,z) = camera.convert2d_3d(center[0], center[1])
+                print (x,y,z,'on camera axis')
+                #converts 3d coordinates on camera axis to 3d coordinates on robot axis
+                (x,y,z) = camera.convert3d_3d(x,y,z)
+                print (x,y,z,'on robot axis')
+                #move robot to look at 3d point 
+                robot.lookatpoint(x,y,z, 4, waitResult = False)
+>>>>>>> be7a283c1d7a174d492b748b57d71f9593b9d9fa:course_material/week_5/homework_1_track_ball_solution.py
 
 if __name__ == '__main__':
     main()

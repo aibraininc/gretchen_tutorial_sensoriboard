@@ -10,7 +10,7 @@ import numpy as np
 import dlib
 from imutils import face_utils
 color_green = (0,255,0)
-from lib.robot import Robot
+
 def main():
     #We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
@@ -20,16 +20,10 @@ def main():
     focal_length = 640
 
     camera.start()
-
-    robot = Robot()
-    #start robot
-    robot.start()
     #initalize face detector
     face_detector = FaceDetector()
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
-    #counter
-    cnt =  1
     #loop
     while True:
         #get image
@@ -42,39 +36,13 @@ def main():
         for det in dets:
             cv2.rectangle(img,(det.left(), det.top()), (det.right(), det.bottom()), color_green, 3)
 
+        #we only use 1 face to estimate pose
         if(len(dets)>0):
-
-            face_tracking = None
-            distanceFromCenter_min = 1000
-            # find a face near image center
-            for face in dets:
-                face_x = (face.left()+face.right())/2
-
-                #TODO: write a distance between face and center, center of width is 320.
-                distanceFromCenter = 
-
-
-                if distanceFromCenter <distanceFromCenter_min:
-                    distanceFromCenter_min = distanceFromCenter
-                    face_tracking = face
-
             #estimate pose
-            (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, face_tracking)
+            (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, dets[0])
             #draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
-
-            #TODO: converts 2d coordinates to 3d coordinates on camera axis
-            (x,y,z) = 
-            print (x,y,z,'on camera axis')
-
-            #TODO: converts 3d coordinates on camera axis to 3d coordinates on robot axis
-            (x,y,z) = 
-            print (x,y,z,'on robot axis')
-
-            #TODO: move robot for watching a face
-
-
-        cv2.imshow("Frame", img)
+        cv2.imshow("Frame", img[...,::-1])
 
         key = cv2.waitKey(1)
         if key > 0:
