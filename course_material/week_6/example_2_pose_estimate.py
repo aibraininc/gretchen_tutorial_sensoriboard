@@ -43,8 +43,7 @@ def main():
             #draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
-        cv2.imshow("Frame", img)
-
+        cv2.imshow("Frame", img[...,::-1])
         key = cv2.waitKey(1)
         if key > 0:
             break

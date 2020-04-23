@@ -8,14 +8,14 @@ import imutils
 class BallDetector:
     def __init__(self):
 
-        #TODO: set lower limit and upper limit for hsv color that you want to detect
+        #TODO: change lower limit and upper limit for hsv color that you want to detect
         self.colorLower = (90, 200, 80)
         self.colorUpper = (100, 255, 180)
 
     def detect(self, frame, _width = 640):
         # 1. resize the frame, and convert it to the HSV
         frame = imutils.resize(frame, width= _width)
-        hsv = cv2.cvtColor(frame[...,::-1], cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
 
         # 2. construct a mask for the color "green", then perform
         # a series of dilations and erosions to remove any small

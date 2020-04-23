@@ -37,7 +37,7 @@ def main():
             cv2.rectangle(img,(det.left(), det.top()), (det.right(), det.bottom()), color_green, 3)
 
 
-        cv2.imshow("Frame", img)
+        cv2.imshow("Frame", img[...,::-1])
 
         key = cv2.waitKey(1)
         if key > 0:

@@ -4,6 +4,7 @@ python exercise_1_pyttsx.py
 
 # it is gtts
 sudo pip install gTTS
+sudo pip install playsound
 sudo pip install pygame
 
 # it is google-speech lib

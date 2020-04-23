@@ -9,33 +9,14 @@ class BallDetector:
     def __init__(self):
 
         #lower limit for blue color
-        self.colorLower = (20, 100, 100)
+        self.colorLower = (90, 200, 80)
         #upper limit for blue color
-        self.colorUpper = (40, 255, 255)
-
-
-    def optimized(self,ball,frame):
-        #get image height and width
-        (image_height, image_width) = frame.shape[:2]
-
-        #How far the ball is from the center
-        target_offset_x = ball[0] - image_width / 2
-        target_offset_y = ball[1] - image_height / 2
-
-        try:
-            #Percentage of how far it is apart from the center
-            percent_offset_x = float(target_offset_x) / (float(image_width) / 2.0)
-            percent_offset_y = float(target_offset_y) / (float(image_height) / 2.0)
-        except:
-            percent_offset_x = 0
-            percent_offset_y = 0
-        return [percent_offset_x, percent_offset_y]
-
+        self.colorUpper = (110, 255, 255)
 
     def detect(self, frame, _width):
         # 1. resize the frame, and convert it to the HSV
         frame = imutils.resize(frame, width= _width)
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
 
         # 2. construct a mask for the color "green", then perform
         # a series of dilations and erosions to remove any small
