@@ -1,0 +1,18 @@
+<launch>
+
+<include file="$(find gretchen_head_controller)/launch/controller.launch" >
+</include>
+
+<!-- roslaunch realsense2_camera rs_camera.launch -->
+<include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+    <arg name="align_depth" value="true"/>
+    <arg name="enable_pointcloud" value="true"/>
+</include>
+
+
+
+
+<include file="$(find head_action)/launch/head_action.launch" >
+</include>
+
+</launch>

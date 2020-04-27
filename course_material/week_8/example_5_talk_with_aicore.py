@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import sys
 import speech_recognition as sr
+import playsound
+from gtts import gTTS
 sys.path.append('..')
 from lib.ros_environment import ROSEnvironment
 from lib.aicore_client import AICoRE
@@ -29,7 +31,11 @@ def main():
     #send text to client
     client.send(text)
     #get answer from AICoRe
-    client.answer()
+    answer = client.answer()
+
+    tts = gTTS(answer)
+    tts.save('answer.mp3')
+    playsound.playsound('answer.mp3')
 
 if __name__ == '__main__':
     main()

@@ -29,13 +29,20 @@ class Camera:
     def start(self):
         print("starting camera")
         #rospy.init_node('camera_show', anonymous=True)
-        msg=rospy.wait_for_message('/camera/color/camera_info', CameraInfo)        
+        # msg=rospy.wait_for_message('/camera/color/camera_info', CameraInfo)        
         # print(msg)
 
-        self.fx = msg.K[0]
-        self.fy = msg.K[4]
-        self.cx = msg.K[2]
-        self.cy = msg.K[5]
+        # self.fx = msg.K[0]
+        # self.fy = msg.K[4]
+        # self.cx = msg.K[2]
+        # self.cy = msg.K[5]
+
+        self.fx = 570.3422241210938
+        self.fy = 570.3422241210938
+        self.cx = 319.5
+        self.cy = 239.5
+
+
         self.listener = tf.TransformListener()
         self.listener.waitForTransform("/base_link", "/camera_color_optical_frame", rospy.Time(0),rospy.Duration(4.0))
 
