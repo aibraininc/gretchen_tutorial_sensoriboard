@@ -178,7 +178,7 @@ def main():
             conf_value = confidence_values[i]
             draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))
 
-        cv2.imshow("Object Detection Window", input_image)
+        cv2.imshow("Object Detection Window", input_image[...,::-1])
         key = cv2.waitKey(1)
         cv2.imwrite("detected_object.jpg", input_image)
     cv2.destroyAllWindows()
