@@ -17,7 +17,6 @@ def main():
     #Initalize camera
     camera = Camera()
     #start camera
-    focal_length = 640
 
     camera.start()
 
@@ -50,8 +49,8 @@ def main():
             for face in dets:
                 face_x = (face.left()+face.right())/2
 
-                #TODO: write a distance between face and center, center of width is 320.
-                distanceFromCenter = abs(face_x - 320)
+                #TODO: write a distance between face and center, center is 0.5*width of image.
+                distanceFromCenter = abs(face_x - camera.width/2)
                 
                 if distanceFromCenter <distanceFromCenter_min:
                     distanceFromCenter_min = distanceFromCenter

@@ -24,14 +24,13 @@ def main():
         motors.set_pos_ctrl_params(0, Kp = 0.0, Ki = 0.0, Kd = 0.0, deadband = 0.0, pulse_threshold = 0.0)
         motors.set_pos_ctrl_params(1, Kp = 0.0, Ki = 0.0, Kd = 0.0, deadband = 0.0, pulse_threshold = 0.0)
 
-				#TODO: set the position to different x, y values 
+        #TODO: set the position to different x, y values 
         motors.set_position([.5, 1])
 
         sleep(0.2)
 
-				#prints the current position
+        #prints the current position
         print_position(motors.get_position())
-
 
         motors.stop()
 

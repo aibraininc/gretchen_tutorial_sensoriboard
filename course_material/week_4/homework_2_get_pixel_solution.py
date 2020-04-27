@@ -17,6 +17,8 @@ def onMouse(event, u, v, flags, param):
         img = camera.getImage()
         point = (u,v)
         print('Point', u,v)
+
+        #TODO access the image u,v to print
         print('RGB', img[v,u])
 
 def main():

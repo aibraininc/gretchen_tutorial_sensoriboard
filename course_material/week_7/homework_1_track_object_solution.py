@@ -85,6 +85,7 @@ def main():
         confidence_values = []
         bounding_boxes = []
 
+        #TODO: Change the values for conf_threshold and nms_threshold
         #Initialize confidence threshold and threshold for non maximal suppresion
         conf_threshold = 0.5
         nms_threshold = 0.4

@@ -23,6 +23,8 @@ class Camera:
         self.listener = None
         self.click_x = 0
         self.click_y = 0
+        self.width = 640
+        self.height = 640
 
 
 
