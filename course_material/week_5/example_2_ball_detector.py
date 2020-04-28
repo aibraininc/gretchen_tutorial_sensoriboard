@@ -8,9 +8,9 @@ import imutils
 class BallDetector:
     def __init__(self):
         #lower limit for blue color
-        self.colorLower = (90, 200, 80)
+        self.colorLower = (20, 80, 80)
         #upper limit for blue color
-        self.colorUpper = (110, 255, 255)
+        self.colorUpper = ( 60, 255, 255)
 
     def detect(self, frame, _width):
         # 1. resize the frame, and convert it to the HSV
@@ -23,6 +23,23 @@ class BallDetector:
         mask = cv2.erode(mask, None, iterations=2)
         mask = cv2.dilate(mask, None, iterations=2)
         cv2.imshow("Filter", mask)
+
+
+        # circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1.4, 100)
+        # circles = cv2.HoughCircles(gray,  
+        #                 cv2.HOUGH_GRADIENT, 1, 100, param1 = 50, 
+        #             param2 = 30, minRadius = 1, maxRadius = 40) 
+
+
+        # if circles is not None:
+        #     # convert the (x, y) coordinates and radius of the circles to integers
+        #     circles = np.round(circles[0, :]).astype("int")
+        #     # loop over the (x, y) coordinates and radius of the circles
+        #     for (x, y, r) in circles:
+        #         # draw the circle in the output image, then draw a rectangle
+        #         # corresponding to the center of the circle
+        #         cv2.circle(frame, (x, y), r, (0, 255, 0), 4)
+        #         cv2.rectangle(frame, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
 
         # 3. find contours in the mask
         cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,

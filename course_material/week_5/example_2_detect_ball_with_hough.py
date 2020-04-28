@@ -25,6 +25,10 @@ def main():
         gray = cv2.erode(gray, None, iterations=2)
         gray = cv2.dilate(gray, None, iterations=2)
         circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1.4, 100)
+        # circles = cv2.HoughCircles(gray,  
+        #                 cv2.HOUGH_GRADIENT, 1, 100, param1 = 50, 
+        #             param2 = 30, minRadius = 1, maxRadius = 40) 
+
 
         if circles is not None:
             # convert the (x, y) coordinates and radius of the circles to integers
