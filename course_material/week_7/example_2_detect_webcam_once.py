@@ -9,7 +9,6 @@ sys.path.append('..')
 sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
 import rospy
 from lib.camera_v2 import Camera
-
 from lib.ros_environment import ROSEnvironment
 
 
@@ -121,10 +120,9 @@ def main():
         conf_value = confidence_values[i]
         draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))
 
+    #shows image
     cv2.imshow("Object Detection Window", input_image[...,::-1])
     key = cv2.waitKey(0)
-    #if key > 0:
-    #    break
     cv2.imwrite("detected_object.jpg", input_image[...,::-1])
     cv2.destroyAllWindows()
 

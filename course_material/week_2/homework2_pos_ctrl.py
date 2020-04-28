@@ -26,12 +26,10 @@ def main():
 
         #TODO: set the position to different x, y values 
         motors.set_position([.5, 1])
-
         sleep(0.2)
 
         #prints the current position
         print_position(motors.get_position())
-
         motors.stop()
 
     except (KeyboardInterrupt, SystemExit):
@@ -43,7 +41,6 @@ def main():
         # Script crashed?
         print("\rException thrown, stopping motors")
         motors.stop()
-        raise
 
     print("____\nDONE.")
 

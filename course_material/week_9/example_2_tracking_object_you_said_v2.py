@@ -183,8 +183,5 @@ def main():
         cv2.imwrite("detected_object.jpg", input_image)
     cv2.destroyAllWindows()
 
-
-
-
 if __name__ == '__main__':
     main()

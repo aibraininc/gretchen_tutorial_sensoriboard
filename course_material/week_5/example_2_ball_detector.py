@@ -7,7 +7,6 @@ import imutils
 #class for detecting ball
 class BallDetector:
     def __init__(self):
-
         #lower limit for blue color
         self.colorLower = (90, 200, 80)
         #upper limit for blue color
@@ -29,7 +28,6 @@ class BallDetector:
         cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
             cv2.CHAIN_APPROX_SIMPLE)
         cnts = imutils.grab_contours(cnts)
-
         centor = None
 
         # only proceed if at least one contour was found

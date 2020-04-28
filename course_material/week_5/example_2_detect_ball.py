@@ -26,6 +26,7 @@ def main():
         cv2.imshow("Frame", img[...,::-1])
         #print the center 
         print(center)
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break

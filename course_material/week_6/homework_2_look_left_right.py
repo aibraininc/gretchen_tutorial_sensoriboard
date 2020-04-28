@@ -55,12 +55,12 @@ def main():
             elif :
                 print ('You are looking at left.')            
 
+        #show image
         cv2.imshow("Frame", img[...,::-1])
-
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
-
 
 if __name__ == '__main__':
     main()

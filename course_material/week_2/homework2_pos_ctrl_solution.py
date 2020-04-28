@@ -63,10 +63,8 @@ def main():
         # Script crashed?
         print("\rException thrown, stopping motors")
         motors.stop()
-        raise
 
     print("____\nDONE.")
-
 
 if __name__ == "__main__":
     main()

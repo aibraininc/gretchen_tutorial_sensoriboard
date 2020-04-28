@@ -50,12 +50,13 @@ def main():
                 print ('You are looking at right.')            
             elif yaw < -0.3:
                 print ('You are looking at left.')            
-        cv2.imshow("Frame", img[...,::-1])
 
+        #show image
+        cv2.imshow("Frame", img[...,::-1])
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
-
 
 if __name__ == '__main__':
     main()

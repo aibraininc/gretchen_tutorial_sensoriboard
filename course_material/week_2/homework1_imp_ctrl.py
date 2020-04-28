@@ -14,7 +14,6 @@ from time import sleep
 def print_position(data):
     print(''.join('{0: .2f} '.format(k) for k in data))
 
-
 def main():
     motors = Sensorimotor(number_of_motors = 2, verbose = False)
 
@@ -29,18 +28,17 @@ def main():
 
         # starting motorcord
         motors.start()
-
         counter = 0
+
         while(counter < 10):
             #TODO: set the impuse for each motor
             motors.apply_impulse([0, 0])
             print("tak")
             counter = counter +1
             sleep(0.1)
-
         motors.stop()
-    except (KeyboardInterrupt, SystemExit):
 
+    except (KeyboardInterrupt, SystemExit):
         # stopping motor cord
         print("\rAborted, stopping motors")
         motors.stop()
@@ -50,11 +48,7 @@ def main():
         print("\rException thrown, stopping motors")
         motors.stop()
 
-        raise
-
-
     print("____\nDONE.")
-
 
 if __name__ == "__main__":
     main()

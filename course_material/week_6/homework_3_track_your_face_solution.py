@@ -11,6 +11,7 @@ import dlib
 from imutils import face_utils
 color_green = (0,255,0)
 from lib.robot import Robot
+
 def main():
     #We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
@@ -72,12 +73,12 @@ def main():
             #TODO: move robot for watching a face
             robot.lookatpoint(x,y,z, 4, waitResult = False)
 
+        #show image
         cv2.imshow("Frame", img[...,::-1])
-
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
-
 
 if __name__ == '__main__':
     main()

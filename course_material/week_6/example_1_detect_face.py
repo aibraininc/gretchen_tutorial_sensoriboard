@@ -36,13 +36,12 @@ def main():
         for det in dets:
             cv2.rectangle(img,(det.left(), det.top()), (det.right(), det.bottom()), color_green, 3)
 
-
+        #show image
         cv2.imshow("Frame", img[...,::-1])
-
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
-
 
 if __name__ == '__main__':
     main()

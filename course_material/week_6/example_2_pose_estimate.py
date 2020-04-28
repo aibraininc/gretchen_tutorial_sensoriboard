@@ -43,11 +43,12 @@ def main():
             #draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
+        #show image
         cv2.imshow("Frame", img[...,::-1])
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
-
 
 if __name__ == '__main__':
     main()

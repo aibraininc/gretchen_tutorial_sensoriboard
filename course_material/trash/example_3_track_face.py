@@ -11,6 +11,7 @@ import dlib
 from imutils import face_utils
 color_green = (0,255,0)
 from lib.robot import Robot
+
 def main():
     #We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()

@@ -37,31 +37,29 @@ def main():
             counter = counter +1
             sleep(0.1)
         counter = 0
+
         while(counter < 5):
             motors.apply_impulse([-0.5, 0])
             print("tak")
             counter = counter +1
             sleep(0.1)
-
         counter = 0
+
         while(counter < 5):
             motors.apply_impulse([0, 0.5])
             print("tak")
             counter = counter +1
             sleep(0.1)
-
         counter = 0
+
         while(counter < 5):
             motors.apply_impulse([0, -0.5])
             print("tak")
             counter = counter +1
             sleep(0.1)
-
-
-
         motors.stop()
-    except (KeyboardInterrupt, SystemExit):
 
+    except (KeyboardInterrupt, SystemExit):
         # stopping motor cord
         print("\rAborted, stopping motors")
         motors.stop()
@@ -70,9 +68,6 @@ def main():
         # Script crashed?
         print("\rException thrown, stopping motors")
         motors.stop()
-
-        raise
-
 
     print("____\nDONE.")
 

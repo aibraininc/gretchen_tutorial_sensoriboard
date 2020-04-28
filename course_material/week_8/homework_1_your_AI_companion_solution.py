@@ -42,8 +42,6 @@ def main():
     #TODO: Play TTS
     playsound.playsound('hello.mp3')
 
-
-
     #TODO: With recognized text, you can let robot answer.
     print(text)
     if 'hello' in text:

@@ -32,6 +32,7 @@ def main():
         cv2.imshow("Frame", img[...,::-1])
         # when you click pixel on image, onMouse is called.
         cv2.setMouseCallback("Frame", onMouse)
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break

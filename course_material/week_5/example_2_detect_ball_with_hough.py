@@ -24,9 +24,7 @@ def main():
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         gray = cv2.erode(gray, None, iterations=2)
         gray = cv2.dilate(gray, None, iterations=2)
-
         circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1.4, 100)
-
 
         if circles is not None:
             # convert the (x, y) coordinates and radius of the circles to integers
@@ -37,8 +35,9 @@ def main():
                 # corresponding to the center of the circle
                 cv2.circle(img, (x, y), r, (0, 255, 0), 4)
                 cv2.rectangle(img, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
-            # show the output image
+        # show the output image
         cv2.imshow("Frame", img[...,::-1])
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break

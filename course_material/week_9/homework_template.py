@@ -26,7 +26,6 @@ from lib.aicore_client import AICoRE
 from lib.camera_v2 import Camera
 from lib.robot import Robot
 
-
 def main():
     ROSEnvironment()
     camera = Camera()

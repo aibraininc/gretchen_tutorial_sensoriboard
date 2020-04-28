@@ -13,7 +13,6 @@ class FaceDetector:
         self.detector = dlib.get_frontal_face_detector()
         #Initalize predictor for pose estimation(landmarks)
 
-        
     #detect face
     def detect(self, frame):
         # 1. resize the frame, and convert it to the HSV

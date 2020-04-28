@@ -12,7 +12,6 @@ camera = Camera()
 #initalize robot
 robot = Robot()
 
-
 def main():
     #We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
@@ -29,12 +28,14 @@ def main():
     while True:
         #get image from camera
         img = camera.getImage()
-
+        #gets image with ball detected,
         (img, center) = ball_detector.detect(img, 640)
         cv2.imshow("Frame", img[...,::-1])
+        #Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
+
         # track ball
         cnt = cnt + 1
         if cnt % 50 == 0:
