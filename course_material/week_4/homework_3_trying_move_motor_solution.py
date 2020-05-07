@@ -6,11 +6,11 @@ from lib.ros_environment import ROSEnvironment
 import time
 
 def main():
-    #We need to initalize ROS environment for Robot and camera to connect/communicate
+    # We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
-    #Initalize robot
+    # Initalize robot
     robot = Robot()
-    #Start robot
+    # Start robot
     robot.start()
 
     for i in range(10):

@@ -10,14 +10,14 @@ def main():
     motors = Sensorimotor(number_of_motors=2, verbose=False)
 
     try:
-        # checking for motors
+        # Check for motors
         N = motors.ping()
         print("Found {0} motors.".format(N))
         sleep(1.0)
 
         #TODO: set this according to your supply voltage and desired max. motor speed
         motors.set_voltage_limit([0.18, 0.18])
-        # starting motorcord
+        # Start motors
         motors.start()
 
         #TODO: set this parameters according to your desired motor positon control behaviour
@@ -27,35 +27,35 @@ def main():
 		#TODO: set the position to different x, y values
         motors.set_position([1, 0])
 
-		#prints the current position
+		# Print the current position
         print_position(motors.get_position())
         sleep(1.5)
 
 		#TODO: set the position to different x, y values
         motors.set_position([-1, 0])
 
-		#prints the current position
+		# Print the current position
         print_position(motors.get_position())
         sleep(1.5)
 
 		#TODO: set the position to different x, y values
         motors.set_position([-1, -1])
 
-		#prints the current position
+		# Print the current position
         print_position(motors.get_position())
         sleep(1.5)
         
 		#TODO: set the position to different x, y values
         motors.set_position([-1, 1])
 
-		#prints the current position
+		# Print the current position
         print_position(motors.get_position())
         sleep(1.5)
 
         motors.stop()
 
     except (KeyboardInterrupt, SystemExit):
-        # stopping motor cord
+        # Stop motors
         print("\rAborted, stopping motors")
         motors.stop()
 

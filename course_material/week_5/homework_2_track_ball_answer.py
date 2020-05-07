@@ -7,47 +7,47 @@ from lib.camera_v2 import Camera
 from lib.robot import Robot
 from lib.ros_environment import ROSEnvironment
 
-#initalize camera
+# Initalize camera
 camera = Camera()
-#initalize robot
+# Initalize robot
 robot = Robot()
 
 def main():
-    #We need to initalize ROS environment for Robot and camera to connect/communicate
+    # We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
-    #start camera
+    # Start camera
     camera.start()
-    #start robot
+    # Start robot
     robot.start()
-    #initalize ball detector
+    # Initalize ball detector
     ball_detector = BallDetector()
-    #count
+    # The variable for counting loop
     cnt = 0
 
-    #loop
+    # Loop
     while True:
-        #get image from camera
+        # Get image from camera
         img = camera.getImage()
-        #detects ball
+        # Detect ball
         (img, center) = ball_detector.detect(img, 640)
-        #shows ball
+        # Show ball
         cv2.imshow("Frame", img[...,::-1])
-        #Close if key is pressed
+        # Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
-        # track ball
+        # Track ball
         cnt = cnt + 1
         if cnt % 50 == 0:
             print(center)
             if(center!= None):
-                #converts 2d coordinates to 3d coordinates on camera axis
+                # Convert 2d coordinates to 3d coordinates on camera axis
                 (x,y,z) = camera.convert2d_3d(center[0], center[1])
                 print (x,y,z,'on camera axis')
-                #converts 3d coordinates on camera axis to 3d coordinates on robot axis
+                # Convert 3d coordinates on camera axis to 3d coordinates on robot axis
                 (x,y,z) = camera.convert3d_3d(x,y,z)
                 print (x,y,z,'on robot axis')
-                #move robot to look at 3d point
+                # Move robot to look at 3d point
                 robot.lookatpoint(x,y,z, 4, waitResult = False)
 
 if __name__ == '__main__':
