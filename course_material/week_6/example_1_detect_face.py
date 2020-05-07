@@ -12,33 +12,33 @@ from imutils import face_utils
 color_green = (0,255,0)
 
 def main():
-    #We need to initalize ROS environment for Robot and camera to connect/communicate
+    # We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
-    #Initalize camera
+    # Initalize camera
     camera = Camera()
-    #start camera
+    # Start camera
     focal_length = 640
 
     camera.start()
-    #initalize face detector
+    # Initalize face detector
     face_detector = FaceDetector()
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
-    #loop
+    # Loop
     while True:
-        #get image
+        # Get image
         img = camera.getImage()
 
-        #gets face detections
+        # Get face detections
         dets = face_detector.detect(img)
 
-        #draw all face detections
+        # Draw all face detections
         for det in dets:
             cv2.rectangle(img,(det.left(), det.top()), (det.right(), det.bottom()), color_green, 3)
 
-        #show image
+        # Show image
         cv2.imshow("Frame", img[...,::-1])
-        #Close if key is pressed
+        # Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
