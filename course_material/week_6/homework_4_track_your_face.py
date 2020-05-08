@@ -18,7 +18,6 @@ def main():
     #Initalize camera
     camera = Camera()
     #start camera
-    focal_length = 640
 
     camera.start()
 
@@ -51,7 +50,7 @@ def main():
             for face in dets:
                 face_x = (face.left()+face.right())/2
 
-                #TODO: write a distance between face and center, center of width is 320.
+                #TODO: write a distance between face and center, center is 0.5*width of image.
                 distanceFromCenter = 
 
 
@@ -71,8 +70,8 @@ def main():
             #TODO: converts 3d coordinates on camera axis to 3d coordinates on robot axis
             (x,y,z) = 
             print (x,y,z,'on robot axis')
-            #move robot
-            robot.lookatpoint(x,y,z, 4, waitResult = False)
+
+            #TODO: move robot for watching a face
 
         #show image
         cv2.imshow("Frame", img[...,::-1])

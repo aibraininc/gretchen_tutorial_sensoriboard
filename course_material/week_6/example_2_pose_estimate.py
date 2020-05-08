@@ -18,7 +18,6 @@ def main():
     camera = Camera()
     #start camera
     focal_length = 640
-
     camera.start()
     #initalize face detector
     face_detector = FaceDetector()

@@ -13,7 +13,7 @@ def main():
     robot.start()
 
     #The parameters are 3d coordinates in the real world
-    #TODO Change the values in loopatpoint
+    #TODO Change the values in lookatpoint
     robot.lookatpoint(1,1,1)
 
     # robot.lookatpoint(0, 0, 0.298137)

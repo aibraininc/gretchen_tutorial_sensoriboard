@@ -32,6 +32,7 @@ def main():
         counter = 0
         while(counter < 10):
             #TODO: set the impuse for each motor
+            #moves left
             motors.apply_impulse([1.0, 0])
             print("tak")
             counter = counter +1
@@ -40,6 +41,7 @@ def main():
 
         while(counter < 10):
             #TODO: set the impuse for each motor
+            #move right
             motors.apply_impulse([-1.0, 0])
             print("tak")
             counter = counter +1
@@ -48,6 +50,7 @@ def main():
 
         while(counter < 10):
             #TODO: set the impuse for each motor
+            #move up
             motors.apply_impulse([0.0, -1.0])
             print("tak")
             counter = counter +1
@@ -56,6 +59,7 @@ def main():
 
         while(counter < 10):
             #TODO: set the impuse for each motor
+            #move down
             motors.apply_impulse([0.0, 1.0])
             print("tak")
             counter = counter +1

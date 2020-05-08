@@ -19,7 +19,7 @@ def main():
         time.sleep(0.1)
     time.sleep(1) # wait a second
     for i in range(10):
-        #TODO: change the values in move
+        #TODO: change the values in right
         robot.right(0.2)
         time.sleep(0.1)
     robot.center()

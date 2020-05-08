@@ -25,6 +25,7 @@ def main():
         motors.set_pos_ctrl_params(1, Kp = 0.9, Ki = 0.0, Kd = 0.05, deadband = 0.0, pulse_threshold = 0.1)
 
 		#TODO: set the position to different x, y values
+        #moves left
         motors.set_position([1, 0])
 
 		#prints the current position
@@ -32,6 +33,7 @@ def main():
         sleep(1.5)
 
 		#TODO: set the position to different x, y values
+        #moves right
         motors.set_position([-1, 0])
 
 		#prints the current position
@@ -39,13 +41,15 @@ def main():
         sleep(1.5)
 
 		#TODO: set the position to different x, y values
+        #moves up
         motors.set_position([-1, -1])
 
 		#prints the current position
         print_position(motors.get_position())
         sleep(1.5)
-        
+
 		#TODO: set the position to different x, y values
+        #moves down
         motors.set_position([-1, 1])
 
 		#prints the current position

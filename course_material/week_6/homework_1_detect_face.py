@@ -18,7 +18,6 @@ def main():
     camera = Camera()
     #start camera
     focal_length = 640
-
     camera.start()
     #initalize face detector
     face_detector = FaceDetector()
@@ -42,7 +41,10 @@ def main():
             (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, dets[0])
             #draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
-
+            print("rotation_vector")
+            print rotation_vector
+            print("translation_vector")
+            print translation_vector
         #show image
         cv2.imshow("Frame", img[...,::-1])
         #Close if key is pressed

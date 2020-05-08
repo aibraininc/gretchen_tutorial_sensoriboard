@@ -26,9 +26,9 @@ class BallDetector:
 
 
         # circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1.4, 100)
-        # circles = cv2.HoughCircles(gray,  
-        #                 cv2.HOUGH_GRADIENT, 1, 100, param1 = 50, 
-        #             param2 = 30, minRadius = 1, maxRadius = 40) 
+        # circles = cv2.HoughCircles(gray,
+        #                 cv2.HOUGH_GRADIENT, 1, 100, param1 = 50,
+        #             param2 = 30, minRadius = 1, maxRadius = 40)
 
 
         # if circles is not None:

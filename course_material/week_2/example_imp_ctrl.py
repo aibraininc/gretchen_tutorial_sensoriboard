@@ -30,6 +30,7 @@ def main():
         # starting motorcord
         motors.start()
 
+        #move left
         counter = 0
         while(counter < 5):
             motors.apply_impulse([0.5, 0])
@@ -37,21 +38,21 @@ def main():
             counter = counter +1
             sleep(0.1)
         counter = 0
-
+        #move right
         while(counter < 5):
             motors.apply_impulse([-0.5, 0])
             print("tak")
             counter = counter +1
             sleep(0.1)
         counter = 0
-
+        #move down
         while(counter < 5):
             motors.apply_impulse([0, 0.5])
             print("tak")
             counter = counter +1
             sleep(0.1)
         counter = 0
-
+        #move up
         while(counter < 5):
             motors.apply_impulse([0, -0.5])
             print("tak")
@@ -74,4 +75,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

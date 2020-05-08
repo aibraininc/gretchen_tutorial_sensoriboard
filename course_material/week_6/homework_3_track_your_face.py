@@ -18,6 +18,7 @@ def main():
     #Initalize camera
     camera = Camera()
     #start camera
+    focal_length = 640
 
     camera.start()
 
@@ -50,28 +51,9 @@ def main():
             for face in dets:
                 face_x = (face.left()+face.right())/2
 
-                #TODO: write a distance between face and center, center is 0.5*width of image.
-                distanceFromCenter = 
-
-
-                if distanceFromCenter <distanceFromCenter_min:
-                    distanceFromCenter_min = distanceFromCenter
-                    face_tracking = face
-
-            #estimate pose
-            (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, face_tracking)
-            #draw pose
-            img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
-
-            #TODO: converts 2d coordinates to 3d coordinates on camera axis
-            (x,y,z) = 
-            print (x,y,z,'on camera axis')
-
-            #TODO: converts 3d coordinates on camera axis to 3d coordinates on robot axis
-            (x,y,z) = 
-            print (x,y,z,'on robot axis')
-
-            #TODO: move robot for watching a face
+                #TODO: write a distance between face and center, center of width is 320.
+                distanceFromCenter =
+                print distanceFromCenter
 
         #show image
         cv2.imshow("Frame", img[...,::-1])
