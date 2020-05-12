@@ -43,8 +43,6 @@ class BallDetector:
             contour_area = cv2.contourArea(cnt)
             # Get the boundingbox for countourArea
             x,y,w,h = cv2.boundingRect(cnt)
-            # Draw the rectangle
-            cv2.rectangle(frame,(x,y,w,h),(0,255,0),2)
             # Calculate estimated radius and size of circle
             estimated_r = ((w+h)/2.0)*0.5
             estimated_circle = 3.141592*estimated_r*estimated_r

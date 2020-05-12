@@ -39,7 +39,6 @@ def main():
         # Track ball
         cnt = cnt + 1
         if cnt % 50 == 0:
-            print(center)
             if(center!= None):
                 # Convert 2d coordinates to 3d coordinates on camera axis
                 (x,y,z) = camera.convert2d_3d(center[0], center[1])

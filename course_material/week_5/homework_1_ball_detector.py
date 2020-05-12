@@ -9,8 +9,8 @@ class BallDetector:
     def __init__(self):
 
         #TODO: change lower limit and upper limit for hsv color that you want to detect
-        self.colorLower = (90, 200, 80)
-        self.colorUpper = (100, 255, 180)
+        self.colorLower = (20, 80, 80)
+        self.colorUpper = ( 60, 255, 255)
 
 
     def detect(self, frame, _width):
@@ -43,14 +43,11 @@ class BallDetector:
             contour_area = cv2.contourArea(cnt)
             # Get the boundingbox for countourArea
             x,y,w,h = cv2.boundingRect(cnt)
-            # Draw the rectangle
-            cv2.rectangle(frame,(x,y,w,h),(0,255,0),2)
             # Calculate estimated radius and size of circle
             estimated_r = ((w+h)/2.0)*0.5
             estimated_circle = 3.141592*estimated_r*estimated_r
             # Check the size of contour_area is similar to size of the circle
             similar = 1- abs(contour_area - estimated_circle)/estimated_circle
-            print(similar)
             if similar>0.7:
                 circles.append(cnt)
 
