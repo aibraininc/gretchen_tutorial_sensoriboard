@@ -24,11 +24,6 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(save_objects_to_map_with_yolo src/save_objects_to_map_with_yolo.cpp)
-target_link_libraries(save_objects_to_map_with_yolo
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES})
-
 add_executable(look_to_point src/look_to_point.cpp)
 target_link_libraries(look_to_point
   ${catkin_LIBRARIES}

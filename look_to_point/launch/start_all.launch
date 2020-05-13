@@ -16,8 +16,5 @@
 <include file="$(find openface2_ros)/launch/openface2_ros.launch" >
 </include>
 
-<include file="$(find darknet_ros)/launch/yolo_v3.launch" >
-</include>
-
 
 </launch>
