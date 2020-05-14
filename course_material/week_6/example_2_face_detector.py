@@ -14,11 +14,15 @@ class FaceDetector:
         # Initalize predictor for pose estimation(landmarks)
         self.predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
         # Create camera matrix
-        focal_length = 640
-        center = (640/2, 480/2)
+
+        self.fx = 570.3422241210938
+        self.fy = 570.3422241210938
+        self.cx = 319.5
+        self.cy = 239.5
+
         self.camera_matrix = np.array(
-                                     [[focal_length, 0, center[0]],
-                                     [0, focal_length, center[1]],
+                                     [[self.fx, 0,  self.cx],
+                                     [0, self.fy, self.cy],
                                      [0, 0, 1]], dtype = "double"
                                      )
         self.dist_coeffs = np.zeros((4,1)) # Assuming no lens distortion

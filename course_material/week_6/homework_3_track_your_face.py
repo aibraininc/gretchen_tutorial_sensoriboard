@@ -29,7 +29,7 @@ def main():
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
     # The variable for counting loop
-    cnt =  1
+    cnt = 0
 
     # Loop
     while True:
@@ -72,7 +72,11 @@ def main():
             (x,y,z) = 
             print (x,y,z,'on robot axis')
 
-            #TODO: move robot for watching a face
+            # Track ball lazely.
+            cnt = cnt + 1
+            if cnt % 50 == 0:
+                #TODO: move robot for watching a face
+
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])
