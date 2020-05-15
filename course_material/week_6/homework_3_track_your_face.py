@@ -74,7 +74,7 @@ def main():
 
             # Track ball lazely.
             cnt = cnt + 1
-            if cnt % 50 == 0:
+            if cnt % 5 == 0:
                 #TODO: move robot for watching a face
 
 

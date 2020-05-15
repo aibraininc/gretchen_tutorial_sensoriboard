@@ -26,31 +26,31 @@ def main():
 
 		#TODO: set the position to different x, y values
         motors.set_position([1, 0])
+        sleep(1.5)
 
 		# Print the current position
         print_position(motors.get_position())
-        sleep(1.5)
 
 		#TODO: set the position to different x, y values
         motors.set_position([-1, 0])
+        sleep(1.5)
 
 		# Print the current position
         print_position(motors.get_position())
-        sleep(1.5)
 
 		#TODO: set the position to different x, y values
         motors.set_position([-1, -1])
+        sleep(1.5)
 
 		# Print the current position
         print_position(motors.get_position())
-        sleep(1.5)
         
 		#TODO: set the position to different x, y values
         motors.set_position([-1, 1])
+        sleep(1.5)
 
 		# Print the current position
         print_position(motors.get_position())
-        sleep(1.5)
 
         motors.stop()
 
