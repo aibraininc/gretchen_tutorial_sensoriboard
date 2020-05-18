@@ -72,10 +72,7 @@ def main():
             (x,y,z) = 
             print (x,y,z,'on robot axis')
 
-            # Track ball lazely.
-            cnt = cnt + 1
-            if cnt % 5 == 0:
-                #TODO: move robot for watching a face
+            #TODO: move robot for watching a face
 
 
         # Show image

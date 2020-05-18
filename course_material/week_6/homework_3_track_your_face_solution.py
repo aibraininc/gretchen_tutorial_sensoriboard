@@ -72,11 +72,8 @@ def main():
             (x,y,z) = camera.convert3d_3d(x,y,z)
             print (x,y,z,'on robot axis')
 
-            # Track ball lazely.
-            cnt = cnt + 1
-            if cnt % 5 == 0:
-                #TODO: move robot for watching a face
-                robot.lookatpoint(x,y,z, 4, waitResult = False)
+            #TODO: move robot for watching a face
+            robot.lookatpoint(x,y,z, 4, waitResult = False)
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])
