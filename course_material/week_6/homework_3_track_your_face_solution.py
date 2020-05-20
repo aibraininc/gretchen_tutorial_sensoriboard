@@ -29,7 +29,7 @@ def main():
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
     # The variable for counting loop
-    cnt =  1
+    cnt = 0
 
     #Loop
     while True:
@@ -71,7 +71,7 @@ def main():
             #TODO: convert 3d coordinates on camera axis to 3d coordinates on robot axis
             (x,y,z) = camera.convert3d_3d(x,y,z)
             print (x,y,z,'on robot axis')
-            
+
             #TODO: move robot for watching a face
             robot.lookatpoint(x,y,z, 4, waitResult = False)
 

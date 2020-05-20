@@ -21,8 +21,6 @@ def main():
     robot.start()
     # Initalize ball detector
     ball_detector = BallDetector()
-    # The variable for counting loop
-    cnt = 0
 
     #loop
     while True:
@@ -37,17 +35,14 @@ def main():
         if key > 0:
             break
         # Track ball
-        cnt = cnt + 1
-        if cnt % 50 == 0:
-            print(center)
-            if(center!= None):
-                #TODO convert 2d coordinates to 3d coordinates on camera axis
-                (x,y,z) =
-                print (x,y,z,'on camera axis')
-                #TODO convert 3d coordinates on camera axis to 3d coordinates on robot axis
-                (x,y,z) =
-                print (x,y,z,'on robot axis')
-                #TODO: move robot to look at 3d point
+        if(center!= None):
+            #TODO convert 2d coordinates to 3d coordinates on camera axis
+            (x,y,z) =
+            print (x,y,z,'on camera axis')
+            #TODO convert 3d coordinates on camera axis to 3d coordinates on robot axis
+            (x,y,z) =
+            print (x,y,z,'on robot axis')
+            #TODO: move robot to look at 3d point
 
 if __name__ == '__main__':
     main()
