@@ -41,14 +41,13 @@ class BallDetector:
         for cnt in cnts:
             # Calculate the the contourArea
             contour_area = cv2.contourArea(cnt)
-            # Get the boundingbox for countourArea
-            x,y,w,h = cv2.boundingRect(cnt)
+            # Get the minEnclosingCicrle
+            ((x, y), radius) = cv2.minEnclosingCircle(cnt)
             # Calculate estimated radius and size of circle
-            estimated_r = ((w+h)/2.0)*0.5
-            estimated_circle = 3.141592*estimated_r*estimated_r
+            estimated_circle = 3.141592*radius*radius
             # Check the size of contour_area is similar to size of the circle
-            similar = 1- abs(contour_area - estimated_circle)/estimated_circle
-            if similar>0.7:
+            similar = 1- abs(estimated_circle - contour_area)/estimated_circle
+            if similar>0.75:
                 circles.append(cnt)
 
         # 5. find the largest contour in the mask, then use
