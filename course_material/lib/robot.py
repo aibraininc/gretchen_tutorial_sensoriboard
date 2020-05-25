@@ -35,7 +35,7 @@ class Robot:
         self.max_tilt_angle_radian = rospy.get_param("~max_tilt_angle_radian", 1.0)
 
         self.initParam()
-    def lookatpoint(self, x, y, z, speed=0.3, waitResult = True):
+    def lookatpoint(self, x, y, z, velocity=0.3):
         head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
         head_client.wait_for_server()
         goal = PointHeadGoal()
@@ -48,16 +48,14 @@ class Robot:
         goal.target.point.x = x
         goal.target.point.y = y
         goal.target.point.z = z
-        goal.max_velocity = speed
+        goal.max_velocity = velocity
         goal.min_duration = rospy.Duration(1.0)
 
         ## motion start
         if self.isMotion == False:
             head_client.send_goal(goal)
-        self.isMotion = True
-        if waitResult == True:
-            head_client.wait_for_result()
-            self.isMotion = False
+            self.isMotion = True
+
     def initParam(self):
         self.rate = rospy.get_param("~rate", 20)
 
