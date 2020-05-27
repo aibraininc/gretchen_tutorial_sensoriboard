@@ -73,7 +73,7 @@ def main():
             print (x,y,z,'on robot axis')
 
             #TODO: move robot for watching a face
-            robot.lookatpoint(x,y,z, 4, waitResult = False)
+            robot.lookatpoint(x,y,z, 4)
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])

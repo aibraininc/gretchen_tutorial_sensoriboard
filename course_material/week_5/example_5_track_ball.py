@@ -42,7 +42,7 @@ def main():
             (x,y,z) = camera.convert3d_3d(x,y,z)
             print (x,y,z,'on robot axis')
             # Move robot to look at 3d point 
-            robot.lookatpoint(x,y,z, 4, waitResult = False)
+            robot.lookatpoint(x,y,z, 4)
 
 if __name__ == '__main__':
     main()

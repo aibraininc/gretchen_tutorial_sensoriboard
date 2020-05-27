@@ -135,7 +135,7 @@ def main():
                 (x_3d,y_3d,z_3d) = camera.convert2d_3d(center_x, center_y)
                 (x_3d,y_3d,z_3d) = camera.convert3d_3d(x_3d,y_3d,z_3d)
                 #commands the robot to look
-                robot.lookatpoint(x_3d,y_3d,z_3d, 4, waitResult = False)
+                robot.lookatpoint(x_3d,y_3d,z_3d, 4)
                 tracked_object = 1
                 print("Traking"+class_name)
             print(class_name)
