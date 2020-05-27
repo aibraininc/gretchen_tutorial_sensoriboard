@@ -18,7 +18,7 @@ def main():
     motors = Sensorimotor(number_of_motors = 2, verbose = False)
 
     try:
-        # checking for motors
+        # Check for motors
         N = motors.ping()
         print("Found {0} motors.".format(N))
         sleep(1.0)
@@ -26,7 +26,7 @@ def main():
         #TODO: set this according to your supply voltage and desired max. motor speed
         motors.set_voltage_limit([0.1, 0.1])
 
-        # starting motorcord
+        # Start motors
         motors.start()
 
         counter = 0
@@ -67,7 +67,7 @@ def main():
         motors.stop()
 
     except (KeyboardInterrupt, SystemExit):
-        # stopping motor cord
+        # Stop motors
         print("\rAborted, stopping motors")
         motors.stop()
 

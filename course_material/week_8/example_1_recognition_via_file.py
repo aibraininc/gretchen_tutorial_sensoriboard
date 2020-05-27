@@ -10,6 +10,7 @@ def main():
     #read audio file
     with harvard_audio as source:
         audio = r.record(source)
+    #convert audio to text
     text = r.recognize_google(audio)
     print('result', text)
 

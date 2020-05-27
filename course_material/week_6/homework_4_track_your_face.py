@@ -51,7 +51,7 @@ def main():
                 face_x = (face.left()+face.right())/2
 
                 #TODO: write a distance between face and center, center is 0.5*width of image.
-                distanceFromCenter = 
+                distanceFromCenter =
 
 
                 if distanceFromCenter <distanceFromCenter_min:
@@ -64,14 +64,14 @@ def main():
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
             #TODO: converts 2d coordinates to 3d coordinates on camera axis
-            (x,y,z) = 
+            (x,y,z) =
             print (x,y,z,'on camera axis')
 
             #TODO: converts 3d coordinates on camera axis to 3d coordinates on robot axis
-            (x,y,z) = 
+            (x,y,z) =
             print (x,y,z,'on robot axis')
 
-            #TODO: move robot for watching a face
+            #TODO: move robot to track your face
 
         #show image
         cv2.imshow("Frame", img[...,::-1])

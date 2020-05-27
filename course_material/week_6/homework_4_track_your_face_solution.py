@@ -52,7 +52,7 @@ def main():
 
                 #TODO: write a distance between face and center, center is 0.5*width of image.
                 distanceFromCenter = abs(face_x - camera.width/2)
-                
+
                 if distanceFromCenter <distanceFromCenter_min:
                     distanceFromCenter_min = distanceFromCenter
                     face_tracking = face
@@ -69,8 +69,8 @@ def main():
             #TODO: converts 3d coordinates on camera axis to 3d coordinates on robot axis
             (x,y,z) = camera.convert3d_3d(x,y,z)
             print (x,y,z,'on robot axis')
-            
-            #TODO: move robot for watching a face
+
+            #TODO: move robot to track your face
             robot.lookatpoint(x,y,z, 4, waitResult = False)
 
         #show image

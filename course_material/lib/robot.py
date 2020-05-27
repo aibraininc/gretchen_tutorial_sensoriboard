@@ -30,7 +30,7 @@ class Robot:
         self.max_tilt_angle_radian = rospy.get_param("~max_tilt_angle_radian", 1.0)
 
         self.initParam()
-    def lookatpoint(self, x, y, z, speed=0.3, waitResult = True):
+    def lookatpoint(self, x, y, z, speed=10.8, waitResult = True):
         head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
         head_client.wait_for_server()
         goal = PointHeadGoal()
@@ -74,24 +74,12 @@ class Robot:
         cmd.data = [self.cmd_pan, self.cmd_tilt]
         self.cmdPub.publish(cmd)
 
-    def move(self, pan_speed, tilt_speed):
-        delta_x = -1 * pan_speed
-        self.cmd_pan += delta_x
-        if self.cmd_pan > self.max_pan_angle_radian:
-            self.cmd_pan = self.max_pan_angle_radian
-        elif self.cmd_pan < -1.0 * self.max_pan_angle_radian:
-            self.cmd_pan = -1.0 * self.max_pan_angle_radian
-
-        delta_y = -1 * tilt_speed
-        self.cmd_tilt += delta_y
-        if self.cmd_tilt > 1.0 * self.max_tilt_angle_radian:
-            self.cmd_tilt = 1.0 * self.max_tilt_angle_radian
-        elif self.cmd_tilt < -1.0 * self.max_tilt_angle_radian:
-            self.cmd_tilt = -1.0 * self.max_tilt_angle_radian
+    def move(self, pan_rad, tilt_rad):
 
         cmd = Float32MultiArray()
-        cmd.data = [self.cmd_pan, self.cmd_tilt]
+        cmd.data = [pan_rad, tilt_rad]
         self.cmdPub.publish(cmd)
+
 
 
     def up(self, delta=0.1):

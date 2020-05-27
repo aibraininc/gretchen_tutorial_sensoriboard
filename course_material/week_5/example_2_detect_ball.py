@@ -7,26 +7,26 @@ from lib.camera_v2 import Camera
 from lib.ros_environment import ROSEnvironment
 
 def main():
-    #We need to initalize ROS environment for Robot and camera to connect/communicate
+    # We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
-    #Initalize camera
+    # Initalize camera
     camera = Camera()
-    #Start camera
+    # Start camera
     camera.start()
-    #Initalize ball detector
+    # Initalize ball detector
     ball_detector = BallDetector()
 
     #loop
     while True:
-        #get image
+        # Get image
         img = camera.getImage()
-        #gets image with ball detected,
+        # Gets image with ball detected,
         (img, center) = ball_detector.detect(img, 640)
-        #show image
+        # Show image
         cv2.imshow("Frame", img[...,::-1])
-        #print the center 
+        # Print the center 
         print(center)
-        #Close if key is pressed
+        # Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break

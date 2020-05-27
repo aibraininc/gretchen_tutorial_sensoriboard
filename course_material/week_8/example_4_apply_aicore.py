@@ -7,6 +7,7 @@ from lib.aicore_client import AICoRE
 def main():
     #We need to initalize ROS environment for AICoRE to connect
     ROSEnvironment()
+    #initalize aicore client 
     client = AICoRE()
 
     # set username

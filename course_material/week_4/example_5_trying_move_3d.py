@@ -5,11 +5,11 @@ from lib.robot import Robot
 from lib.ros_environment import ROSEnvironment
 
 def main():
-    #We need to initalize ROS environment for Robot and camera to connect/communicate
+    # We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
-    #Initalize robot
+    # Initalize robot
     robot = Robot()
-    #Start robot
+    # Start robot
     robot.start()
 
     #The parameters are 3d coordinates in the real world

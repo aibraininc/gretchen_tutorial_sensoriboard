@@ -13,38 +13,38 @@ camera = Camera()
 robot = Robot()
 
 def main():
-    #We need to initalize ROS environment for Robot and camera to connect/communicate
+    # We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
-    #start camera
+    # Start camera
     camera.start()
-    #start robot
+    # Start robot
     robot.start()
-    #initalize ball detector
+    # Initalize ball detector
     ball_detector = BallDetector()
-    #count
+    # The variable for counting loop
     cnt = 0
 
     #loop
     while True:
-        #get image from camera
+        # Get image from camera
         img = camera.getImage()
-        #detects ball
+        # Detect ball
         (img, center) = ball_detector.detect(img, 640)
-        #shows ball
+        # Show ball
         cv2.imshow("Frame", img[...,::-1])
-        #Close if key is pressed
+        # Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
-        # track ball
+        # Track ball
         cnt = cnt + 1
         if cnt % 50 == 0:
             print(center)
             if(center!= None):
-                #TODO converts 2d coordinates to 3d coordinates on camera axis
+                #TODO convert 2d coordinates to 3d coordinates on camera axis
                 (x,y,z) =
                 print (x,y,z,'on camera axis')
-                #TODO converts 3d coordinates on camera axis to 3d coordinates on robot axis
+                #TODO convert 3d coordinates on camera axis to 3d coordinates on robot axis
                 (x,y,z) =
                 print (x,y,z,'on robot axis')
                 #TODO: move robot to look at 3d point

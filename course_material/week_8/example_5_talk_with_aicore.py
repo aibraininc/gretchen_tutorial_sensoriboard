@@ -18,7 +18,7 @@ def main():
     #Initalize speeech recogniton
     r = sr.Recognizer()
     #Initalize mic
-    #TODO set the microphone index 
+    #TODO set the microphone index
     mic = sr.Microphone(device_index=11)
     print("start talking")
     with mic as source:
@@ -33,8 +33,11 @@ def main():
     #get answer from AICoRe
     answer = client.answer()
 
+    #creates speech from text
     tts = gTTS(answer)
+    #saves the answer to mp3 file
     tts.save('answer.mp3')
+    #plays the mp3
     playsound.playsound('answer.mp3')
 
 if __name__ == '__main__':
