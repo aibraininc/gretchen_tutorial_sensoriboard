@@ -4,7 +4,7 @@
 import rospy
 import roslib
 from std_msgs.msg import Float32MultiArray, String, MultiArrayLayout, MultiArrayDimension
-from control_msgs.msg import PointHeadAction, PointHeadGoal
+from control_msgs.msg import PointHeadAction, PointHeadGoal, PointHeadActionResult
 import actionlib
 
 deg2rad = 0.0174533
@@ -17,8 +17,13 @@ class Robot:
         self.lookatpointPub = rospy.Publisher("/look_at_point", Float32MultiArray, queue_size = 10)
 
         rospy.Subscriber("/gretchen/joint/poses", Float32MultiArray, self.jointCallback, queue_size = 10)
+        rospy.Subscriber("/head_controller/absolute_point_head_action/result", PointHeadActionResult, self.actionResultCallback, queue_size = 10)
         self.cur_pan_angle = 0
         self.cur_tilt_angle = 0
+
+
+        # motion result
+        self.isMotion = False
 
     def start(self):
         print "starting robot"
@@ -30,7 +35,7 @@ class Robot:
         self.max_tilt_angle_radian = rospy.get_param("~max_tilt_angle_radian", 1.0)
 
         self.initParam()
-    def lookatpoint(self, x, y, z, speed=10.8, waitResult = True):
+    def lookatpoint(self, x, y, z, velocity=10.8):
         head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
         head_client.wait_for_server()
         goal = PointHeadGoal()
@@ -43,11 +48,14 @@ class Robot:
         goal.target.point.x = x
         goal.target.point.y = y
         goal.target.point.z = z
-        goal.max_velocity = speed
+        goal.max_velocity = velocity
         goal.min_duration = rospy.Duration(1.0)
-        head_client.send_goal(goal)
-        if waitResult == True:
-            head_client.wait_for_result()
+
+        ## motion start
+        if self.isMotion == False:
+            head_client.send_goal(goal)
+            self.isMotion = True
+
     def initParam(self):
         self.rate = rospy.get_param("~rate", 20)
 
@@ -118,6 +126,9 @@ class Robot:
         cmd = Float32MultiArray()
         cmd.data = [x, y]
         self.cmdPub.publish(cmd)
+
+    def actionResultCallback(self, action):
+        self.isMotion = False
 
     def jointCallback(self, joint_angles):
         self.cur_pan_angle = joint_angles.data[0]

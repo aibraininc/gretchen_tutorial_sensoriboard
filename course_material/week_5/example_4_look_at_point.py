@@ -22,7 +22,7 @@ def onMouse(event, u, v, flags, param):
         (x,y,z) = camera.convert3d_3d(x,y,z)
         print (x,y,z,'on robot axis')
         # Robot to look in the direct of the 3d coordates on robot axis
-        robot.lookatpoint(x,y,z, waitResult = False)
+        robot.lookatpoint(x,y,z)
         print('look at point end')
 
 def main():

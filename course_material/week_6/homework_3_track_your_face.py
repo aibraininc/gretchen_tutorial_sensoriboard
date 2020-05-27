@@ -35,7 +35,7 @@ def main():
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
     # The variable for counting loop
-    cnt =  1
+    cnt = 0
 
     # Loop
     while True:
@@ -85,6 +85,7 @@ def main():
 
             #TODO: move robot for watching a face
 >>>>>>> 36cee4abe36b1a85acee0d54c44b209daf890d75
+
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])

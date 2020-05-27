@@ -55,7 +55,7 @@ class Camera:
         z = 1.0
         return (x,y,z)
 
-    def convert_3d_2d(self,x,y,z):
+    def convert3d_2d(self,x,y,z):
         # 3d point on camera -> 2d point on camera
         u = self.fx * x + self.cx
         v = self.fy * y + self.cy

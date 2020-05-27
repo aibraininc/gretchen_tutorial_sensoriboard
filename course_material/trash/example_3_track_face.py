@@ -58,7 +58,7 @@ def main():
             (x,y,z) = camera.convert3d_3d(x,y,z)
             print (x,y,z,'on robot axis')
             #move robot
-            robot.lookatpoint(x,y,z, 4, waitResult = False)
+            robot.lookatpoint(x,y,z, 4)
 
         cv2.imshow("Frame", img[...,::-1])
         key = cv2.waitKey(1)

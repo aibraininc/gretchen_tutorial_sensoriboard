@@ -16,3 +16,6 @@
 [submodule "rosjava_build_tools"]
 	path = rosjava_build_tools
 	url = https://github.com/rosjava/rosjava_build_tools.git
+[submodule "head_action"]
+	path = head_action
+	url = https://github.com/aibraininc/head_action.git

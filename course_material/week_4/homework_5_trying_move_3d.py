@@ -16,7 +16,5 @@ def main():
     # TODO: change the values in lookatpoint
     robot.lookatpoint(1,1,1)
 
-    # robot.lookatpoint(0, 0, 0.298137)
-
 if __name__ == '__main__':
     main()

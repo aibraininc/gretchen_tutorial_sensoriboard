@@ -1,9 +1,9 @@
-sudo apt-get install python3-pip
-sudo pip3 install virtualenv 
-virtualenv -p python3 myenv
-
-virtualenv -p python3 myenv
+sudo apt-get install python-pip
+sudo pip install virtualenv
 source myenv/bin/activate
+
+# if you don't have myenv folder on week_7 folder
+virtualenv -p python3 myenv
 
 wget https://pjreddie.com/media/files/yolov3.weights
 wget https://pjreddie.com/media/files/yolov3-tiny.weights

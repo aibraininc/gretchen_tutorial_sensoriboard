@@ -17,13 +17,7 @@ def main():
     ROSEnvironment()
     # Initalize camera
     camera = Camera()
-<<<<<<< HEAD
-    #start camera
-    focal_length = 640
-
-=======
     # Start camera
->>>>>>> 36cee4abe36b1a85acee0d54c44b209daf890d75
     camera.start()
 
     # Initalize robot
@@ -35,7 +29,7 @@ def main():
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
     # The variable for counting loop
-    cnt =  1
+    cnt = 0
 
     #Loop
     while True:
@@ -65,7 +59,7 @@ def main():
 =======
                 #TODO: write a distance between face and center, center is 0.5*width of image.
                 distanceFromCenter = abs(face_x - camera.width/2)
-                
+
                 # Find a face that has the smallest distance
                 if distanceFromCenter <distanceFromCenter_min:
                     distanceFromCenter_min = distanceFromCenter
@@ -83,10 +77,14 @@ def main():
             #TODO: convert 3d coordinates on camera axis to 3d coordinates on robot axis
             (x,y,z) = camera.convert3d_3d(x,y,z)
             print (x,y,z,'on robot axis')
-            
+
             #TODO: move robot for watching a face
+<<<<<<< HEAD
             robot.lookatpoint(x,y,z, 4, waitResult = False)
 >>>>>>> 36cee4abe36b1a85acee0d54c44b209daf890d75
+=======
+            robot.lookatpoint(x,y,z, 4)
+>>>>>>> 93152ceba769a1edd1d0a20800a4c03e07e625a1
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])
