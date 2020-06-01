@@ -17,23 +17,34 @@ def main():
     # Initalize camera
     camera = Camera()
     # Start camera
+    focal_length = 640
     camera.start()
     # Initalize face detector
-    detector = dlib.get_frontal_face_detector()
+    face_detector = FaceDetector()
+    predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
     # Loop
     while True:
         # Get image
-        # Second parameter is upsample_num_times.
         img = camera.getImage()
 
-        #TODO: get face detections using dlib detector
-        dets = detector(img, 1)
+        # Get face detections
+        dets = face_detector.detect(img)
 
         # Draw all face detections
         for det in dets:
             cv2.rectangle(img,(det.left(), det.top()), (det.right(), det.bottom()), color_green, 3)
 
+        # We only use 1 face to estimate pose
+        if(len(dets)>0):
+            # Estimate pose of a detected face
+            (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, dets[0])
+            # Draw pose
+            img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
+            print("rotation_vector")
+            print rotation_vector
+            print("translation_vector")
+            print translation_vector
         #show image
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed

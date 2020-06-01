@@ -51,12 +51,6 @@ def main():
             for face in dets:
                 face_x = (face.left()+face.right())/2
 
-<<<<<<< HEAD
-                #TODO: write a distance between face and center, center of width is 320.
-                distanceFromCenter = abs(face_x - 320)
-                print distanceFromCenter
-
-=======
                 #TODO: write a distance between face and center, center is 0.5*width of image.
                 distanceFromCenter = abs(face_x - camera.width/2)
 
@@ -79,12 +73,7 @@ def main():
             print (x,y,z,'on robot axis')
 
             #TODO: move robot for watching a face
-<<<<<<< HEAD
-            robot.lookatpoint(x,y,z, 4, waitResult = False)
->>>>>>> 36cee4abe36b1a85acee0d54c44b209daf890d75
-=======
             robot.lookatpoint(x,y,z, 4)
->>>>>>> 93152ceba769a1edd1d0a20800a4c03e07e625a1
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])
