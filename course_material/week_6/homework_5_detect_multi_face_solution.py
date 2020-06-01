@@ -39,12 +39,7 @@ def main():
         # Get face detections
         dets = face_detector.detect(img)
 
-        # Draw all face detections
-        for det in dets:
-            cv2.rectangle(img,(det.left(), det.top()), (det.right(), det.bottom()), color_green, 3)
-
         if(len(dets)>0):
-
             face_tracking = None
             distanceFromCenter_min = 1000
             # Find a face near image center
@@ -61,20 +56,11 @@ def main():
 
             # Estimate pose
             (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, face_tracking)
+            # Draw Rectangle
+            cv2.rectangle(img,(face_tracking.left(), face_tracking.top()), (face_tracking.right(), face_tracking.bottom()), color_green, 3)
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
-
-            #TODO: convert 2d coordinates to 3d coordinates on camera axis
-            (x,y,z) = camera.convert2d_3d((face_tracking.left()+face_tracking.right())/2, (face_tracking.top()+face_tracking.bottom())/2)
-            print (x,y,z,'on camera axis')
-
-            #TODO: convert 3d coordinates on camera axis to 3d coordinates on robot axis
-            (x,y,z) = camera.convert3d_3d(x,y,z)
-            print (x,y,z,'on robot axis')
-
-            #TODO: move robot for watching a face
-            robot.lookatpoint(x,y,z, 4)
-
+            
         # Show image
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed

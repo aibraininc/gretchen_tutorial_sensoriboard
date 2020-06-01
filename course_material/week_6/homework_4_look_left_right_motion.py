@@ -50,17 +50,22 @@ def main():
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
-            yaw = rotation_vector[2]
-            print(yaw)
-            if yaw > 0.3:
-                print ('You are looking at right.')
+            #TODO: find a yaw value from rotation_vector
+            print rotation_vector
+            yaw = 
+
+            #:TODO insert the condition for looking at right
+            if :
+                print ('You are looking at right.')            
                 #TODO: add motion for looking at right 
                 robot.move()
-            elif yaw < -0.3:
-                print ('You are looking at left.')
+
+            #:TODO insert the condition for looking at left
+            elif :
+                print ('You are looking at left.')            
                 #TODO: add motion for looking at left 
                 robot.move()
-            
+           
             # Wait a second            
             time.sleep(1)
             # Looking at the middle

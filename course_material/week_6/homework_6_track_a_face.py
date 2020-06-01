@@ -38,10 +38,6 @@ def main():
         #gets face detections
         dets = face_detector.detect(img)
 
-        #draw all face detections
-        for det in dets:
-            cv2.rectangle(img,(det.left(), det.top()), (det.right(), det.bottom()), color_green, 3)
-
         if(len(dets)>0):
 
             face_tracking = None
@@ -53,14 +49,15 @@ def main():
                 #TODO: write a distance between face and center, center is 0.5*width of image.
                 distanceFromCenter =
 
-
                 if distanceFromCenter <distanceFromCenter_min:
                     distanceFromCenter_min = distanceFromCenter
                     face_tracking = face
 
-            #estimate pose
+            # Estimate pose
             (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, face_tracking)
-            #draw pose
+            # Draw Rectangle
+            cv2.rectangle(img,(face_tracking.left(), face_tracking.top()), (face_tracking.right(), face_tracking.bottom()), color_green, 3)
+            # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
             #TODO: converts 2d coordinates to 3d coordinates on camera axis
