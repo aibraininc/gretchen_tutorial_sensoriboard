@@ -35,11 +35,11 @@ def main():
     #check if keyword in input
     if keyword in text:
         #TODO: set a response
-        answer = 'bye bye'
+        answer = 'Hi. Have a good time.'
 
     tts = gTTS(answer)
-    tts.save('hello.mp3')
-    playsound.playsound('hello.mp3')
+    tts.save('answer.mp3')
+    playsound.playsound('answer.mp3')
 
 
 if __name__ == '__main__':
