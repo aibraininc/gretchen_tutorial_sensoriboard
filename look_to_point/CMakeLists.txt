@@ -29,6 +29,11 @@ target_link_libraries(look_to_point
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES})
 
+add_executable(generate_marker src/generate_marker.cpp)
+target_link_libraries(generate_marker
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES})
+
 ### INSTALL ###
 
 install(TARGETS look_to_point

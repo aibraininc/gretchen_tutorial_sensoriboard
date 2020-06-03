@@ -30,7 +30,6 @@ class FaceDetector:
 
     # Detect face
     def detect(self, frame):
-        # 1. resize the frame, and convert it to the HSV
         rects = self.detector(frame, 1)
         return rects
     def estimate_pose(self,frame, rect):

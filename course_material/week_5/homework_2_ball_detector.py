@@ -10,7 +10,7 @@ class BallDetector:
 
         #TODO: change lower limit and upper limit for hsv color that you want to detect
         self.colorLower = (20, 80, 80)
-        self.colorUpper = ( 60, 255, 255)
+        self.colorUpper = (60, 255, 255)
 
 
     def detect(self, frame, _width):

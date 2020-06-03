@@ -14,8 +14,8 @@ from lib.ros_environment import ROSEnvironment
 from lib.robot import Robot
 
 #Path to files needed
-cfg_path = "./yolov3-tiny.cfg"
-weight_path= "./yolov3-tiny.weights"
+cfg_path = "./yolov3.cfg"
+weight_path= "./yolov3.weights"
 class_name_path = "./yolov3.txt"
 
 #TODO: define an object you want to track

@@ -17,13 +17,7 @@ def main():
     ROSEnvironment()
     # Initalize camera
     camera = Camera()
-<<<<<<< HEAD
-    #start camera
-    focal_length = 640
-
-=======
     # Start camera
->>>>>>> 36cee4abe36b1a85acee0d54c44b209daf890d75
     camera.start()
 
     # Initalize robot
@@ -45,25 +39,16 @@ def main():
         # Get face detections
         dets = face_detector.detect(img)
 
-        # Draw all face detections
-        for det in dets:
-            cv2.rectangle(img,(det.left(), det.top()), (det.right(), det.bottom()), color_green, 3)
-
         if(len(dets)>0):
-
             face_tracking = None
             distanceFromCenter_min = 1000
             # Find a face near image center
             for face in dets:
                 face_x = (face.left()+face.right())/2
 
-<<<<<<< HEAD
-                #TODO: write a distance between face and center, center of width is 320.
-                distanceFromCenter =
-                print distanceFromCenter
-=======
                 #TODO: write a distance between face and center, center is 0.5*width of image.
                 distanceFromCenter = 
+                print distanceFromCenter
 
                 # Find a face that has the smallest distance
                 if distanceFromCenter <distanceFromCenter_min:
@@ -72,20 +57,10 @@ def main():
 
             # Estimate pose
             (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, face_tracking)
+            # Draw Rectangle
+            cv2.rectangle(img,(face_tracking.left(), face_tracking.top()), (face_tracking.right(), face_tracking.bottom()), color_green, 3)
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
-
-            #TODO: convert 2d coordinates to 3d coordinates on camera axis
-            (x,y,z) = 
-            print (x,y,z,'on camera axis')
-
-            #TODO: convert 3d coordinates on camera axis to 3d coordinates on robot axis
-            (x,y,z) = 
-            print (x,y,z,'on robot axis')
-
-            #TODO: move robot for watching a face
->>>>>>> 36cee4abe36b1a85acee0d54c44b209daf890d75
-
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])

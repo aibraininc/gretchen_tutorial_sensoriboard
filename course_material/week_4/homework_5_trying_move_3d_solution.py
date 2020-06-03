@@ -13,9 +13,8 @@ def main():
     robot.start()
 
     # The parameters are 3d coordinates in the real world
-
     # TODO: change the values in lookatpoint
-    robot.lookatpoint()
+    robot.lookatpoint(1,1,1)
 
 if __name__ == '__main__':
     main()

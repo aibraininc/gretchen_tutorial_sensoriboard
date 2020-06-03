@@ -38,17 +38,9 @@ def main():
     #TODO: Convert text to speech
     tts = gTTS(answer)
     #TODO: Save TTS result
-    tts.save('hello.mp3')
+    tts.save('answer.mp3')
     #TODO: Play TTS
-    playsound.playsound('hello.mp3')
-
-    #TODO: With recognized text, you can let robot answer.
-    print(text)
-    if 'hello' in text:
-        tts = gTTS('hello hello hello')
-        tts.save('hello.mp3')
-        playsound.playsound('hello.mp3')
-
+    playsound.playsound('answer.mp3')
 
 if __name__ == '__main__':
     main()
