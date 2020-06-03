@@ -1,10 +1,10 @@
 <launch>
-<!-- <include file="$(find look_to_point)/launch/detect_object_and_save.launch" >
+<!-- <include file="$(find look_at_point)/launch/detect_object_and_save.launch" >
 </include>
-<include file="$(find look_to_point)/launch/start_look_to_point.1.launch" >
+<include file="$(find look_at_point)/launch/start_look_at_point.1.launch" >
 </include> -->
 
-<node name="save_objects" pkg="look_to_point" type="save_objects_to_map_with_yolo" output="screen">
+<node name="save_objects" pkg="look_at_point" type="save_objects_to_map_with_yolo" output="screen">
 </node>
 
 <!-- <node name="map_manager" pkg="map_manager" type="map_manager_without_db.py" output="screen">

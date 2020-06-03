@@ -19,8 +19,8 @@
     <param name="autosize" value="true" />
 </node>
 
-<node name="show_marker" pkg="look_to_point" type="generate_marker" respawn="false" output="screen">
-</node>
+<!-- <node name="show_marker" pkg="look_at_point" type="generate_marker" respawn="false" output="screen">
+</node> -->
 
 
 <include file="$(find head_action)/launch/head_action.launch" >

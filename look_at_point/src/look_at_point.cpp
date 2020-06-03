@@ -234,10 +234,10 @@ void createPointHeadClient(PointHeadClientPtr& actionClient)
 int main(int argc, char** argv)
 {
   // Init the ROS node
-  ros::init(argc, argv, "look_to_point");
+  ros::init(argc, argv, "look_at_point");
   tfl_ = new tf::TransformListener();
 
-  ROS_INFO("Starting look_to_point application ...");
+  ROS_INFO("Starting look_at_point application ...");
 
   // Precondition: Valid clock
   ros::NodeHandle nh;

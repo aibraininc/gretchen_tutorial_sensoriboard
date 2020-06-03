@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>look_to_point</name>
+  <name>look_at_point</name>
   <version>2.0.1</version>
   <description>Example on how to use the point head action to make the robot look to a given cartesian point</description>
 

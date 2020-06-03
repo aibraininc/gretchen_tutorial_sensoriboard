@@ -12,7 +12,7 @@
 <include file="$(find head_action)/launch/head_action.launch" >
 </include>
 
-<node name="look_to_point" pkg="look_to_point" type="look_to_point" output="screen">
+<node name="look_at_point" pkg="look_at_point" type="look_at_point" output="screen">
     <param name="cameraFrame"          value= "/camera_color_optical_frame"/>
     <param name="imageTopic"           value= "/camera/color/image_raw"/>
     <param name="cameraInfoTopic"           value= "/camera/color/camera_info"/>

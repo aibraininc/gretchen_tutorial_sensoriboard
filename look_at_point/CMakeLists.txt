@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(look_to_point)
+project(look_at_point)
 
 find_package(catkin REQUIRED COMPONENTS
   tf
@@ -24,8 +24,8 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(look_to_point src/look_to_point.cpp)
-target_link_libraries(look_to_point
+add_executable(look_at_point src/look_at_point.cpp)
+target_link_libraries(look_at_point
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES})
 
@@ -36,7 +36,7 @@ target_link_libraries(generate_marker
 
 ### INSTALL ###
 
-install(TARGETS look_to_point
+install(TARGETS look_at_point
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
