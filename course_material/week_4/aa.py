@@ -13,14 +13,13 @@ def main():
     # Start robot
     robot.start()
 
-    robot.center()
-
-    #TODO: change the values in move
-    robot.move(0.0, 0.0)
-    time.sleep(1) # wait a second
-
-    #TODO: write code to make the robot move left, right, up, down 
+        #TODO: change the values in left
+    robot.move(0, 0)
+    time.sleep(1)
+    robot.move(1, 1)
 
 
+
+    #TODO: write code to make the robot go up and down
 if __name__ == '__main__':
     main()

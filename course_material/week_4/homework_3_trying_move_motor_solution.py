@@ -13,25 +13,23 @@ def main():
     # Start robot
     robot.start()
 
-    for i in range(10):
-        #TODO: change the values in left
-        robot.left(0.2)
-        time.sleep(0.1)
-    time.sleep(1) # wait a second
-    for i in range(10):
-        #TODO: change the values in right
-        robot.right(0.2)
-        time.sleep(0.1)
     robot.center()
-    for i in range(10):
-        #TODO: change the values in up
-        robot.up(0.2)
-        time.sleep(0.1)
-    for i in range(10):
-        #TODO: change the values in down
-        robot.down(0.2)
-        time.sleep(0.1)
+    time.sleep(1)
+    #TODO: change the values in left
+    robot.left(1)
+    time.sleep(1)#wait a second
 
-    #TODO: write code to make the robot go up and down
+    #TODO: change the values in right
+    robot.right(2)
+    time.sleep(1)
+
+    #TODO make the robot move up,down
+    robot.up(1)
+    time.sleep(1)
+
+    robot.down(2)
+    time.sleep(1)
+
+
 if __name__ == '__main__':
     main()
