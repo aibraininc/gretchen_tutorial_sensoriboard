@@ -80,30 +80,37 @@ class Robot:
         self.cmd_tilt = 0
         cmd = Float32MultiArray()
         cmd.data = [self.cmd_pan, self.cmd_tilt]
+        while(self.cmdPub.get_num_connections() < 1):
+            rospy.sleep(0.2)
         self.cmdPub.publish(cmd)
 
     def move(self, pan_rad, tilt_rad):
-
         cmd = Float32MultiArray()
         cmd.data = [pan_rad, tilt_rad]
+        while(self.cmdPub.get_num_connections() < 1):
+            rospy.sleep(0.2)
         self.cmdPub.publish(cmd)
 
 
 
-    def up(self, delta=0.1):
+    def down(self, delta=0.1):
         self.cmd_tilt -= delta
         if self.cmd_tilt < -1.0:
             self.cmd_tilt = -1.0
         cmd = Float32MultiArray()
         cmd.data = [self.cmd_pan, self.cmd_tilt]
+        while(self.cmdPub.get_num_connections() < 1):
+            rospy.sleep(0.2)
         self.cmdPub.publish(cmd)
 
-    def down(self, delta=0.1):
+    def up(self, delta=0.1):
         self.cmd_tilt += delta
         if self.cmd_tilt > 1.0:
             self.cmd_tilt = 1.0
         cmd = Float32MultiArray()
         cmd.data = [self.cmd_pan, self.cmd_tilt]
+        while(self.cmdPub.get_num_connections() < 1):
+            rospy.sleep(0.2)
         self.cmdPub.publish(cmd)
 
     def left(self, delta=0.1):
@@ -112,6 +119,8 @@ class Robot:
             self.cmd_pan = 1.0
         cmd = Float32MultiArray()
         cmd.data = [self.cmd_pan, self.cmd_tilt]
+        while(self.cmdPub.get_num_connections() < 1):
+            rospy.sleep(0.2)
         self.cmdPub.publish(cmd)
 
     def right(self, delta=0.1):
@@ -120,6 +129,8 @@ class Robot:
             self.cmd_pan = -1.0
         cmd = Float32MultiArray()
         cmd.data = [self.cmd_pan, self.cmd_tilt]
+        while(self.cmdPub.get_num_connections() < 1):
+            rospy.sleep(0.2)
         self.cmdPub.publish(cmd)
 
     def publishCommand(self, x,y):
