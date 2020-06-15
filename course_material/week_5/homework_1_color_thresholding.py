@@ -12,9 +12,9 @@ point = (0,0)
 
 #TODO: set lower and upper limit for filtering the color you want
 
-# Lower limit for green color
+# Lower limit for color you want
 colorLower = (H1, S1, V1)
-# Upper limit for green color
+# Upper limit for color you want
 colorUpper = (H2, S2, V2)
 
 # Method called when clicked
