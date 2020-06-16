@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import cv2
 import sys
-from homework_1_ball_detector import BallDetector
+from homework_2_ball_detector import BallDetector
 sys.path.append('..')
 from lib.camera_v2 import Camera
 from lib.robot import Robot
