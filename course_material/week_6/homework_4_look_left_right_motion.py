@@ -66,10 +66,10 @@ def main():
                 #TODO: add motion for looking at left 
                 robot.move()
            
-            # Wait a second            
-            time.sleep(1)
+            time.sleep(3)
             # Looking at the middle
             robot.move(0,0.5)
+            time.sleep(5)
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])
