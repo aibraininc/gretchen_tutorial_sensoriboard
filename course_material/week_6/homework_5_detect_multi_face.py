@@ -44,6 +44,9 @@ def main():
             distanceFromCenter_min = 1000
             # Find a face near image center
             for face in dets:
+                # Draw Rectangle
+                cv2.rectangle(img,(face.left(), face.top()), (face.right(), face.bottom()), color_green, 3)
+
                 face_x = (face.left()+face.right())/2
 
                 #TODO: write a distance between face and center, center is 0.5*width of image.
@@ -57,8 +60,6 @@ def main():
 
             # Estimate pose
             (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, face_tracking)
-            # Draw Rectangle
-            cv2.rectangle(img,(face_tracking.left(), face_tracking.top()), (face_tracking.right(), face_tracking.bottom()), color_green, 3)
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
