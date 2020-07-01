@@ -20,6 +20,11 @@ def main():
 
     #Initalize speeech recogniton
     r = sr.Recognizer()
+
+    #List all the microphone hardware
+    for i, item in enumerate(sr.Microphone.list_microphone_names()):
+        print( i, item)
+
     #TODO: Initalize mic and set the device_index
     mic = sr.Microphone(device_index=11)
     with mic as source:
