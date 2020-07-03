@@ -120,7 +120,7 @@ def main():
         classid = class_ids[i]
         class_name = str(classes[classid])
 
-        print(class_name)
+        print(class_name, confidence_values[i])
         conf_value = confidence_values[i]
         draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))
 
