@@ -26,11 +26,14 @@ from lib.aicore_client import AICoRE
 from lib.camera_v2 import Camera
 from lib.robot import Robot
 
+#List all the microphone hardware
+for i, item in enumerate(sr.Microphone.list_microphone_names()):
+    print( i, item)
 
 def listen():
     while True:
         r = sr.Recognizer()
-        mic = sr.Microphone(device_index=11)
+        mic = sr.Microphone(device_index=7)
         print("I am ready to listen.")
         with mic as source:
             r.adjust_for_ambient_noise(source)
@@ -58,7 +61,7 @@ def main():
     while(True):
         #gets image from camera
         cam_image = camera.getImage()
-        cv2.imshow("Image", cam_image)
+        cv2.imshow("Image", cam_image[...,::-1])
         key = cv2.waitKey(1)
         if key > 0:
             break
