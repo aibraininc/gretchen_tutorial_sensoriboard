@@ -25,6 +25,10 @@ weight_path= "./yolov3-tiny.weights"
 class_name_path = "./yolov3.txt"
 object_to_track = "bottle"
 
+#List all the microphone hardware
+for i, item in enumerate(sr.Microphone.list_microphone_names()):
+    print( i, item)
+
 #Loads class names into an array
 classes = None
 with open(class_name_path, 'r') as file:
@@ -54,11 +58,8 @@ def listen():
     while True:
         r = sr.Recognizer()
 
-        #List all the microphone hardware
-        for i, item in enumerate(sr.Microphone.list_microphone_names()):
-            print( i, item)
 
-        mic = sr.Microphone(device_index=11)
+        mic = sr.Microphone(device_index=7)
         print("I am ready to listen.")
         with mic as source:
             r.adjust_for_ambient_noise(source)
@@ -128,7 +129,7 @@ def main():
 
         #Initialize confidence threshold and threshold for non maximal suppresion
         conf_threshold = 0.1
-        nms_threshold = 0.8
+        nms_threshold = 0.3
 
         #for each scale, we go through the detections
         for pred in preds:
