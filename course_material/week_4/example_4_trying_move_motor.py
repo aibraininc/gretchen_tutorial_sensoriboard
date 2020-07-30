@@ -13,7 +13,7 @@ def main():
     robot.start()
 
     # TODO: change the values in move
-    robot.move(0, 0)
+    robot.move(1, 0)
     time.sleep(0.1)
 if __name__ == '__main__':
     main()
