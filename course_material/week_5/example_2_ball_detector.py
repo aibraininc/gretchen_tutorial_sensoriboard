@@ -7,9 +7,9 @@ import imutils
 # Class for detecting ball
 class BallDetector:
     def __init__(self):
-        # Lower limit for blue color
+        # Lower limit for green color
         self.colorLower = (20, 80, 80)
-        # Upper limit for blue color
+        # Upper limit for green color
         self.colorUpper = ( 60, 255, 255)
 
     def detect(self, frame, _width):

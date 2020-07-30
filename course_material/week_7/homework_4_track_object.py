@@ -137,10 +137,9 @@ def main():
                 #commands the robot to look
                 robot.lookatpoint(x_3d,y_3d,z_3d, 4)
                 tracked_object = 1
-                print("Traking"+class_name)
-            print(class_name)
-            conf_value = confidence_values[i]
-            draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))
+                conf_value = confidence_values[i]
+                draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))
+                print("Traking "+class_name, conf_value)
 
         #show image
         cv2.imshow("Object Detection Window", input_image[...,::-1])

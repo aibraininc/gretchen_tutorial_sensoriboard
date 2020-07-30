@@ -24,7 +24,7 @@ def main():
         sleep(1.0)
 
         #TODO: set this according to your supply voltage and desired max. motor speed
-        motors.set_voltage_limit([0.1, 0.1])
+        motors.set_voltage_limit([0.16, 0.16])
 
         # Start motors
         motors.start()

@@ -25,8 +25,9 @@ def main():
         motors.set_pos_ctrl_params(1, Kp = 0.9, Ki = 0.0, Kd = 0.05, deadband = 0.0, pulse_threshold = 0.1)
 
         #TODO: set the position to different x, y values 
-        motors.set_position([.5, .1])
-        sleep(0.2)
+        motors.set_position([0.3, 0.2])
+
+        sleep(1.0)
 
         # Print the current position
         print_position(motors.get_position())

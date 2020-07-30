@@ -1,0 +1,20 @@
+<launch>
+<!-- <include file="$(find look_at_point)/launch/detect_object_and_save.launch" >
+</include>
+<include file="$(find look_at_point)/launch/start_look_at_point.1.launch" >
+</include> -->
+
+<node name="save_objects" pkg="look_at_point" type="save_objects_to_map_with_yolo" output="screen">
+</node>
+
+<!-- <node name="map_manager" pkg="map_manager" type="map_manager_without_db.py" output="screen">
+</node> -->
+
+<node name="face_analysis" pkg="face_analysis" type="estimate_focus.py" output="screen">
+</node>
+
+<include file="$(find openface2_ros)/launch/openface2_ros.launch" >
+</include>
+
+
+</launch>

@@ -10,9 +10,11 @@ camera = Camera()
 # Intalize point
 point = (0,0)
 
-# Lower limit for green color
+#TODO: set lower and upper limit for filtering the color you want
+
+# Lower limit for color you want
 colorLower = (20, 80, 80)
-# Upper limit for green color
+# Upper limit for color you want
 colorUpper = (60, 255, 255)
 
 # Method called when clicked

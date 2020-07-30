@@ -10,7 +10,6 @@
     <param name="pixel_format" value="yuyv" />
     <param name="camera_frame_id" value="camera_color_optical_frame" />
     <param name="io_method" value="mmap"/>
-    <param name="camera_info_url" value="/home/jacob/camera_test.yaml"/>
     <remap from="usb_cam/image_raw" to="/camera/color/image_raw"/>
 </node>
 
@@ -19,8 +18,8 @@
     <param name="autosize" value="true" />
 </node>
 
-<node name="show_marker" pkg="look_to_point" type="generate_marker" respawn="false" output="screen">
-</node>
+<!-- <node name="show_marker" pkg="look_at_point" type="generate_marker" respawn="false" output="screen">
+</node> -->
 
 
 <include file="$(find head_action)/launch/head_action.launch" >

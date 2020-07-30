@@ -16,21 +16,21 @@ def main():
         sleep(1.0)
 
         #TODO: set this according to your supply voltage and desired max. motor speed
-        motors.set_voltage_limit([0, 0])
+        motors.set_voltage_limit([0.16, 0.16])
         # Start motors
         motors.start()
 
         #TODO: set this parameters according to your desired motor positon control behaviour
-        motors.set_pos_ctrl_params(0, Kp = 1.8, Ki = 0.2, Kd = 0.1, deadband = 0.1, pulse_threshold = 0.1)
-        motors.set_pos_ctrl_params(1, Kp = 1.8, Ki = 0.2, Kd = 0.1, deadband = 0.1, pulse_threshold = 0.1)
+        motors.set_pos_ctrl_params(0, Kp = 0, Ki = 0, Kd = 0, deadband = 0, pulse_threshold = 0)
+        motors.set_pos_ctrl_params(1, Kp = 0, Ki = 0, Kd = 0, deadband = 0, pulse_threshold = 0)
 
-        motors.set_position([0.5, 0])
+        motors.set_position([0.3, 0.3])
         sleep(1.5)
 
 		# Print the current position
         print_position(motors.get_position())
 
-        motors.set_position([-0.5, 0])
+        motors.set_position([-0.3, -0.3])
         sleep(1.5)
 
 		# Print the current position

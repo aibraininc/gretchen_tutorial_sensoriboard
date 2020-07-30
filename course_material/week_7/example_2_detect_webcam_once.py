@@ -40,11 +40,7 @@ def main():
     camera = Camera()
     camera.start()
     cam_image = camera.getImage()
-    #while(cam_image==None.all):
-    #    cam_image = camera.getImage()
 
-    #cv2.imshow("Frame", cam_image[...,::-1])
-    #cv2.waitKey(0)
     #Reads image with image path from command line
     #Gets width and height of image
     input_image = cam_image

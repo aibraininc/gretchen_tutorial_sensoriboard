@@ -96,7 +96,6 @@ class Camera:
     def getClickPoint(self):
         return(self.click_x,self.click_y)
     def getImage(self):
+        if type(self.image) == type(None):
+            return np.zeros((480, 640, 3), np.uint8)        
         return self.image
-        
-
-        
