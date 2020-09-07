@@ -33,8 +33,11 @@ class Robot:
         self.max_joint_speed = rospy.get_param('~max_joint_speed', 0.1)
         self.max_pan_angle_radian = rospy.get_param("~max_pan_angle_radian", 1.0)
         self.max_tilt_angle_radian = rospy.get_param("~max_tilt_angle_radian", 1.0)
-
         self.initParam()
+
+    def getPosition(self):
+        return [self.cmd_pan, self.cmd_tilt]
+    
     def lookatpoint(self, x, y, z, velocity=10.8):
         head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
         head_client.wait_for_server()
@@ -86,7 +89,9 @@ class Robot:
 
     def move(self, pan_rad, tilt_rad):
         cmd = Float32MultiArray()
-        cmd.data = [pan_rad, tilt_rad]
+        self.cmd_pan = pan_rad
+        self.cmd_tilt = tilt_rad
+        cmd.data = [self.cmd_pan, self.cmd_tilt]
         while(self.cmdPub.get_num_connections() < 1):
             rospy.sleep(0.2)
         self.cmdPub.publish(cmd)
