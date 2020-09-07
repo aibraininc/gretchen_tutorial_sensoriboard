@@ -7,10 +7,16 @@ from lib.camera_v2 import Camera
 from lib.robot import Robot
 from lib.ros_environment import ROSEnvironment
 
-#initalize camera
+# Initalize camera
 camera = Camera()
-#initalize robot
+# Initalize robot
 robot = Robot()
+
+#TODO: calculate distance between detected ball and the image center.
+def calculateDistance(center):
+    x_distance = 
+    y_distance = 
+    return [x_distance, y_distance]
 
 def main():
     # We need to initalize ROS environment for Robot and camera to connect/communicate
@@ -22,7 +28,8 @@ def main():
     # Initalize ball detector
     ball_detector = BallDetector()
 
-    #loop
+    
+    # Loop
     while True:
         # Get image from camera
         img = camera.getImage()
@@ -34,15 +41,25 @@ def main():
         key = cv2.waitKey(1)
         if key > 0:
             break
+
         # Track ball
         if(center!= None):
-            #TODO convert 2d coordinates to 3d coordinates on camera axis
-            (x,y,z) =
-            print (x,y,z,'on camera axis')
-            #TODO convert 3d coordinates on camera axis to 3d coordinates on robot axis
-            (x,y,z) =
-            print (x,y,z,'on robot axis')
-            #TODO: move robot to look at 3d point
+            print center[0], center[1]
+            #TODO: calculate distance between detected ball and the image center.
+            distance = calculateDistance(center)
+
+            #TODO: move motor on x-axis using right and left function
+            if distance[0]> 60:
+                robot.action()
+            elif distance[0] < -60:
+                robot.action()
+
+            #TODO: move motor on y-axis using up and down function
+            if distance[1]> 60:
+                robot.action()
+            elif distance[1] < -60:
+                robot.action()
+
 
 if __name__ == '__main__':
     main()
