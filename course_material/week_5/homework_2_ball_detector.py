@@ -7,11 +7,12 @@ import imutils
 # Class for detecting ball
 class BallDetector:
     def __init__(self):
+        #TODO: set lower and upper limit for filtering the color you want
 
-        #TODO: change lower limit and upper limit for hsv color that you want to detect
-        self.colorLower = (20, 80, 80)
-        self.colorUpper = (60, 255, 255)
-
+        # Lower limit for color you want
+        colorLower = (H1, S1, V1)
+        # Upper limit for color you want
+        colorUpper = (H2, S2, V2)
 
     def detect(self, frame, _width):
         # 1. resize the frame, and convert it to the HSV
