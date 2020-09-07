@@ -12,7 +12,7 @@ def main():
     robot = Robot()
     # Start robot
     robot.start()
-    
+
     robot.center()
     time.sleep(1)
 
