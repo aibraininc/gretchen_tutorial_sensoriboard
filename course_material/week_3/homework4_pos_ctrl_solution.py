@@ -21,63 +21,40 @@ def main():
         motors.start()
 
         #TODO: set this parameters according to your desired motor positon control behaviour
-<<<<<<< HEAD
-        motors.set_pos_ctrl_params(0, Kp = 1.8, Ki = 0.2, Kd = 0.1, deadband = 0.1, pulse_threshold = 0.1)
-        motors.set_pos_ctrl_params(1, Kp = 1.8, Ki = 0.2, Kd = 0.1, deadband = 0.1, pulse_threshold = 0.1)
-
-        motors.set_position([0.5, 0.5])
-        sleep(1.5)
-=======
         motors.set_pos_ctrl_params(0, Kp = 1.2, Ki = 0.3, Kd = 0.1, deadband = 0, pulse_threshold = 0)
         motors.set_pos_ctrl_params(1, Kp = 1.2, Ki = 0.3, Kd = 0.1, deadband = 0, pulse_threshold = 0)
 
         motors.set_position([0.0, 0.0])
         sleep(2)
->>>>>>> 1c8bff5ee8b88a1b3abd1580e782b75dcfaf9058
 
 		# Print the current position
         print_position(motors.get_position())
 
-<<<<<<< HEAD
-        motors.set_position([-0.5, -0.5])
-        sleep(1.5)
-
-		# Print the current position
-        print_position(motors.get_position())
-        while(counter < 10):
-            #TODO: set the impuse for each motor
-            motors.apply_impulse([0, 0])
-            print("tak")
-            counter = counter +1
-            sleep(0.1)
-        motors.stop()
-
-=======
-        motors.set_position([])
+        motors.set_position([0, -0.4])
         sleep(2)
 
 		# Print the current position
         print_position(motors.get_position())
 
-        motors.set_position([])
+        motors.set_position([0.4, -0.4])
         sleep(2)
 
 		# Print the current position
         print_position(motors.get_position())
 
-        motors.set_position([])
+        motors.set_position([0.4, 0.4])
         sleep(2)
 
 		# Print the current position
         print_position(motors.get_position())
 
-        motors.set_position([])
+        motors.set_position([-0.4, 0.4])
         sleep(2)
 
 		# Print the current position
         print_position(motors.get_position())
 
-        motors.set_position([])
+        motors.set_position([-0.4, -0.4])
         sleep(2)
 
 		# Print the current position
@@ -87,7 +64,6 @@ def main():
 
 
         motors.stop()
->>>>>>> 1c8bff5ee8b88a1b3abd1580e782b75dcfaf9058
 
     except (KeyboardInterrupt, SystemExit):
         # Stop motors
