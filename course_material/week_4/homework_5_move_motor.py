@@ -14,26 +14,18 @@ def main():
     robot.start()
 
     robot.center()
-
-    #TODO: change the values in move
-    robot.move(0.0, 0.0)
+    robot.move(0.5,0.1)
     time.sleep(1) # wait a second
 
-    #TODO: write code to make the robot move left, right, up, down
-    #moves left
-    robot.move(-1.0, 0.0)
+    #TODO: remember current position
+    print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
+
+    #TODO: look somewhere els other than current position
+    robot.move()
     time.sleep(1) # wait a second
 
-    #moves right
-    robot.move(1.0, 0.0)
-    time.sleep(1) # wait a second
-
-    #moves up
-    robot.move(1.0, 1.0)
-    time.sleep(1) # wait a second
-
-    #moves down
-    robot.move(1.0, -1.0)
+    #TODO: return back to looking at the point you remember
+    robot.move()
     time.sleep(1) # wait a second
 
 if __name__ == '__main__':

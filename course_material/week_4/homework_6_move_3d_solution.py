@@ -12,24 +12,14 @@ def main():
     robot = Robot()
     # Start robot
     robot.start()
+    time.sleep(2) # wait a second
 
-    robot.center()
-    time.sleep(1)
-    #TODO: change the values in left
-    robot.left(1)
-    time.sleep(1)#wait a second
+    # TODO: change the values in lookatpoint for looking at the red square.
+    robot.lookatpoint(1,1,1)
+    time.sleep(2) # wait a second
 
-    #TODO: change the values in right
-    robot.right(2)
-    time.sleep(1)
-
-    #TODO make the robot move up,down
-    robot.up(1)
-    time.sleep(1)
-
-    robot.down(2)
-    time.sleep(1)
-
+    # TODO: change the values in lookatpoint for looking at the green square.
+    robot.lookatpoint(1,-1,1)
 
 if __name__ == '__main__':
     main()

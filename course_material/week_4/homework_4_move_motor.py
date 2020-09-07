@@ -5,6 +5,19 @@ from lib.robot import Robot
 from lib.ros_environment import ROSEnvironment
 import time
 
+def startNod(robot):
+    robot.center()
+    time.sleep(1)
+
+    #TODO: insert code to make the robot nod.
+
+def startShake(robot):
+    robot.center()
+    time.sleep(1)
+
+    #TODO: insert code to make the robot nod.
+
+
 def main():
     # We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
@@ -12,14 +25,8 @@ def main():
     robot = Robot()
     # Start robot
     robot.start()
-
-    robot.center()
-
-    #TODO: change the values in move
-    robot.move(0.0, 0.0)
-    time.sleep(1) # wait a second
-
-    #TODO: write code to make the robot move left, right, up, down 
+    startNod(robot)
+    startShake(robot)
 
 
 if __name__ == '__main__':
