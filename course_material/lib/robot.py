@@ -36,7 +36,7 @@ class Robot:
         self.initParam()
 
     def getPosition(self):
-        return [self.cmd_pan, self.cmd_tilt]
+        return [self.cur_pan_angle, self.cur_tilt_angle]
     
     def lookatpoint(self, x, y, z, velocity=10.8):
         head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
