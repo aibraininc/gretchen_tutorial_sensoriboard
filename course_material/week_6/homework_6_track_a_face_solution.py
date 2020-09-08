@@ -125,7 +125,7 @@ def main():
                 print('Pause tracking until count is 50',cnt)
                 cnt = cnt +1
                 if cnt > 50:
-                    isTracking = True
+                    Tracking = True
                     cnt = 0
         #show image
         cv2.imshow("Frame", img[...,::-1])
