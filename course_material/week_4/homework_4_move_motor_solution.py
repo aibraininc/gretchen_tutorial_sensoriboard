@@ -41,8 +41,10 @@ def main():
     robot = Robot()
     # Start robot
     robot.start()
+    # Uncomment/comment  
     startNod(robot)
-    startShake(robot)
+    # Uncomment/comment 
+    #startShake(robot)
 
 
 if __name__ == '__main__':

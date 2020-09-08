@@ -14,11 +14,11 @@ def main():
     robot.start()
     time.sleep(2) # wait a second
 
-    # TODO: change the values in lookatpoint for looking at the red square.
+    # TODO: change the values in lookatpoint to look at the red square.
     robot.lookatpoint(1,1,1)
     time.sleep(2) # wait a second
 
-    # TODO: change the values in lookatpoint for looking at the green square.
+    # TODO: change the values in lookatpoint to look at the green square.
     robot.lookatpoint(1,-1,1)
 
 if __name__ == '__main__':

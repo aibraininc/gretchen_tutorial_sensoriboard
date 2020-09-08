@@ -12,10 +12,11 @@ camera = Camera()
 # Initalize robot
 robot = Robot()
 
-#TODO: calculate distance between detected ball and the image center.
-def calculateDistance(center):
-    x_distance = 
-    y_distance = 
+def calculateDistance(ball_center):
+    #Image size is 640x480
+    image_center = [640/2, 480/2]
+    x_distance = ball_center[0] - image_center[0]
+    y_distance = ball_center[1] - image_center[1]
     return [x_distance, y_distance]
 
 def main():
@@ -28,37 +29,43 @@ def main():
     # Initalize ball detector
     ball_detector = BallDetector()
 
-    
+    #boundaries
+    ball_on_right = -100
+    ball_on_left = 100
+    ball_on_bottom = -100
+    ball_on_top = 100
     # Loop
     while True:
         # Get image from camera
         img = camera.getImage()
         # Detect ball
-        (img, center) = ball_detector.detect(img, 640)
+        (img, ball_center) = ball_detector.detect(img, 640)
         # Show ball
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:
             break
-
         # Track ball
-        if(center!= None):
-            print center[0], center[1]
+
+        if(ball_center!= None):
             #TODO: calculate distance between detected ball and the image center.
-            distance = calculateDistance(center)
+            distance = calculateDistance(ball_center)
+            print distance[0], distance[1]
 
             #TODO: move motor on x-axis using right and left function
-            if distance[0]> 60:
-                robot.action()
-            elif distance[0] < -60:
-                robot.action()
+            if distance[0]> ball_on_left:
+                #move robot
+
+            elif distance[0] < ball_on_right:
+                #move robot
 
             #TODO: move motor on y-axis using up and down function
-            if distance[1]> 60:
-                robot.action()
-            elif distance[1] < -60:
-                robot.action()
+            if distance[1]> ball_on_top:
+                #move robot
+
+            elif distance[1] < ball_on_bottom:
+                #move robot 
 
 
 if __name__ == '__main__':

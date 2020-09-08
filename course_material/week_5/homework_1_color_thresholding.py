@@ -12,40 +12,21 @@ point = (0,0)
 
 #TODO: set lower and upper limit for filtering the color you want
 
-# Lower limit for color you want
-colorLower = (H1, S1, V1)
-# Upper limit for color you want
-colorUpper = (H2, S2, V2)
+# Lower bound for the selected color 
+colorLower = (, , )
+# Upper bound for the selected color
+colorUpper = (, , )
 
-# Method called when clicked
-def onMouse(event, u, v, flags, param):
-    global point
-    if event == cv2.EVENT_LBUTTONDOWN:
-        img = camera.getImage()
-        # Change image to hsv color space
-        hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
-        point = (u,v)
-        print('Point', u,v)
-        # Print color RGB
-        print('RGB', img[v,u])
-        # Print color HSV
-        print('HSV', hsv[v,u])
 
-def color_filtering(frame):
-    # 1. resize the frame, and convert it to the HSV
+def color_segmentation(frame):
+    # convert it to the HSV
     hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
-
-    # 2. construct a mask for the color, then perform a series of dilations and erosions to remove any small
-    # Use bilateralFilter for reducing unwanted noise
-    hsv = cv2.bilateralFilter(hsv, 5, 175, 175)
 
     # Use inRange for getting specific color
     mask = cv2.inRange(hsv, colorLower, colorUpper)
 
-    # Erode and dilate image for isolation of individual elements and joining disparate elements in an image.
-    mask = cv2.erode(mask, None, iterations=5)
-    mask = cv2.dilate(mask, None, iterations=2)
-    mask = cv2.erode(mask, None, iterations=3)
+    #Show color segmentation
+    cv2.namedWindow("Filter", cv2.WINDOW_NORMAL)
     cv2.imshow("Filter", mask)
 
 def main():
@@ -58,13 +39,13 @@ def main():
     while True:
         # Get image from camera
         img = camera.getImage()
-        # Draw circle on point
-        cv2.circle(img, point, 10, (0, 0, 255), 3)
+
+        #performs color segmentation on image
+        color_segmentation(img)
+
         # Show image
-        color_filtering(img)
+        cv2.namedWindow("Frame", cv2.WINDOW_NORMAL)
         cv2.imshow("Frame", img[...,::-1])
-        # When you click pixel on image, onMouse is called.
-        cv2.setMouseCallback("Frame", onMouse)
         # Close if key is pressed
         key = cv2.waitKey(1)
         if key > 0:

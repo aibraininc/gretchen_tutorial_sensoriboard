@@ -13,19 +13,20 @@ def main():
     # Start robot
     robot.start()
 
-    robot.center()
-    robot.move(0.5,0.1)
+    
     time.sleep(1) # wait a second
 
     #TODO: remember current position
-    print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
+    curr_pos = 
+    curr_pan = 
+    curr_tilt = 
 
-    #TODO: look somewhere els other than current position
-    robot.move()
+    #TODO: look somewhere else other than current position
+    robot.move(,)
     time.sleep(1) # wait a second
 
-    #TODO: return back to looking at the point you remember
-    robot.move()
+    #TODO: return back to the current position 
+    robot.move(,)
     time.sleep(1) # wait a second
 
 if __name__ == '__main__':
