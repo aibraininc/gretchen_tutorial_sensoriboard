@@ -14,8 +14,8 @@ from lib.ros_environment import ROSEnvironment
 from lib.robot import Robot
 
 #Path to files needed
-cfg_path = "./yolov3.cfg"
-weight_path= "./yolov3.weights"
+weight_path= "./yolov3-tiny.weights"
+cfg_path = "./yolov3-tiny.cfg"
 class_name_path = "./yolov3.txt"
 
 #TODO: define an object you want to track
@@ -131,11 +131,12 @@ def main():
             #If detected object equals to the object tracked
             #TODO: make if statement  for selecting the object you want to track
             if 
-                #Converts the 3d camera coordinates into 3d world coordinates
-                (x_3d,y_3d,z_3d) = camera.convert2d_3d(center_x, center_y)
-                (x_3d,y_3d,z_3d) = camera.convert3d_3d(x_3d,y_3d,z_3d)
-                #commands the robot to look
-                robot.lookatpoint(x_3d,y_3d,z_3d, 4)
+                #TODO: Converts the 3d camera coordinates into 3d world coordinates
+                () = camera.convert2d_3d()
+                (x_3d,y_3d,z_3d) = camera.convert3d_3d()
+                #TODO: commands the robot to look
+                robot.lookatpoint()
+
                 tracked_object = 1
                 conf_value = confidence_values[i]
                 draw_boundingbox(input_image, classid, conf_value, round(x), round(y), round(x+w), round(y+h))

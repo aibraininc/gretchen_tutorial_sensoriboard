@@ -14,8 +14,8 @@ from lib.ros_environment import ROSEnvironment
 from lib.robot import Robot
 
 #TODO: set the path of setting files
-cfg_path = "./yolov3.cfg"
 weight_path= "./yolov3.weights"
+cfg_path = "./yolov3.cfg"
 class_name_path = "./yolov3.txt"
 
 #Loads class names into an array
