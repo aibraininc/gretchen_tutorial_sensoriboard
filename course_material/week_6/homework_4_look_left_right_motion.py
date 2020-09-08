@@ -50,26 +50,32 @@ def main():
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
+            #TODO: remember current position
+            print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
+            current_pan = 
+            current_tilt = 
+
             #TODO: find a yaw value from rotation_vector
             print rotation_vector
             yaw = 
 
-            #:TODO insert the condition for looking at right
+            #TODO: insert the condition for looking at right
             if :
                 print ('You are looking at right.')            
                 #TODO: add motion for looking at right 
                 robot.move()
 
-            #:TODO insert the condition for looking at left
+            #TODO: insert the condition for looking at left
             elif :
                 print ('You are looking at left.')            
                 #TODO: add motion for looking at left 
                 robot.move()
            
             time.sleep(3)
-            # Looking at the middle
-            robot.move(0,0.5)
+            #TODO: Looking at the position that is stored.
+            robot.move()
             time.sleep(5)
+
 
         # Show image
         cv2.imshow("Frame", img[...,::-1])

@@ -29,6 +29,7 @@ def main():
     robot = Robot()
     # Start robot
     robot.start()
+    robot.move(0,0.5)
 
 
     # Loop
@@ -54,21 +55,27 @@ def main():
             print rotation_vector
             yaw = rotation_vector[2]
 
-            #:TODO insert the condition for looking at right
+            #TODO: remember current position
+            print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
+            current_pan = robot.getPosition()[0]
+            current_tilt = robot.getPosition()[1]
+
+            #TODO: insert the condition for looking at right
             if yaw > 0.3:
                 print ('You are looking at right.')            
                 #TODO: add motion for looking at right 
                 robot.move(0.5,0.5)
 
-            #:TODO insert the condition for looking at left
+            #TODO: insert the condition for looking at left
             elif yaw < -0.3:
                 print ('You are looking at left.')            
                 #TODO: add motion for looking at left 
                 robot.move(-0.5,0.5)
            
             time.sleep(3)
-            # Looking at the middle
-            robot.move(0,0.5)
+
+            #TODO: Looking at the position that is stored.
+            robot.move(current_pan,current_tilt)
             time.sleep(5)
 
         # Show image
