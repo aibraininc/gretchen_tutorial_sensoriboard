@@ -13,9 +13,9 @@ point = (0,0)
 #TODO: set lower and upper limit for filtering the color you want
 
 # Lower limit for color you want
-colorLower = (20, 80, 80)
+colorLower = (160, 50, 90)
 # Upper limit for color you want
-colorUpper = (60, 255, 255)
+colorUpper = (180, 150, 200)
 
 # Method called when clicked
 def onMouse(event, u, v, flags, param):

@@ -31,7 +31,7 @@ class Camera:
     def start(self):
         print("starting camera")
         #rospy.init_node('camera_show', anonymous=True)
-        # msg=rospy.wait_for_message('/camera/color/camera_info', CameraInfo)        
+        # msg=rospy.wait_for_message('/camera/color/camera_info', CameraInfo)
         # print(msg)
 
         # self.fx = msg.K[0]
@@ -97,6 +97,5 @@ class Camera:
         return(self.click_x,self.click_y)
     def getImage(self):
         if type(self.image) == type(None):
-            return np.zeros((480, 640, 3), np.uint8)   
-        img_copy = self.image.copy()
-        return img_copy
+            return np.zeros((480, 640, 3), np.uint8)
+        return self.image.copy()
