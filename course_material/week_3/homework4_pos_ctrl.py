@@ -30,11 +30,6 @@ def main():
 		# Print the current position
         print_position(motors.get_position())
 
-        motors.set_position([])
-        sleep(2)
-
-		# Print the current position
-        print_position(motors.get_position())
 
         motors.set_position([])
         sleep(2)
@@ -60,8 +55,11 @@ def main():
 		# Print the current position
         print_position(motors.get_position())
 
+        motors.set_position([])
+        sleep(2)
 
-
+		# Print the current position
+        print_position(motors.get_position())
 
         motors.stop()
 
