@@ -10,9 +10,10 @@ class BallDetector:
         #TODO: set lower and upper limit for filtering the color you want
 
         # Lower limit for color you want
-        colorLower = (H1, S1, V1)
+        self.colorLower = (25, 80, 80)
         # Upper limit for color you want
-        colorUpper = (H2, S2, V2)
+        self.colorUpper = (35, 255, 230)
+
 
     def detect(self, frame, _width):
         # 1. resize the frame, and convert it to the HSV
