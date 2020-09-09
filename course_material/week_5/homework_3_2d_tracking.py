@@ -38,6 +38,7 @@ def main():
         # Get image
         img = camera.getImage()
 
+
         # Get face detections
         dets = face_detector.detect(img)
 
@@ -99,4 +100,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

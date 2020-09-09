@@ -14,6 +14,10 @@ import dlib
 from imutils import face_utils
 color_green = (0,255,0)
 
+# get current time (s)
+def current_time():
+    return time()
+
 def main():
     # We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
@@ -31,8 +35,10 @@ def main():
     robot.start()
     robot.move(0,0.5)
 
-    count = 0
-    start_timer_1 = None
+
+    # the time when motion runs
+    motion_start_time = None
+
     # Loop
     while True:
         # Get image
@@ -59,40 +65,37 @@ def main():
             #TODO: remember current position
             print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
 
-            #The condition for looking at right
-            if (yaw > 0.3 and start_timer_1 == None):
+            #TODO: insert the condition for looking at right
+            if (yaw > 0.3 and motion_start_time == None):
                 print ('You are looking at right.')
-                #TODO get the robot position
-                current_pos = 
-                current_pan = 
-                current_tilt = 
+                current_pan =
+                current_tilt =
 
                 #TODO: add motion for looking at right
                 robot.move(,)
 
-                start_timer_1 = time()
-            #The condition for looking at left
-            elif (yaw < -0.3 and start_timer_1 == None):
+                motion_start_time = current_time()
+
+            #TODO: insert the condition for looking at left
+            elif (yaw < -0.3 and motion_start_time == None):
                     print ('You are looking at left.')
-                    current_pos =
                     current_pan =
                     current_tilt =
 
-                    #TODO: add motion for looking at the left
+                    #TODO: add motion for looking at left
                     robot.move(,)
 
-                    start_timer_1 = time()
-            if(start_timer_1 !=None):
-                print time()- start_timer_1
+                    motion_start_time = current_time()
+            if(motion_start_time !=None):
+                print current_time()- motion_start_time
 
+        # After the motion runs, check if 3 seconds have passed.
+        if(motion_start_time != None and current_time()-motion_start_time > 3 ):
+            #TODO: Looking at the position that is stored.
+            robot.move(, )
+            motion_start_time = None
 
-        if(start_timer_1 != None and time()-start_timer_1>3 ):
-            #TODO: move the robot so that it looks at the stored current position
-            robot.move(,)
-            start_timer_1 = None
-
-        sleep(0.08)
-        count = count + 1
+        sleep(0.05)
         # Show image
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed

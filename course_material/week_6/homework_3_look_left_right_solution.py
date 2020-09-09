@@ -24,6 +24,9 @@ def main():
     face_detector = FaceDetector()
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
+    # right direction threshold
+    right_threshold = 0.3
+    left_threshold = -0.3
     # Loop
     while True:
         # Get image
@@ -46,11 +49,11 @@ def main():
             #TODO: make a function that determines where you are looking at (left or right)
             yaw = rotation_vector[2]
             print(yaw)
-            #:TODO insert the condition for looking at right
-            if yaw > 0.3:
+            #TODO: insert the condition for looking at right
+            if yaw > right_threshold:
                 print ('You are looking at right.')
-            #:TODO insert the condition for looking at left                
-            elif yaw < -0.3:
+            #TODO: insert the condition for looking at left                
+            elif yaw < left_threshold:
                 print ('You are looking at left.')
 
         # Show image

@@ -26,7 +26,7 @@ def main():
     time.sleep(1) # wait a second
 
     #TODO: return back to looking at the point you remember
-    robot.move(current_pan, current_tilt)
+    robot.move(curr_pan, curr_tilt)
     time.sleep(1) # wait a second
 
 if __name__ == '__main__':
