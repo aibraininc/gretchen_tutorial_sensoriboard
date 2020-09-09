@@ -50,7 +50,7 @@ def main():
 
         if(ball_center!= None):
             #TODO: calculate distance between detected ball and the image center.
-            distance = calculateDistance(ball_center)
+            distance = calculaprevteDistance(ball_center)
             print distance[0], distance[1]
 
             #TODO: move motor on x-axis using right and left function

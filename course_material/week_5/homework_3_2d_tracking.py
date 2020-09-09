@@ -54,16 +54,20 @@ def main():
             print distance[0], distance[1]
 
             #TODO: move motor on x-axis using right and left function
+            #Ball is on the left  
             if distance[0]> ball_on_left:
                 #move robot
 
+            #Ball is on the right  
             elif distance[0] < ball_on_right:
                 #move robot
-
+  
             #TODO: move motor on y-axis using up and down function
+            #Ball is on the top           
             if distance[1]> ball_on_top:
                 #move robot
 
+            #Ball is on the bottom 
             elif distance[1] < ball_on_bottom:
                 #move robot 
 

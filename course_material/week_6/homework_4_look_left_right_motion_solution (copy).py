@@ -6,8 +6,8 @@ sys.path.append('..')
 from lib.ros_environment import ROSEnvironment
 from lib.camera_v2 import Camera
 from lib.robot import Robot
+import time
 
-from time import time, sleep
 import cv2
 import numpy as np
 import dlib
@@ -31,8 +31,7 @@ def main():
     robot.start()
     robot.move(0,0.5)
 
-    count = 0
-    start_timer_1 = None
+    
     # Loop
     while True:
         # Get image
@@ -58,37 +57,27 @@ def main():
 
             #TODO: remember current position
             print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
+            current_pan = robot.getPosition()[0]
+            current_tilt = robot.getPosition()[1]
 
             #TODO: insert the condition for looking at right
-            if (yaw > 0.3 and start_timer_1 == None):
+            if yaw > 0.3:
                 print ('You are looking at right.')
-                current_pan = robot.getPosition()[0]
-                current_tilt = robot.getPosition()[1]
-
                 #TODO: add motion for looking at right
                 robot.move(0.5,0.5)
-                start_timer_1 = time()
-
 
             #TODO: insert the condition for looking at left
-            elif (yaw < -0.3 and start_timer_1 == None):
-                    print ('You are looking at left.')
-                    current_pan = robot.getPosition()[0]
-                    current_tilt = robot.getPosition()[1]
+            elif yaw < -0.3:
+                print ('You are looking at left.')
+                #TODO: add motion for looking at left
+                robot.move(-0.5,0.5)
 
-                    robot.move(-0.5,0.5)
-                    prev = time()
-            if(start_timer_1 !=None):
-                print time()- start_timer_1
+            time.sleep(3)
 
-
-        if(start_timer_1 != None and time()-start_timer_1>3 ):
-            robot.move(current_pan, current_tilt)
-            prev = None
             #TODO: Looking at the position that is stored.
-            #robot.move(current_pan,current_tilt)
-        sleep(0.05)
-        count = count + 1
+            robot.move(current_pan,current_tilt)
+            time.sleep(5)
+
         # Show image
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed
