@@ -17,6 +17,8 @@ sys.path.append('..')
 import pygame
 import playsound
 from gtts import gTTS
+import pygame
+import playsound
 
 sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
 import rospy
@@ -25,16 +27,27 @@ from lib.ros_environment import ROSEnvironment
 from lib.aicore_client import AICoRE
 from lib.camera_v2 import Camera
 from lib.robot import Robot
+from gtts import gTTS
 
 #List all the microphone hardware
 for i, item in enumerate(sr.Microphone.list_microphone_names()):
     print( i, item)
+
+def speak(text):
+    #creates speech from text
+    tts = gTTS(text)
+    #saves the answer to mp3 file
+    tts.save('text.mp3')
+    #plays the mp3
+    playsound.playsound('text.mp3')   
 
 def listen():
     while True:
         r = sr.Recognizer()
         mic = sr.Microphone(device_index=7)
         print("I am ready to listen.")
+        speak("I am ready to listen.")
+
         with mic as source:
             r.adjust_for_ambient_noise(source)
             audio = r.listen(source)

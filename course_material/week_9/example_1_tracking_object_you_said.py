@@ -17,6 +17,9 @@ import rospy
 from lib.ros_environment import ROSEnvironment
 from lib.camera_v2 import Camera
 from lib.robot import Robot
+from gtts import gTTS
+import pygame
+import playsound
 
 
 #Path to files needed
@@ -39,6 +42,14 @@ print classes
 COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
 
 
+def speak(text):
+    #creates speech from text
+    tts = gTTS(text)
+    #saves the answer to mp3 file
+    tts.save('text.mp3')
+    #plays the mp3
+    playsound.playsound('text.mp3')    
+
 #draws bounding box on the image
 def draw_boundingbox(img, class_id, confidence, x, y, x_end, y_end):
     class_name = str(classes[class_id])
@@ -59,8 +70,10 @@ def listen():
         r = sr.Recognizer()
 
 
-        mic = sr.Microphone(device_index=7)
+        mic = sr.Microphone(device_index=3)
         print("I am ready to listen.")
+        speak("I am ready to listen.")
+
         with mic as source:
             r.adjust_for_ambient_noise(source)
             audio = r.listen(source)
