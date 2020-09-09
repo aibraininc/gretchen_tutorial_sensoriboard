@@ -6,8 +6,8 @@ sys.path.append('..')
 from lib.ros_environment import ROSEnvironment
 from lib.camera_v2 import Camera
 from lib.robot import Robot
-import time
 
+from time import time, sleep
 import cv2
 import numpy as np
 import dlib
@@ -29,8 +29,10 @@ def main():
     robot = Robot()
     # Start robot
     robot.start()
+    robot.move(0,0.5)
 
-
+    count = 0
+    start_timer_1 = None
     # Loop
     while True:
         # Get image
@@ -50,33 +52,47 @@ def main():
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
-            #TODO: remember current position
-            print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
-            current_pan = 
-            current_tilt = 
-
             #TODO: find a yaw value from rotation_vector
             print rotation_vector
-            yaw = 
+            yaw = rotation_vector[2]
 
-            #TODO: insert the condition for looking at right
-            if :
-                print ('You are looking at right.')            
-                #TODO: add motion for looking at right 
-                robot.move()
+            #TODO: remember current position
+            print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
 
-            #TODO: insert the condition for looking at left
-            elif :
-                print ('You are looking at left.')            
-                #TODO: add motion for looking at left 
-                robot.move()
-           
-            time.sleep(3)
-            #TODO: Looking at the position that is stored.
-            robot.move()
-            time.sleep(5)
+            #The condition for looking at right
+            if (yaw > 0.3 and start_timer_1 == None):
+                print ('You are looking at right.')
+                #TODO get the robot position
+                current_pos = 
+                current_pan = 
+                current_tilt = 
+
+                #TODO: add motion for looking at right
+                robot.move(,)
+
+                start_timer_1 = time()
+            #The condition for looking at left
+            elif (yaw < -0.3 and start_timer_1 == None):
+                    print ('You are looking at left.')
+                    current_pos =
+                    current_pan =
+                    current_tilt =
+
+                    #TODO: add motion for looking at the left
+                    robot.move(,)
+
+                    start_timer_1 = time()
+            if(start_timer_1 !=None):
+                print time()- start_timer_1
 
 
+        if(start_timer_1 != None and time()-start_timer_1>3 ):
+            #TODO: move the robot so that it looks at the stored current position
+            robot.move(,)
+            start_timer_1 = None
+
+        sleep(0.08)
+        count = count + 1
         # Show image
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed

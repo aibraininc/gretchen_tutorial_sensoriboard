@@ -62,8 +62,9 @@ def main():
             #TODO: insert the condition for looking at right
             if (yaw > 0.3 and start_timer_1 == None):
                 print ('You are looking at right.')
-                current_pan = robot.getPosition()[0]
-                current_tilt = robot.getPosition()[1]
+                current_pos = robot.getPosition()
+                current_pan = current_pos[0]
+                current_tilt = current_pos[1]
 
                 #TODO: add motion for looking at right
                 robot.move(0.5,0.5)
@@ -77,17 +78,17 @@ def main():
                     current_tilt = robot.getPosition()[1]
 
                     robot.move(-0.5,0.5)
-                    prev = time()
+                    start_timer_1 = time()
             if(start_timer_1 !=None):
                 print time()- start_timer_1
 
 
         if(start_timer_1 != None and time()-start_timer_1>3 ):
             robot.move(current_pan, current_tilt)
-            prev = None
+            start_timer_1 = None
             #TODO: Looking at the position that is stored.
             #robot.move(current_pan,current_tilt)
-        sleep(0.05)
+        sleep(0.08)
         count = count + 1
         # Show image
         cv2.imshow("Frame", img[...,::-1])
