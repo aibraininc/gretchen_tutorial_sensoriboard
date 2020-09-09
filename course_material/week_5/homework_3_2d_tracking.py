@@ -39,7 +39,7 @@ def main():
         # Get image from camera
         img = camera.getImage()
         # Detect ball
-        (img, ball_center) = ball_detector.detect(img, 640)
+        (img, ball_center) = ball_detector.detect(img)
         # Show ball
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed

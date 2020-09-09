@@ -21,7 +21,7 @@ def main():
         # Get image
         img = camera.getImage()
         # Gets image with ball detected,
-        (img, center) = ball_detector.detect(img, 640)
+        (img, center) = ball_detector.detect(img)
         # Show image
         cv2.imshow("Frame", img[...,::-1])
         # Print the center 

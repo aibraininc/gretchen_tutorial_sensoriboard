@@ -6,13 +6,17 @@ sys.path.append('..')
 from lib.ros_environment import ROSEnvironment
 from lib.camera_v2 import Camera
 from lib.robot import Robot
-import time
 
+from time import time, sleep
 import cv2
 import numpy as np
 import dlib
 from imutils import face_utils
 color_green = (0,255,0)
+
+# get current time (s)
+def current_time():
+    return time()
 
 def main():
     # We need to initalize ROS environment for Robot and camera to connect/communicate
@@ -29,7 +33,11 @@ def main():
     robot = Robot()
     # Start robot
     robot.start()
+    robot.move(0,0.5)
 
+ 
+    # the time when motion runs
+    motion_start_time = None
 
     # Loop
     while True:
@@ -50,33 +58,44 @@ def main():
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
-            #TODO: remember current position
-            print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
-            current_pan = 
-            current_tilt = 
-
             #TODO: find a yaw value from rotation_vector
             print rotation_vector
-            yaw = 
+            yaw = rotation_vector[2]
+
+            #TODO: remember current position
+            print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
 
             #TODO: insert the condition for looking at right
-            if :
-                print ('You are looking at right.')            
-                #TODO: add motion for looking at right 
-                robot.move()
+            if (yaw > 0.3 and motion_start_time == None):
+                print ('You are looking at right.')
+                current_pan = 
+                current_tilt = 
+
+                #TODO: add motion for looking at right
+                robot.move(,)
+
+                motion_start_time = current_time()
 
             #TODO: insert the condition for looking at left
-            elif :
-                print ('You are looking at left.')            
-                #TODO: add motion for looking at left 
-                robot.move()
-           
-            time.sleep(3)
+            elif (yaw < -0.3 and motion_start_time == None):
+                    print ('You are looking at left.')
+                    current_pan = 
+                    current_tilt = 
+        
+                    #TODO: add motion for looking at left
+                    robot.move(,)
+
+                    motion_start_time = current_time()
+            if(motion_start_time !=None):
+                print current_time()- motion_start_time
+
+        # After the motion runs, check if 3 seconds have passed.
+        if(motion_start_time != None and current_time()-motion_start_time > 3 ):
             #TODO: Looking at the position that is stored.
-            robot.move()
-            time.sleep(5)
+            robot.move(, )
+            motion_start_time = None
 
-
+        sleep(0.05)
         # Show image
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed

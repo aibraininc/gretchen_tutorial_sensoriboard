@@ -39,7 +39,7 @@ def main():
         # Get image from camera
         img = camera.getImage()
         # Detect ball
-        (img, ball_center) = ball_detector.detect(img, 640)
+        (img, ball_center) = ball_detector.detect(img)
         # Show ball
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed
@@ -50,7 +50,7 @@ def main():
 
         if(ball_center!= None):
             #TODO: calculate distance between detected ball and the image center.
-            distance = calculaprevteDistance(ball_center)
+            distance = calculateDistance(ball_center)
             print distance[0], distance[1]
 
             #TODO: move motor on x-axis using right and left function

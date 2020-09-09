@@ -44,7 +44,7 @@ def main():
     # Uncomment/comment  
     startNod(robot)
     # Uncomment/comment 
-    #startShake(robot)
+    # startShake(robot)
 
 
 if __name__ == '__main__':

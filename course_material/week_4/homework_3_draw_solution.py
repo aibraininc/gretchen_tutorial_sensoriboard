@@ -19,9 +19,15 @@ def main():
         # Get image from camera
         img = camera.getImage()
 
+        #boundaries
+        i_min = 280
+        i_max = 360
+        j_min = 200
+        j_max = 280
+
         # Draw rectangle on the image
-        for i in range(280,360):
-            for j in range(200,280):
+        for i in range(i_min, i_max):
+            for j in range(j_min,j_max):
                 img[j][i] = [255, 0, 0]
         # Show image
         cv2.imshow("Frame", img[...,::-1])

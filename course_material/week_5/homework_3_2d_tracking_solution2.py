@@ -27,13 +27,18 @@ def main():
     # Initalize ball detector
     ball_detector = BallDetector()
 
-    
+    #boundaries
+    ball_on_right = -100
+    ball_on_left = 100
+    ball_on_bottom = -100
+    ball_on_top = 100
+
     # Loop
     while True:
         # Get image from camera
         img = camera.getImage()
         # Detect ball
-        (img, center) = ball_detector.detect(img, 640)
+        (img, center) = ball_detector.detect(img)
         # Show ball
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed
@@ -52,14 +57,14 @@ def main():
             tilt_delta = 0.15
 
             #TODO: move motor on x-axis using move function
-            if distance[0]> 60:
+            if distance[0]> ball_on_left:
                 pan = pan - pan_delta
-            elif distance[0] < -60:
+            elif distance[0] < ball_on_right:
                 pan = pan + pan_delta
             #TODO: move motor on y-axis using move function
-            if distance[1]> 60:
+            if distance[1]> ball_on_top:
                 tilt = tilt - tilt_delta
-            elif distance[1] < -60:
+            elif distance[1] < ball_on_bottom:
                 tilt = tilt + tilt_delta
 
             robot.move(pan,tilt)

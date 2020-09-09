@@ -30,7 +30,7 @@ def main():
         #TODO: get image from camera
         img = camera.getImage()
         #TODO: use ball_detector to detect ball
-        (img, center) = ball_detector.detect(img, 640)
+        (img, center) = ball_detector.detect(img)
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed
         key = cv2.waitKey(1)

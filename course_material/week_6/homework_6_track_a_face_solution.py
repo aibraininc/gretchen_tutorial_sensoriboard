@@ -11,15 +11,32 @@ import dlib
 from imutils import face_utils
 color_green = (0,255,0)
 from lib.robot import Robot
-import time
+from time import time, sleep
+
+# get current time (s)
+def current_time():
+    return time()
 
 # global variable for frame_skip function
 frame_skip_cnt = 0
 
+# robotNearCenter function checks robot is near center or not
+def robotNearCenter(robot):
+    current_pan = robot.getPosition()[0]
+    current_tilt = robot.getPosition()[1]
+    if abs(current_pan) < 0.2:
+        return True
+    return False
+
 # headInSquare function checks face is in sqaure or not
 def headInSqaure(camera, face_x, face_y):
+    # boundaries
+    left = 60
+    right = 60
+    up = 60
+    bottom = 60
     isHeadInSquare = False
-    if face_x >camera.width/2 - 60 and face_x <camera.width/2 + 60 and face_y >camera.height/2 - 60 and face_y <camera.height/2 + 60:
+    if face_x >camera.width/2 - left and face_x <camera.width/2 + right and face_y >camera.height/2 - bottom and face_y <camera.height/2 + up:
         isHeadInSquare = True
         return True
     return False
@@ -49,9 +66,13 @@ def main():
     face_detector = FaceDetector()
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
 
+    #face detection result
     dets = None
+    # current tracking state
     Tracking = True
-    #counter
+
+    # the time when motion runs
+    motion_start_time = None
     cnt = 0
     #loop
     while True:
@@ -88,7 +109,7 @@ def main():
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
             #TODO: When face is in square region, tracking is stop.
-            if headInSqaure(camera,face_x,face_y):
+            if Tracking and robotNearCenter(robot):
                 Tracking = False
                 #TODO: remember current position
                 print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
@@ -104,29 +125,37 @@ def main():
                 (x,y,z) = camera.convert3d_3d(x,y,z)
 
                 #TODO: move robot to track your face
-                robot.lookatpoint(x,y,z, 4)
+                robot.lookatpoint(x,y,z, 1)
 
             elif Tracking is False:
+                # yaw is angle of face on z-axis
                 yaw = rotation_vector[2]
-                if yaw > 0.3:
+                if (yaw > 0.3 and motion_start_time == None):
                     print ('You are looking at right.')
                     #TODO: add motion for looking at right 
                     robot.move(0.8,0.5)
-                    time.sleep(3)
-                    robot.move(current_pan,current_tilt)
+                    motion_start_time = current_time()
+                    
                 #TODO: insert the condition for looking at left
-                elif yaw < -0.3:
+                elif (yaw < -0.3 and motion_start_time == None):
                     print ('You are looking at left.')
                     #TODO: add motion for looking at left 
                     robot.move(-0.8,0.5)
-                    time.sleep(3)
-                    robot.move(current_pan,current_tilt)
+                    motion_start_time = current_time()
 
                 print('Pause tracking until count is 50',cnt)
                 cnt = cnt +1
                 if cnt > 50:
                     Tracking = True
                     cnt = 0
+
+        # After the motion runs, check if 3 seconds have passed.
+        if(motion_start_time != None and current_time()-motion_start_time > 3 ):
+            #TODO: Looking at the position that is stored.
+            robot.move(current_pan, current_tilt)
+            motion_start_time = None
+
+
         #show image
         cv2.imshow("Frame", img[...,::-1])
         #Close if key is pressed

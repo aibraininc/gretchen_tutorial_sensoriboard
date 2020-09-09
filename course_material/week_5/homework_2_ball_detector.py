@@ -10,12 +10,12 @@ class BallDetector:
         #TODO: set lower and upper limit for filtering the color you want
 
         # Lower limit for color you want
-        self.colorLower = (25, 80, 80)
+        self.colorLower = (25, 10, 25)
         # Upper limit for color you want
-        self.colorUpper = (35, 255, 230)
+        self.colorUpper = (40, 255, 230)
 
 
-    def detect(self, frame, _width):
+    def detect(self, frame, _width=640, similarity_threshold = 0.75):
         # 1. resize the frame, and convert it to the HSV
         frame = imutils.resize(frame, width= _width)
         hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
@@ -46,10 +46,11 @@ class BallDetector:
             # Get the minEnclosingCicrle
             ((x, y), radius) = cv2.minEnclosingCircle(cnt)
             # Calculate estimated radius and size of circle
-            estimated_circle = 3.141592*radius*radius
+            pi = 3.141592
+            estimated_circle = pi*radius*radius
             # Check the size of contour_area is similar to size of the circle
             similar = 1- abs(estimated_circle - contour_area)/estimated_circle
-            if similar>0.75:
+            if similar > similarity_threshold:
                 circles.append(cnt)
 
         # 5. find the largest contour in the mask, then use
