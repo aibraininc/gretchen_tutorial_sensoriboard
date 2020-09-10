@@ -7,6 +7,7 @@ from lib.ros_environment import ROSEnvironment
 from lib.camera_v2 import Camera
 import cv2
 import numpy as np
+from time import sleep
 import dlib
 from imutils import face_utils
 color_green = (0,255,0)
@@ -20,26 +21,23 @@ def current_time():
 # global variable for frame_skip function
 frame_skip_cnt = 0
 
-# robotNearCenter function checks robot is near center or not
-def robotNearCenter(robot):
-    current_pan = robot.getPosition()[0]
-    current_tilt = robot.getPosition()[1]
-    if abs(current_pan) < 0.2:
-        return True
-    return False
-
-# headInSquare function checks face is in sqaure or not
-def headInSqaure(camera, face_x, face_y):
+# headInSquare function checks face is in center of the image
+def faceInCenter(camera, tracked_face_X, tracked_face_y, faceInCenter_count):
     # boundaries
-    left = 60
-    right = 60
-    up = 60
-    bottom = 60
-    isHeadInSquare = False
-    if face_x >camera.width/2 - left and face_x <camera.width/2 + right and face_y >camera.height/2 - bottom and face_y <camera.height/2 + up:
-        isHeadInSquare = True
-        return True
-    return False
+    left = 100
+    right = 100
+    up = 100
+    bottom = 100
+    #isHeadInSquare = False
+    if tracked_face_X >camera.width/2 - left and tracked_face_X <camera.width/2 + right and tracked_face_y >camera.height/2 - bottom and tracked_face_y <camera.height/2 + up:
+        #isHeadInSquare = True
+        faceInCenter_count = faceInCenter_count + 1
+        print "In Square"
+        #return True
+    else:
+        faceInCenter_count = 0
+    return faceInCenter_count
+    #return False
 
 # frame_skip function skips the camera frames
 def frame_skip(img):
@@ -49,29 +47,27 @@ def frame_skip(img):
         return True
     return False
 
-
 def main():
+    faceInCenter_count = 0
+    current_pan = 0
+    current_tilt = 0
     #We need to initalize ROS environment for Robot and camera to connect/communicate
     ROSEnvironment()
     #Initalize camera
     camera = Camera()
     #start camera
-
     camera.start()
-
     robot = Robot()
     #start robot
     robot.start()
     #initalize face detector
     face_detector = FaceDetector()
     predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat')
-
     #face detection result
     dets = None
     # current tracking state
-    Tracking = True
-
-    # the time when motion runs
+    Tracking = False
+    # the time when motion for looking left/right runs
     motion_start_time = None
     cnt = 0
     #loop
@@ -80,81 +76,95 @@ def main():
         img = camera.getImage()
         if frame_skip(img):
             continue
-
-        #gets face detections
+        #gets detect face
         dets = face_detector.detect(img)
-        # when frame_skip_cnt is 4*n, it detects face 
+
+        #If the number of face detected is greater than 0
         if len(dets)>0:
 
-            face_tracking = None
-            distanceFromCenter_min = 1000
-            # find a face near image center
-            for face in dets:
-                face_x = (face.left()+face.right())/2
-                face_y = (face.top()+face.bottom())/2
+            #We select the first face detected
+            tracked_face  =  dets[0]
+            #Get the x, y position
+            tracked_face_X = (tracked_face.left()+tracked_face.right())/2
+            tracked_face_y = (tracked_face.top()+tracked_face.bottom())/2
 
-                #TODO: write a distance between face and center, center is 0.5*width of image.
-                distanceFromCenter = abs(face_x - camera.width/2)
+            # Estimate head pose
+            (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, tracked_face)
 
-                if distanceFromCenter <distanceFromCenter_min:
-                    distanceFromCenter_min = distanceFromCenter
-                    face_tracking = face
-
-
-            # Estimate pose
-            (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, face_tracking)
-            # Draw Rectangle
-            cv2.rectangle(img,(face_tracking.left(), face_tracking.top()), (face_tracking.right(), face_tracking.bottom()), color_green, 3)
-            # Draw pose
+            # Draw bounding box
+            cv2.rectangle(img,(tracked_face.left(), tracked_face.top()), (tracked_face.right(), tracked_face.bottom()), color_green, 3)
+            # Draw head pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
-            #TODO: When face is in square region, tracking is stop.
-            if Tracking and robotNearCenter(robot):
+            #Check if head is in the center, returns how many times the head was in the center
+            faceInCenter_count =faceInCenter(camera, tracked_face_X, tracked_face_y, faceInCenter_count)
+            print faceInCenter_count
+            print ("{} in the center for {} times".format("Face as been", (faceInCenter_count))  )
+
+            #We track when the head is in the center for a certain period of time and there is not head motion activated
+            if(faceInCenter_count<5 and motion_start_time == None):
+                Tracking = True
+            else:
                 Tracking = False
-                #TODO: remember current position
-                print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
-                current_pan = robot.getPosition()[0]
-                current_tilt = robot.getPosition()[1]
 
+            #Start tracking
             if Tracking:
-                print("Keep tracking")
+                print("Tracking the Person")
                 #TODO: converts 2d coordinates to 3d coordinates on camera axis
-                (x,y,z) = camera.convert2d_3d((face_tracking.left()+face_tracking.right())/2, (face_tracking.top()+face_tracking.bottom())/2)
-
+                (x,y,z) = camera.convert2d_3d(tracked_face_X, tracked_face_y)
                 #TODO: converts 3d coordinates on camera axis to 3d coordinates on robot axis
                 (x,y,z) = camera.convert3d_3d(x,y,z)
-
                 #TODO: move robot to track your face
                 robot.lookatpoint(x,y,z, 1)
 
+            #When tracking is turned off, estimate the head pose and perform head motion if conditions meet
             elif Tracking is False:
+                print "Stopped Tracking, Starting Head Pose Estimation"
                 # yaw is angle of face on z-axis
                 yaw = rotation_vector[2]
+
+                #Condition for user looking towards the right
                 if (yaw > 0.3 and motion_start_time == None):
-                    print ('You are looking at right.')
-                    #TODO: add motion for looking at right 
+                    print ('You are looking towards the right.')
+                    #TODO: Remeber the current position
+                    current_position = robot.getPosition()
+                    current_pan = current_position[0]
+                    current_tilt = current_position[1]
+                    print "Starting head motion to look right"
+                    #TODO: add motion for looking at right
                     robot.move(0.8,0.5)
                     motion_start_time = current_time()
-                    
-                #TODO: insert the condition for looking at left
+
+                #Condition for user looking towards the left
                 elif (yaw < -0.3 and motion_start_time == None):
-                    print ('You are looking at left.')
-                    #TODO: add motion for looking at left 
+                    print ('You are looking towards the left.')
+                    #TODO: Remeber the current position
+                    current_position = robot.getPosition()
+                    current_pan = current_position[0]
+                    current_tilt = current_position[1]
+                    print "Starting head motion to look left"
+                    #TODO: add motion for looking at left
                     robot.move(-0.8,0.5)
                     motion_start_time = current_time()
 
-                print('Pause tracking until count is 50',cnt)
-                cnt = cnt +1
-                if cnt > 50:
-                    Tracking = True
-                    cnt = 0
+        #When head motion is activated we start the counter
+        if(motion_start_time != None):
+            print ("{} and its been {} seconds".format("Look motion activated ", (current_time()-motion_start_time))  )
 
-        # After the motion runs, check if 3 seconds have passed.
-        if(motion_start_time != None and current_time()-motion_start_time > 3 ):
-            #TODO: Looking at the position that is stored.
+        #After 3 seconds, we have to return to the current position
+        if(motion_start_time != None and ((current_time()-motion_start_time) > 3) ):
+            #Looking at the position that is stored.
+            print "Robot is going back "
+            #TODO: make the robot move to the stored current position
             robot.move(current_pan, current_tilt)
             motion_start_time = None
+            #Tracking = True
 
+        #Start tracking again
+        if (cnt>10 and motion_start_time == None):
+            Tracking = True
+            cnt = cnt+1
+        sleep(0.08)
 
         #show image
         cv2.imshow("Frame", img[...,::-1])
@@ -162,6 +172,5 @@ def main():
         key = cv2.waitKey(1)
         if key > 0:
             break
-
 if __name__ == '__main__':
     main()
