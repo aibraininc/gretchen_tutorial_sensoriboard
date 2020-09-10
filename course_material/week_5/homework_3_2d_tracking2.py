@@ -13,9 +13,10 @@ camera = Camera()
 robot = Robot()
 
 def calculateDistance(ball_center):
+    #Image size is 640x480
     image_center = [640/2, 480/2]
-    x_distance = ball_center[0] - image_center[0]
-    y_distance = ball_center[1] - image_center[1]
+    x_distance = 
+    y_distance = 
     return [x_distance, y_distance]
 
 def main():
@@ -54,8 +55,9 @@ def main():
 
             pan = robot.getPosition()[0]
             tilt = robot.getPosition()[1]
-            pan_delta = 0.15
-            tilt_delta = 0.15
+            #TODO: insert the values for moving motors
+            pan_delta = 
+            tilt_delta = 
 
             #TODO: move motor on x-axis using move function
             if distance[0]> ball_on_left:
