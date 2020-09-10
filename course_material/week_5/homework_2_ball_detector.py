@@ -10,9 +10,9 @@ class BallDetector:
         #TODO: set lower and upper limit for filtering the color you want
 
         # Lower limit for color you want
-        self.colorLower = (25, 10, 25)
+        self.colorLower = (, , )
         # Upper limit for color you want
-        self.colorUpper = (40, 255, 230)
+        self.colorUpper = (, , )
 
 
     def detect(self, frame, _width=640, similarity_threshold = 0.75):

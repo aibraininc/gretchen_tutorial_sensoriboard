@@ -15,8 +15,8 @@ robot = Robot()
 def calculateDistance(ball_center):
     #Image size is 640x480
     image_center = [640/2, 480/2]
-    x_distance = ball_center[0] - image_center[0]
-    y_distance = ball_center[1] - image_center[1]
+    x_distance = 
+    y_distance = 
     return [x_distance, y_distance]
 
 def main():
