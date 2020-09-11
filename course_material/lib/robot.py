@@ -37,7 +37,9 @@ class Robot:
 
     def getPosition(self):
         return [self.cur_pan_angle, self.cur_tilt_angle]
-    
+
+
+
     def lookatpoint(self, x, y, z, velocity=10.8):
         head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action", PointHeadAction)
         head_client.wait_for_server()
@@ -88,6 +90,38 @@ class Robot:
         self.cmdPub.publish(cmd)
 
     def move(self, pan_rad, tilt_rad):
+        self.cmdPub = rospy.Publisher("/gretchen/joint/cmd", Float32MultiArray, queue_size = 0)
+        self.cmdPub = rospy.Publisher("/gretchen/joint/cmd", Float32MultiArray, queue_size = 5)
+
+        head_client = actionlib.SimpleActionClient("/head_controller/absolute_point_head_action",PointHeadAction)
+        head_client.wait_for_server()
+        head_client.cancel_all_goals()
+        rospy.sleep(0.4)
+        #print "Starting Move Method"
+        while True:
+            try:
+                image_msg = rospy.wait_for_message("/gretchen/joint/cmd", Float32MultiArray, timeout=0.1)
+                if(image_msg == None):
+                    break
+                rospy.sleep(0.2)
+
+            except:
+                pass
+                break
+
+        try:
+            image_msg = rospy.wait_for_message("/gretchen/joint/cmd", Float32MultiArray, timeout=0.1)
+            if(image_msg == None):
+                rospy.sleep(0.01)
+            else:
+                rospy.sleep(0.01)
+                #print type(self.image)
+                #print self.image.shape
+            while(image_msg != None):
+                image_msg = rospy.wait_for_message("/gretchen/joint/cmd", Float32MultiArray, timeout=0.1)
+                rospy.sleep(0.2)
+        except:
+            pass
         cmd = Float32MultiArray()
         self.cmd_pan = pan_rad
         self.cmd_tilt = tilt_rad

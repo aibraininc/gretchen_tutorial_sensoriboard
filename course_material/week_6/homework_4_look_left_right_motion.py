@@ -35,7 +35,7 @@ def main():
     robot.start()
     robot.move(0,0.5)
 
- 
+
     # the time when motion runs
     motion_start_time = None
 
@@ -68,8 +68,8 @@ def main():
             #TODO: insert the condition for looking at right
             if (yaw > 0.3 and motion_start_time == None):
                 print ('You are looking at right.')
-                current_pan = 
-                current_tilt = 
+                current_pan =
+                current_tilt =
 
                 #TODO: add motion for looking at right
                 robot.move(,)
@@ -79,9 +79,9 @@ def main():
             #TODO: insert the condition for looking at left
             elif (yaw < -0.3 and motion_start_time == None):
                     print ('You are looking at left.')
-                    current_pan = 
-                    current_tilt = 
-        
+                    current_pan =
+                    current_tilt =
+
                     #TODO: add motion for looking at left
                     robot.move(,)
 

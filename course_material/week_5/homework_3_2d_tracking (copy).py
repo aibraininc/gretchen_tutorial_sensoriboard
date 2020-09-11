@@ -15,9 +15,8 @@ robot = Robot()
 def calculateDistance(ball_center):
     #Image size is 640x480
     image_center = [640/2, 480/2]
-    #TODO: calculate distance between detected ball and the image center
-    x_distance = 
-    y_distance = 
+    x_distance = ball_center[0] - image_center[0]
+    y_distance = ball_center[1] - image_center[1]
     return [x_distance, y_distance]
 
 def main():
@@ -40,7 +39,7 @@ def main():
         # Get image from camera
         img = camera.getImage()
         # Detect ball
-        (img, ball_center) = ball_detector.detect(img)
+        (img, ball_center) = ball_detector.detect(img, 640)
         # Show ball
         cv2.imshow("Frame", img[...,::-1])
         # Close if key is pressed
@@ -54,16 +53,21 @@ def main():
             distance = calculateDistance(ball_center)
             print distance[0], distance[1]
 
-            #TODO: move motor on x-axis using right or left 
+            #TODO: move motor on x-axis using right and left function
+            #Ball is on the left  
             if distance[0]> ball_on_left:
-                #move robot 
+                #move robot
 
+            #Ball is on the right  
             elif distance[0] < ball_on_right:
-                #move robot 
-
+                #move robot
+  
             #TODO: move motor on y-axis using up and down function
+            #Ball is on the top           
             if distance[1]> ball_on_top:
-                #move robot 
+                #move robot
+
+            #Ball is on the bottom 
             elif distance[1] < ball_on_bottom:
                 #move robot 
 
