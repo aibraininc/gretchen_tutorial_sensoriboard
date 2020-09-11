@@ -25,7 +25,6 @@ def main():
     robot = Robot()
     # Start robot
     robot.start()
-    startNod(robot)
     # Uncomment/comment  
     startNod(robot)
     # Uncomment/comment 
