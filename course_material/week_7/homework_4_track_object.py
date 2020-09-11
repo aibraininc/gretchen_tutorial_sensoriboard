@@ -18,9 +18,6 @@ weight_path= "./yolov3-tiny.weights"
 cfg_path = "./yolov3-tiny.cfg"
 class_name_path = "./yolov3.txt"
 
-#TODO: define an object you want to track
-object_to_track = 
-
 #Loads class names into an array
 classes = None
 with open(class_name_path, 'r') as file:
@@ -110,7 +107,7 @@ def main():
                     confidence_values.append(float(confidence))
                     bounding_boxes.append([x, y, w, h])
 
-        #TODO: check your threshold for non maximal suppression 
+        #TODO: check your threshold for non maximal suppression
         indices = cv2.dnn.NMSBoxes(bounding_boxes, confidence_values, conf_threshold, nms_threshold)
 
         #draw results
@@ -130,7 +127,7 @@ def main():
 
             #If detected object equals to the object tracked
             #TODO: make if statement  for selecting the object you want to track
-            if 
+            if
                 #TODO: Converts the 3d camera coordinates into 3d world coordinates
                 () = camera.convert2d_3d()
                 (x_3d,y_3d,z_3d) = camera.convert3d_3d()
