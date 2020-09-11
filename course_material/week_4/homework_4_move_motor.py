@@ -15,7 +15,7 @@ def startShake(robot):
     robot.center()
     time.sleep(1)
 
-    #TODO: insert code to make the robot nod.
+    #TODO: insert code to make the robot shake.
 
 
 def main():
@@ -26,7 +26,10 @@ def main():
     # Start robot
     robot.start()
     startNod(robot)
-    startShake(robot)
+    # Uncomment/comment  
+    startNod(robot)
+    # Uncomment/comment 
+    # startShake(robot)
 
 
 if __name__ == '__main__':
