@@ -38,7 +38,7 @@ def main():
     #TODO:set the keyword to respond to
     keyword = 'hello'
     #check if keyword in input
-    if keyword in text:
+    if keyword.lower() in text.lower():
         #TODO: set a response
         answer = 'Hi. Have a good time.'
 

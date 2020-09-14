@@ -14,8 +14,8 @@ from lib.ros_environment import ROSEnvironment
 from lib.robot import Robot
 
 #TODO: set the path of setting files
+cfg_path = "./CONFIGURATION_FILE.cfg"
 weight_path= "./WEIGHT_FILE.weights"
-cfg_path = "./CONFIGUREATION_FILE.cfg"
 class_name_path = "./yolov3.txt"
 
 #Loads class names into an array
@@ -102,7 +102,7 @@ def main():
                 confidence_values.append(float(confidence))
                 bounding_boxes.append([x, y, w, h])
 
-    # check your threshold for non maximal suppression 
+    # check your threshold for non maximal suppression
     indices = cv2.dnn.NMSBoxes(bounding_boxes, confidence_values, conf_threshold, nms_threshold)
 
     #draw results

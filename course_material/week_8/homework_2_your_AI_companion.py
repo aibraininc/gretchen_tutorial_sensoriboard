@@ -26,7 +26,10 @@ def main():
         print( i, item)
 
     #TODO: Initalize mic and set the device_index
-    mic = sr.Microphone(device_index=11)
+    mic = sr.Microphone(device_index=1)
+
+    print "I'm listening"
+
     with mic as source:
         r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
@@ -38,7 +41,7 @@ def main():
     #TODO:set the keyword to respond to
     keyword = 
     #check if keyword in input
-    if keyword in text:
+    if keyword.lower() in text.lower():
         #TODO: set a response
         answer = 
 

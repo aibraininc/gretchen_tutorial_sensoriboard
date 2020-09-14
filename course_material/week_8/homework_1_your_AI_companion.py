@@ -26,7 +26,10 @@ def main():
         print( i, item)
 
     #TODO: Initalize mic and set the device_index
-    mic = sr.Microphone(device_index=11)
+    mic = sr.Microphone(device_index=1)
+
+    print "I'm listening"
+    
     with mic as source:
         #TODO: adjust for noise
         

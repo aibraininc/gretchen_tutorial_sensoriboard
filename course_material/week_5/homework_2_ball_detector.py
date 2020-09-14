@@ -7,11 +7,10 @@ import imutils
 # Class for detecting ball
 class BallDetector:
     def __init__(self):
-        #TODO: set lower and upper limit for filtering the color you want
-
-        # Lower limit for color you want
+        #TODO: set lower and upper bound for color segmentation
+        # lower bound 
         self.colorLower = (25, 10, 25)
-        # Upper limit for color you want
+        # Upper bound
         self.colorUpper = (40, 255, 230)
 
 

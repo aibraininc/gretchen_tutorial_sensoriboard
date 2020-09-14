@@ -60,7 +60,7 @@ class Robot:
         if self.isMotion == False:
             head_client.send_goal(goal)
             self.isMotion = True
-
+        rospy.sleep(0.5)
     def initParam(self):
         self.rate = rospy.get_param("~rate", 20)
 
