@@ -29,13 +29,21 @@ def main():
         # Start motors
         motors.start()
         counter = 0
-
         while(counter < 10):
             #TODO: set the impuse for each motor
-            motors.apply_impulse([0, 0])
+            motors.apply_impulse([,])
             print("tak")
             counter = counter +1
             sleep(0.1)
+
+        counter = 0
+        while(counter < 10):
+            #TODO: set the impuse for each motor
+            motors.apply_impulse([,])
+            print("tak")
+            counter = counter +1
+            sleep(0.1)
+
         motors.stop()
 
     except (KeyboardInterrupt, SystemExit):

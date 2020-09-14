@@ -8,10 +8,10 @@ import imutils
 class BallDetector:
     def __init__(self):
         #TODO: set lower and upper bound for color segmentation
-        # lower bound 
-        self.colorLower = (25, 10, 25)
+        # lower bound
+        self.colorLower = (, , )
         # Upper bound
-        self.colorUpper = (40, 255, 230)
+        self.colorUpper = (, , )
 
 
     def detect(self, frame, _width=640, similarity_threshold = 0.75):

@@ -39,8 +39,8 @@ class Camera:
         # self.cx = msg.K[2]
         # self.cy = msg.K[5]
 
-        self.fx = 570.3422241210938
-        self.fy = 570.3422241210938
+        self.fx = 570.3422241210938*2
+        self.fy = 570.3422241210938*2
         self.cx = 319.5
         self.cy = 239.5
 
