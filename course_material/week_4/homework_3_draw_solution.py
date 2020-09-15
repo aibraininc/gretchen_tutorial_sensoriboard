@@ -19,7 +19,7 @@ def main():
         # Get image from camera
         img = camera.getImage()
 
-        #boundaries
+        #TODO: set set the boundaries for the box
         i_min = 280
         i_max = 360
         j_min = 200
@@ -28,6 +28,7 @@ def main():
         # Draw rectangle on the image
         for i in range(i_min, i_max):
             for j in range(j_min,j_max):
+                #TODO: change the pixel to another color                
                 img[j][i] = [255, 0, 0]
         # Show image
         cv2.imshow("Frame", img[...,::-1])

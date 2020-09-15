@@ -16,16 +16,16 @@ def main():
     
     time.sleep(1) # wait a second
 
-    #TODO: remember current position
+    #TODO: remember the current position
     curr_pos = 
     curr_pan = 
     curr_tilt = 
 
-    #TODO: look somewhere else other than current position
+    #TODO: look somewhere else other than the current position
     robot.move(,)
     time.sleep(1) # wait a second
 
-    #TODO: return back to the current position 
+    #TODO: return back to the current position stored
     robot.move(,)
     time.sleep(1) # wait a second
 
