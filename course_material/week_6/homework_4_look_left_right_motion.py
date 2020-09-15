@@ -58,28 +58,30 @@ def main():
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
-            #TODO: find a yaw value from rotation_vector
+            #The yaw value is the 2nd value in the rotation_vector
             print rotation_vector
             yaw = rotation_vector[2]
 
-            #TODO: remember current position
+            #prints the current position
             print ("Pan angle is ",robot.getPosition()[0], "Tilt angle is", robot.getPosition()[1])
 
-            #TODO: insert the condition for looking at right
+            #condition when the user is looking right
             if (yaw > 0.3 and motion_start_time == None):
                 print ('You are looking at right.')
+                #TODO: store the current position in current_pan and current_tilt
                 current_pos = robot.getPosition()
                 current_pan =
                 current_tilt =
 
-                #TODO: add motion for looking at right
+                #TODO: add motion for looking right
                 robot.move(,)
 
                 motion_start_time = current_time()
 
-            #TODO: insert the condition for looking at left
+            #condition when the user is looking left
             elif (yaw < -0.3 and motion_start_time == None):
                     print ('You are looking at left.')
+                    #TODO: store the current position in current_pan and current_tilt
                     current_pos = robot.getPosition()
                     current_pan =
                     current_tilt =
@@ -93,7 +95,7 @@ def main():
 
         # After the motion runs, check if 3 seconds have passed.
         if(motion_start_time != None and current_time()-motion_start_time > 3 ):
-            #TODO: Looking at the position that is stored.
+            #TODO: move the robot so that it returns to the stored current position
             robot.move(, )
             motion_start_time = None
 

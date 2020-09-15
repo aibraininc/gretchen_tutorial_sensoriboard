@@ -46,13 +46,15 @@ def main():
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)
 
-            #TODO: make a function that determines where you are looking at (left or right)
+            #TODO: find the yaw value from the rotation_vector
+            print rotation_vector
             yaw = rotation_vector[2]
             print(yaw)
-            #TODO: insert the condition for looking at right
+
+            #TODO: insert the condition for looking right
             if yaw > right_threshold:
                 print ('You are looking at right.')
-            #TODO: insert the condition for looking at left                
+            #TODO: insert the condition for looking left                
             elif yaw < left_threshold:
                 print ('You are looking at left.')
 

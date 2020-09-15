@@ -124,24 +124,24 @@ def main():
                 #Condition for user looking towards the right
                 if (yaw > 0.3 and motion_start_time == None):
                     print ('You are looking towards the right.')
-                    #TODO: Remeber the current position
+                    #TODO: Remember the current position
                     current_position = 
                     current_pan = 
                     current_tilt = 
                     print "Starting head motion to look right"
-                    #TODO: add motion for looking at right
+                    #TODO: add motion for looking right
                     robot.move(,)
                     motion_start_time = current_time()
 
                 #Condition for user looking towards the left
                 elif (yaw < -0.3 and motion_start_time == None):
                     print ('You are looking towards the left.')
-                    #TODO: Remeber the current position
+                    #TODO: Remember the current position
                     current_position =
                     current_pan = 
                     current_tilt = 
                     print "Starting head motion to look left"
-                    #TODO: add motion for looking at left
+                    #TODO: add motion for looking left
                     robot.move(,)
                     motion_start_time = current_time()
 
