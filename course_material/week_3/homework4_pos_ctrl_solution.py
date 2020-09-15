@@ -30,30 +30,35 @@ def main():
 		# Print the current position
         print_position(motors.get_position())
 
+        #TODO: set the position for the robot to move
         motors.set_position([0, -0.4])
         sleep(2)
 
 		# Print the current position
         print_position(motors.get_position())
 
+        #TODO: set the position for the robot to move
         motors.set_position([0.4, -0.4])
         sleep(2)
 
 		# Print the current position
         print_position(motors.get_position())
 
+        #TODO: set the position for the robot to move
         motors.set_position([0.4, 0.4])
         sleep(2)
 
 		# Print the current position
         print_position(motors.get_position())
 
+        #TODO: set the position for the robot to move
         motors.set_position([-0.4, 0.4])
         sleep(2)
 
 		# Print the current position
         print_position(motors.get_position())
 
+        #TODO: set the position for the robot to move
         motors.set_position([-0.4, -0.4])
         sleep(2)
 
