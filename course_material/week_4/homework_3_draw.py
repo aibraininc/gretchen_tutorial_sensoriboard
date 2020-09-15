@@ -19,7 +19,7 @@ def main():
         # Get image from camera
         img = camera.getImage()
 
-        #TODO: set set the boundaries for the box
+        #TODO: set the boundaries for the box
         i_min = 
         i_max = 
         j_min = 

@@ -70,7 +70,7 @@ def startShake(robot):
     robot.center()
     time.sleep(1)
 
-    #TODO: insert code to make the robot nod.
+    #TODO: insert code to make the robot shake.
 
 
 if __name__ == '__main__':
