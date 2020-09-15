@@ -23,21 +23,18 @@ frame_skip_cnt = 0
 
 # headInSquare function checks face is in center of the image
 def faceInCenter(camera, tracked_face_X, tracked_face_y, faceInCenter_count):
-    # boundaries
+    # set boundaries
     left = 100
     right = 100
     up = 100
     bottom = 100
-    #isHeadInSquare = False
+
     if tracked_face_X >camera.width/2 - left and tracked_face_X <camera.width/2 + right and tracked_face_y >camera.height/2 - bottom and tracked_face_y <camera.height/2 + up:
-        #isHeadInSquare = True
         faceInCenter_count = faceInCenter_count + 1
         print "In Square"
-        #return True
     else:
         faceInCenter_count = 0
     return faceInCenter_count
-    #return False
 
 # frame_skip function skips the camera frames
 def frame_skip(img):
@@ -57,6 +54,7 @@ def main():
     camera = Camera()
     #start camera
     camera.start()
+    #Initalize robot
     robot = Robot()
     #start robot
     robot.start()

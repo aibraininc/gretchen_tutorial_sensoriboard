@@ -23,22 +23,19 @@ frame_skip_cnt = 0            #Get the x, y position
 
 
 # headInSquare function checks face is in center of the image
-def faceInCenter(camera, tracked_face_x, tracked_face_y, faceInCenter_count):
-    # boundaries
+def faceInCenter(camera, tracked_face_X, tracked_face_y, faceInCenter_count):
+    # set boundaries
     left = 100
     right = 100
     up = 100
     bottom = 100
-    #isHeadInSquare = False
-    if tracked_face_x >camera.width/2 - left and tracked_face_x <camera.width/2 + right and tracked_face_y >camera.height/2 - bottom and tracked_face_y <camera.height/2 + up:
-        #isHeadInSquare = True
+
+    if tracked_face_X >camera.width/2 - left and tracked_face_X <camera.width/2 + right and tracked_face_y >camera.height/2 - bottom and tracked_face_y <camera.height/2 + up:
         faceInCenter_count = faceInCenter_count + 1
         print "In Square"
-        #return True
     else:
         faceInCenter_count = 0
     return faceInCenter_count
-    #return False                (x,y,z) = camera.convert2d_3d(tracked_face_x, tracked_face_y)
 
 
 # frame_skip function skips the camera frames
@@ -58,8 +55,8 @@ def main():
     #Initalize camera
     camera = Camera()
     #start camera
-    camera.start()            #Get the x, y position
-
+    camera.start()
+    #Initalize robot
     robot = Robot()
     #start robot
     robot.start()
@@ -112,11 +109,11 @@ def main():
             if Tracking:
                 print("Tracking the Person")
                 #TODO: converts the 2d point on the image  to a 3d point on camera coordinates system
-                (x,y,z) = camera.convert2d_3d(tracked_face_x, tracked_face_y)
+                (x,y,z) = 
                 #TODO: converts 3d point on camera coordinates system to 3d point on robot coordinates system
-                (x,y,z) = camera.convert3d_3d(x,y,z)
+                (x,y,z) = 
                 #TODO: move robot to track your face
-                robot.lookatpoint(x,y,z)
+                
 
             #When tracking is turned off, estimate the head pose and perform head motion if conditions meet
             elif Tracking is False:
@@ -128,24 +125,24 @@ def main():
                 if (yaw > 0.3 and motion_start_time == None):
                     print ('You are looking towards the right.')
                     #TODO: Remeber the current position
-                    current_position = robot.getPosition()
-                    current_pan = current_position[0]
-                    current_tilt = current_position[1]
+                    current_position = 
+                    current_pan = 
+                    current_tilt = 
                     print "Starting head motion to look right"
                     #TODO: add motion for looking at right
-                    robot.move(0.8,0.5)
+                    robot.move(,)
                     motion_start_time = current_time()
 
                 #Condition for user looking towards the left
                 elif (yaw < -0.3 and motion_start_time == None):
                     print ('You are looking towards the left.')
                     #TODO: Remeber the current position
-                    current_position = robot.getPosition()
-                    current_pan = current_position[0]
-                    current_tilt = current_position[1]
+                    current_position =
+                    current_pan = 
+                    current_tilt = 
                     print "Starting head motion to look left"
                     #TODO: add motion for looking at left
-                    robot.move(-0.8, 0.5)
+                    robot.move(,)
                     motion_start_time = current_time()
 
         #When head motion is activated we start the counter

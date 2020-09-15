@@ -47,11 +47,11 @@ def main():
             print rotation_vector
             yaw = 
 
-            #:TODO insert the condition for looking at right
+            #TODO: insert the condition for looking at right
             if :
                 print ('You are looking at right.')            
 
-            #:TODO insert the condition for looking at left
+            #TODO: insert the condition for looking at left
             elif :
                 print ('You are looking at left.')            
 

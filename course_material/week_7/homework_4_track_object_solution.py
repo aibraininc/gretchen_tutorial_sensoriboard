@@ -13,7 +13,7 @@ from lib.camera_v2 import Camera
 from lib.ros_environment import ROSEnvironment
 from lib.robot import Robot
 
-#Path to files needed
+#TODO: set the path of setting files
 cfg_path = "./yolov3-tiny.cfg"
 weight_path= "./yolov3-tiny.weights"
 class_name_path = "./yolov3.txt"

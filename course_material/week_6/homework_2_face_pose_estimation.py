@@ -37,7 +37,7 @@ def main():
 
         # We only use 1 face to estimate pose
         if(len(dets)>0):
-            # Estimate pose of a detected face
+            #TODO: estimate pose of a detected face
             (success, rotation_vector, translation_vector, image_points) = face_detector.estimate_pose(img, dets[0])
             # Draw pose
             img = face_detector.draw_pose(img, rotation_vector, translation_vector, image_points)

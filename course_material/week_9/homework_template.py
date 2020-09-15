@@ -46,6 +46,7 @@ def listen():
         r = sr.Recognizer()
         mic = sr.Microphone(device_index=7)
         print("I am ready to listen.")
+        # run speech to text
         speak("I am ready to listen.")
 
         with mic as source:
