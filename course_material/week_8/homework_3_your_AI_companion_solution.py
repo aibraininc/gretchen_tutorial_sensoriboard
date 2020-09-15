@@ -77,7 +77,7 @@ def startShake(robot):
     robot.center()
     time.sleep(1)
 
-    #TODO: insert code to make the robot nod.
+    #TODO: insert code to make the robot shake.
     robot.left(1)
     for i in range(0,3):
         robot.right(2)

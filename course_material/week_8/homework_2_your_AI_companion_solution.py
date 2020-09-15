@@ -35,7 +35,7 @@ def main():
     client.send(text)
     answer = client.answer()
 
-    #TODO:set the keyword to respond to
+    #TODO: set the keyword to respond to
     keyword = 'hello'
     #check if keyword in input
     if keyword.lower() in text.lower():
